@@ -1,0 +1,81 @@
+﻿@model IEnumerable<BSMS.bsms.localhost.CATEGORY>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_TLayout.cshtml";
+}
+
+<div class="container">
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table table-responsive table-fill responstable">
+        <tr style="height:20px">
+            <th class="text-left">
+                @Html.DisplayNameFor(model => model.NAME)
+            </th>
+            <th class="text-left">
+                @Html.DisplayNameFor(model => model.DESCRIPTION)
+            </th>
+            <th class="text-left">
+                @Html.DisplayNameFor(model => model.REFERENCE_KEY)
+            </th>
+
+            <th class="text-left"></th>
+            <th class="text-left"></th>
+            <th class="text-left"></th>
+        </tr>
+        <tbody class="table-hover">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.NAME)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.DESCRIPTION)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.REFERENCE_KEY)
+                </td>
+               
+                <td class="text-left">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CATEGORYID }) 
+                </td>
+                <td class="text-left">
+                    @Html.ActionLink("Details", "Details", new { id = item.CATEGORYID }) 
+                </td>
+                <td class="text-left">
+                    <a  onclick="confirmMessage(@item.CATEGORYID)">
+                        <span class="glyphicon glyphicon-remove">  </span>
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function confirmMessage(id) {
+
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then(function () {
+            swal({
+                title: 'Request Processing',
+                text: 'BSMS is processing your request',
+                timer: 5000
+            })
+            window.location = '@Url.Action("Delete", "Category")/' + id;
+        })
+
+    }
+</script>

@@ -15,6 +15,6 @@ namespace BSMS.Message
         internal static readonly dynamic REQUIRED_ASTERIC_FIELDS = "* Fields are hightly required!!";
         internal static readonly dynamic PASSWORD_CHANGED = "There was a Problem Changing your Password, Go back to reset password page";
         internal static readonly dynamic INTERNAL_ERROR = "Internal Error Occured, Contact Development Team for more information";
-        internal static readonly dynamic USER_UPDATED;
+        internal static readonly dynamic USER_UPDATED="User have successfully been updated";
     }
 }

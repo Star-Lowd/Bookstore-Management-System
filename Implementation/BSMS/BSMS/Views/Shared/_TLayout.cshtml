@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using BSMS.Session;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -33,7 +34,7 @@
             </div>
 
             <!--logo start-->
-            <a href="index.html" class="logo">BSMS <span class="lite">Admin</span></a>
+            <a class="logo">BSMS <span class="lite">Admin</span></a>
             <!--logo end-->
 
             <div class="nav search-row" id="top_menu">
@@ -44,7 +45,16 @@
                             <input class="form-control" placeholder="Search" type="text">
                         </form>
                     </li>
+
+                    <li>
+                        <form class="navbar-form">
+                            <a>Admin</a>
+                        </form>
+                    </li>
+
                 </ul>
+
+
                 <!--  search form end -->
             </div>
 
@@ -91,6 +101,17 @@
                         </a>
                     </li>
                     <!--End Staff Navigation -->
+
+
+                    <!--Author Navigation -->
+                    <li class="sub-menu">
+                        <a href='@Url.Action("Index","Author")' class="">
+                            <i class="glyphicon glyphicon-book"></i>
+                            <span>Author</span>
+
+                        </a>
+                    </li>
+                    <!--End Author Navigation -->
 
                 </ul>
                 <!-- sidebar menu end-->

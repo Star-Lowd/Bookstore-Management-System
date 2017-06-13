@@ -21,11 +21,10 @@ namespace BSMS.SERVICE
         [WebMethod]
         public void UpdateUser(USER user)
         {
-            foreach(USER u in dataAccess.USERs.ToList())
+            foreach (USER u in dataAccess.USERs.ToList())
             {
                 if (u.USERID == user.USERID)
                 {
-                    u.PASSWORDHASH = user.PASSWORDHASH;
                     u.FIRSTNAME = user.FIRSTNAME;
                     u.LASTNAME = user.LASTNAME;
                     u.MIDDLENAME = user.MIDDLENAME;
@@ -41,7 +40,7 @@ namespace BSMS.SERVICE
         public bool AddUser(USER user)
         {
             try
-            {       
+            {
                 dataAccess.USERs.InsertOnSubmit(user);
                 dataAccess.SubmitChanges();
                 return true;
@@ -51,7 +50,7 @@ namespace BSMS.SERVICE
                 return false;
             }
         }
-        
+
         [WebMethod]
         public List<ROLE> GetRoles()
         {
@@ -153,5 +152,43 @@ namespace BSMS.SERVICE
             dataAccess.USERs.DeleteOnSubmit(gen);
             dataAccess.SubmitChanges();
         }
+
+
+        [WebMethod]
+        public List<AUTHOR> GetAuthors()
+        {
+            return dataAccess.AUTHORs.ToList();
+        }
+
+
+        [WebMethod]
+        public void DeleteAuthor(int id)
+        {
+            AUTHOR author = dataAccess.AUTHORs.Single(aut => aut.AUTHORID == id);
+            dataAccess.AUTHORs.DeleteOnSubmit(author);
+            dataAccess.SubmitChanges();
+        }
+
+        [WebMethod]
+        public void AddAuthor(AUTHOR author)
+        {
+            dataAccess.AUTHORs.InsertOnSubmit(author);
+            dataAccess.SubmitChanges();
+        }
+
+        [WebMethod]
+        public void UpdateAuthor(AUTHOR author)
+        {
+            AUTHOR prv = dataAccess.AUTHORs.Single(authors => authors.AUTHORID == author.AUTHORID);
+            prv.ALIASNAME = author.ALIASNAME;
+            prv.BIOGRAPHY = author.BIOGRAPHY;
+            prv.FIRSTNAME = author.FIRSTNAME;
+            prv.LASTNAME = author.LASTNAME;
+            prv.MIDDLENAME = author.MIDDLENAME;
+            prv.THUMBNAIL_PATH = author.THUMBNAIL_PATH;
+
+            dataAccess.SubmitChanges();
+        }
+
     }
 }

@@ -55,6 +55,14 @@ namespace BSMS.bsms.localhost {
         
         private System.Threading.SendOrPostCallback DeleteUserOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetAuthorsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteAuthorOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddAuthorOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateAuthorOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -131,6 +139,18 @@ namespace BSMS.bsms.localhost {
         
         /// <remarks/>
         public event DeleteUserCompletedEventHandler DeleteUserCompleted;
+        
+        /// <remarks/>
+        public event GetAuthorsCompletedEventHandler GetAuthorsCompleted;
+        
+        /// <remarks/>
+        public event DeleteAuthorCompletedEventHandler DeleteAuthorCompleted;
+        
+        /// <remarks/>
+        public event AddAuthorCompletedEventHandler AddAuthorCompleted;
+        
+        /// <remarks/>
+        public event UpdateAuthorCompletedEventHandler UpdateAuthorCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -494,6 +514,117 @@ namespace BSMS.bsms.localhost {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAuthors", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public AUTHOR[] GetAuthors() {
+            object[] results = this.Invoke("GetAuthors", new object[0]);
+            return ((AUTHOR[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAuthorsAsync() {
+            this.GetAuthorsAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetAuthorsAsync(object userState) {
+            if ((this.GetAuthorsOperationCompleted == null)) {
+                this.GetAuthorsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAuthorsOperationCompleted);
+            }
+            this.InvokeAsync("GetAuthors", new object[0], this.GetAuthorsOperationCompleted, userState);
+        }
+        
+        private void OnGetAuthorsOperationCompleted(object arg) {
+            if ((this.GetAuthorsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAuthorsCompleted(this, new GetAuthorsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteAuthor", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DeleteAuthor(int id) {
+            this.Invoke("DeleteAuthor", new object[] {
+                        id});
+        }
+        
+        /// <remarks/>
+        public void DeleteAuthorAsync(int id) {
+            this.DeleteAuthorAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteAuthorAsync(int id, object userState) {
+            if ((this.DeleteAuthorOperationCompleted == null)) {
+                this.DeleteAuthorOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteAuthorOperationCompleted);
+            }
+            this.InvokeAsync("DeleteAuthor", new object[] {
+                        id}, this.DeleteAuthorOperationCompleted, userState);
+        }
+        
+        private void OnDeleteAuthorOperationCompleted(object arg) {
+            if ((this.DeleteAuthorCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteAuthorCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddAuthor", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void AddAuthor(AUTHOR author) {
+            this.Invoke("AddAuthor", new object[] {
+                        author});
+        }
+        
+        /// <remarks/>
+        public void AddAuthorAsync(AUTHOR author) {
+            this.AddAuthorAsync(author, null);
+        }
+        
+        /// <remarks/>
+        public void AddAuthorAsync(AUTHOR author, object userState) {
+            if ((this.AddAuthorOperationCompleted == null)) {
+                this.AddAuthorOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddAuthorOperationCompleted);
+            }
+            this.InvokeAsync("AddAuthor", new object[] {
+                        author}, this.AddAuthorOperationCompleted, userState);
+        }
+        
+        private void OnAddAuthorOperationCompleted(object arg) {
+            if ((this.AddAuthorCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddAuthorCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateAuthor", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateAuthor(AUTHOR author) {
+            this.Invoke("UpdateAuthor", new object[] {
+                        author});
+        }
+        
+        /// <remarks/>
+        public void UpdateAuthorAsync(AUTHOR author) {
+            this.UpdateAuthorAsync(author, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateAuthorAsync(AUTHOR author, object userState) {
+            if ((this.UpdateAuthorOperationCompleted == null)) {
+                this.UpdateAuthorOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateAuthorOperationCompleted);
+            }
+            this.InvokeAsync("UpdateAuthor", new object[] {
+                        author}, this.UpdateAuthorOperationCompleted, userState);
+        }
+        
+        private void OnUpdateAuthorOperationCompleted(object arg) {
+            if ((this.UpdateAuthorCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateAuthorCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -671,6 +802,99 @@ namespace BSMS.bsms.localhost {
             }
             set {
                 this.rOLE1Field = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class AUTHOR {
+        
+        private int aUTHORIDField;
+        
+        private string fIRSTNAMEField;
+        
+        private string lASTNAMEField;
+        
+        private string mIDDLENAMEField;
+        
+        private string bIOGRAPHYField;
+        
+        private string aLIASNAMEField;
+        
+        private string tHUMBNAIL_PATHField;
+        
+        /// <remarks/>
+        public int AUTHORID {
+            get {
+                return this.aUTHORIDField;
+            }
+            set {
+                this.aUTHORIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FIRSTNAME {
+            get {
+                return this.fIRSTNAMEField;
+            }
+            set {
+                this.fIRSTNAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LASTNAME {
+            get {
+                return this.lASTNAMEField;
+            }
+            set {
+                this.lASTNAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MIDDLENAME {
+            get {
+                return this.mIDDLENAMEField;
+            }
+            set {
+                this.mIDDLENAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BIOGRAPHY {
+            get {
+                return this.bIOGRAPHYField;
+            }
+            set {
+                this.bIOGRAPHYField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ALIASNAME {
+            get {
+                return this.aLIASNAMEField;
+            }
+            set {
+                this.aLIASNAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string THUMBNAIL_PATH {
+            get {
+                return this.tHUMBNAIL_PATHField;
+            }
+            set {
+                this.tHUMBNAIL_PATHField = value;
             }
         }
     }
@@ -962,6 +1186,44 @@ namespace BSMS.bsms.localhost {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     public delegate void DeleteUserCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetAuthorsCompletedEventHandler(object sender, GetAuthorsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAuthorsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAuthorsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public AUTHOR[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((AUTHOR[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void DeleteAuthorCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void AddAuthorCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void UpdateAuthorCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

@@ -1,0 +1,46 @@
+﻿@model BSMS.bsms.localhost.AUTHOR
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_TLayout.cshtml";
+}
+<div class="container">
+
+    <div class="row">
+       <center>
+
+        <div class="col-lg-8 col-md-8 col-sm-8 col-sx-8">
+            <div class="jumbotron">
+                
+                <h2>Details <small> Author Information </small> </h2>
+                <hr>
+                <img src="@Model.THUMBNAIL_PATH" style="width:50%" />
+                <br>
+                <table>
+                    <tr>
+                        <td> Full Name </td>
+                        <td> @Model.FIRSTNAME @Model.MIDDLENAME @Model.LASTNAME </td>
+                    </tr>
+
+                    <tr>
+                        <td> Biography </td>
+                        <td> <p>@Model.BIOGRAPHY </p></td>
+                    </tr>
+
+                    <tr>
+                        <td> Alias Name </td>
+                        <td> @Model.ALIASNAME </td>
+                    </tr>
+
+
+                </table>
+            </div>
+        </div>
+           </center>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AUTHORID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

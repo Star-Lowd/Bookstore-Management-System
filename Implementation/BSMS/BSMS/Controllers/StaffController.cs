@@ -1,6 +1,7 @@
 ﻿using BSMS.bsms.localhost;
 using BSMS.Message;
 using BSMS.Models;
+using BSMS.Utill;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,21 @@ namespace BSMS.Controllers
 
         // POST: Staff/Details/5
         [HttpPost]
-        public ActionResult UpdateStaff(int id, USER user)
+        public ActionResult UpdateStaff(int id, USER user, HttpPostedFileBase thumbnail)
         {
             if (ModelState.IsValid)
             {
+                if (thumbnail != null && !String.IsNullOrEmpty(thumbnail.FileName))
+                {
+                    String fname = Generator.RandomString(10) + "." + thumbnail.FileName.Split('.')[thumbnail.FileName.Split('.').Length - 1];
+                    string path = Server.MapPath("~/UserImages/") + fname;
+                    user.THUMBNAIL_PATH = "/UserImages/" + fname;
+                    thumbnail.SaveAs(path);
+                }
+                else
+                {
+                    user.THUMBNAIL_PATH = AuthenticationModel.FindUser(id).THUMBNAIL_PATH;
+                }
                 AuthenticationModel.UpdateUser(user);
                 ViewBag.Message = ErrorMessage.USER_UPDATED;
             }

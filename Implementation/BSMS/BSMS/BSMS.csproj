@@ -123,6 +123,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Message\ErrorMessage.cs" />
     <Compile Include="Message\SuccessMessage.cs" />
     <Compile Include="Models\AuthenticationModel.cs" />
+    <Compile Include="Models\AuthorModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\EmailNotification.cs" />
     <Compile Include="Models\GenreModel.cs" />
@@ -288,6 +290,13 @@
     <Content Include="Views\Staff\Index.cshtml" />
     <Content Include="Views\Staff\ViewProfile.cshtml" />
     <Content Include="Views\Staff\UpdateStaff.cshtml" />
+    <Content Include="Web References\bsms.localhost\AUTHOR.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Views\Author\Index.cshtml" />
+    <Content Include="Views\Author\Details.cshtml" />
+    <Content Include="Views\Author\Create.cshtml" />
+    <Content Include="Views\Author\Edit.cshtml" />
     <None Include="Web References\bsms.localhost\bsms_service.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

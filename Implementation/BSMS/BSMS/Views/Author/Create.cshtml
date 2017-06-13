@@ -1,34 +1,22 @@
-﻿@model BSMS.bsms.localhost.USER
+﻿@model BSMS.bsms.localhost.AUTHOR
 
 @{
-    ViewBag.Title = "UpdateStaff";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_TLayout.cshtml";
 }
-
 <div class="container">
-
     <div class="col-lg-8 col-md-8 col-sm-8">
-  @using (Html.BeginForm("UpdateStaff", "Staff", FormMethod.Post, new { enctype = "multipart/form-data" }))
-  {
+        <h2>Create</h2>
+
+       @using (Html.BeginForm("Create", "Author", FormMethod.Post, new { enctype = "multipart/form-data" }))
+       {
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h4>Update User</h4>
+                <h4>AUTHOR</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.USERID)
-
                 <div class="form-group">
-                    *
-                    @Html.LabelFor(model => model.USERNAME, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.USERNAME, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.USERNAME, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    *
                     @Html.LabelFor(model => model.FIRSTNAME, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.FIRSTNAME, new { htmlAttributes = new { @class = "form-control" } })
@@ -53,7 +41,23 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="thumbnail" class="control-label col-md-2"> Profile Photo </label>
+                    @Html.LabelFor(model => model.BIOGRAPHY, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.BIOGRAPHY, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BIOGRAPHY, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ALIASNAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ALIASNAME, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ALIASNAME, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.THUMBNAIL_PATH, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <input type="file" name="thumbnail" class="form-control" />
                         @Html.ValidationMessageFor(model => model.THUMBNAIL_PATH, "", new { @class = "text-danger" })
@@ -61,17 +65,8 @@
                 </div>
 
                 <div class="form-group">
-                    *
-                    @Html.LabelFor(model => model.EMAIL, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
+                        <input type="submit" value="Create" class="btn btn-default" />
                     </div>
                 </div>
             </div>
@@ -82,9 +77,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 
 @if (!String.IsNullOrEmpty(ViewBag.Message))
@@ -107,7 +99,7 @@
                 message,
               'info'
             )
-                window.location = '@Url.Action("Index","Staff")';
+                window.location = '@Url.Action("Index","Author")';
             }
         )
 
@@ -127,4 +119,3 @@
         })
     </script>
 }
-

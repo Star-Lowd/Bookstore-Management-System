@@ -7,6 +7,8 @@ namespace BSMS.Message
 {
     public class SuccessMessage
     {
+        internal static readonly dynamic AUTHOR_ADDED = "New Author Have Successfully been Added";
+        internal static readonly dynamic AUTHOR_EDITED = "Author have Successfully been updated";
         internal static readonly dynamic CATEGORY_ADDED = "New Category have been successfully added";
         internal static readonly dynamic CATEGORY_EDITED = "Information of Category Have been successfully Updated";
         internal static readonly dynamic EMAIL_SENT= "Email Notification have been sent to your Email";

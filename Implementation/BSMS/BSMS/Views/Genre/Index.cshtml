@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BSMS.bsms.localhost.CATEGORY>
+﻿@model IEnumerable<BSMS.bsms.localhost.GENRE>
 
 @{
     ViewBag.Title = "Index";
@@ -11,7 +11,7 @@
             @Html.ActionLink("Create New", "Create")
         </p>
         <table class="table">
-            <tr style="height:20px">
+            <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.NAME)
                 </th>
@@ -21,40 +21,39 @@
                 <th>
                     @Html.DisplayNameFor(model => model.REFERENCE_KEY)
                 </th>
-
                 <th></th>
             </tr>
-            <tbody class="table-hover">
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NAME)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DESCRIPTION)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.REFERENCE_KEY)
-                        </td>
 
-                        <td>
-                            <a href='\Category\Edit\@item.CATEGORYID'>
-                                <span class="glyphicon glyphicon-edit"></span>
-                            </a> |
-                            <a href='\Category\Details\@item.CATEGORYID'>
-                                <span class="glyphicon glyphicon-info-sign"></span>
-                            </a> |
-                            <a onclick="confirmMessage(@item.CATEGORYID)">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DESCRIPTION)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.REFERENCE_KEY)
+                    </td>
+                    <td>
+                        <a href='\Genre\Edit\@item.GENREID'>
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a> |
+                        <a href='\Genre\Details\@item.GENREID'>
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                        </a> |
+                        <a onclick="confirmMessage(@item.GENREID)"> 
+                            <span class="glyphicon glyphicon-remove"></span> 
+                        </a>
+                    </td>
+                </tr>
+            }
+
         </table>
     </div>
-    </div>
+</div>
+
 <script>
     function confirmMessage(id) {
 
@@ -70,16 +69,16 @@
             swal({
                 title: 'Request Processing',
                 text: 'BSMS is processing your request',
-                timer: 20000
+                timer: 5000
             })
-            window.location = '@Url.Action("Delete", "Category")/' + id;
+            window.location = '@Url.Action("Delete", "Genre")/' + id;
         }, function (dismiss) {
             // dismiss can be 'cancel', 'overlay',
             // 'close', and 'timer'
             if (dismiss === 'cancel') {
                 swal(
                   'Cancelled',
-                  'Your imaginary file is safe :)',
+                  'You have Cancel the Delete Event :)',
                   'error'
                 )
             }

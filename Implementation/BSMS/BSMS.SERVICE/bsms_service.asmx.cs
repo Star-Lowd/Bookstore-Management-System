@@ -51,6 +51,7 @@ namespace BSMS.SERVICE
                 return false;
             }
         }
+        
         [WebMethod]
         public List<ROLE> GetRoles()
         {
@@ -141,6 +142,15 @@ namespace BSMS.SERVICE
         {
             GENRE gen = dataAccess.GENREs.ToList().Single(genre => genre.GENREID == genID);
             dataAccess.GENREs.DeleteOnSubmit(gen);
+            dataAccess.SubmitChanges();
+        }
+
+
+        [WebMethod]
+        public void DeleteUser(int uID)
+        {
+            USER gen = dataAccess.USERs.ToList().Single(user => user.USERID == uID);
+            dataAccess.USERs.DeleteOnSubmit(gen);
             dataAccess.SubmitChanges();
         }
     }

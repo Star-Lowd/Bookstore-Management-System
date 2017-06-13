@@ -8,6 +8,7 @@ namespace BSMS.Models
 {
     public class AuthenticationModel
     {
+
         private static bsms_service services = new bsms_service();
 
         //Authenticate user
@@ -24,6 +25,21 @@ namespace BSMS.Models
             }
 
             return user;
+        }
+
+        internal static List<USER> GetStaffs()
+        {
+            return services.GetUsers().ToList();
+        }
+
+        internal static void DeleteUser(int id)
+        {
+            services.DeleteUser(id);
+        }
+
+        internal static void UpdateUser(USER user)
+        {
+            services.UpdateUser(user);
         }
 
 
@@ -88,4 +104,7 @@ namespace BSMS.Models
             return null;
         }
     }
+
+ 
 }
+

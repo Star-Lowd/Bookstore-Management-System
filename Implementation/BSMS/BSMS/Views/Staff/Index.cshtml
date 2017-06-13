@@ -1,0 +1,107 @@
+﻿@model IEnumerable<BSMS.bsms.localhost.USER>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_TLayout.cshtml";
+}
+
+
+
+<div class="container">
+
+    <p>
+        @Html.ActionLink("Add Staff", "RegisterClient", "Authentication")
+    </p>
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-md-3">
+                @{
+                    string img_Path = item.THUMBNAIL_PATH == null ? "/UserImages/avatar.png" : @item.THUMBNAIL_PATH;
+                }
+
+                <div class="thumbnail">
+                    <div  style="background-image:url('@img_Path'); height:250px; background-size:100% 100%" ></div>
+                    <div class="caption" style="width:100%">
+                        <center><h3>@item.USERNAME  <small>@item.FIRSTNAME</small> </h3></center>
+                        
+                        <table width="100%">
+                            <tr>
+                                <td> Email </td>
+                                <td class="text-right"> @item.EMAIL </td>
+                            </tr>
+                            <tr>
+                                <td> Username </td>
+                                <td class="text-right"> @item.USERNAME </td>
+                            </tr>
+                            <tr>
+                                <td> Role </td>
+                                <td class="text-right"> @item.ROLE.ROLE1 </td>
+                            </tr>
+                        </table>
+                        <p>
+                            <div class="btn-group" style="width:100%">
+                                <a onclick="ViewDetail(@item.USERID)" class="btn btn-primary" style="width:33%">
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                </a>
+
+                                <a class="btn btn-danger" style="width:33%"  onclick="confirmDelete(@item.USERID)">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+
+                                <a class="btn btn-danger" style="width:33%" href='@Url.Action("UpdateStaff", new { id = item.USERID })'>
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </a>
+                            </div>
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+          }
+
+    </div>
+</div>
+
+<script>
+
+    function ViewDetail(id) {
+
+        $.sweetModal({
+            title: 'HTML Content',
+           
+            theme: $.sweetModal.THEME_DARK
+        });
+
+    }
+
+
+    function confirmDelete(id){
+        swal({
+            title: 'Are you sure you want to Delete this user ?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then(function () {
+            swal({
+                title: 'Request Processing',
+                text: 'BSMS is processing account removal request'
+            })
+            window.location = '@Url.Action("Delete", "Staff")/' + id;
+        }, function (dismiss) {
+            
+            if (dismiss === 'cancel') {
+                swal(
+                  'Cancelled',
+                  'You have Cancel the Delete Event :)',
+                  'error'
+                )
+            }
+        })
+
+    }
+</script>

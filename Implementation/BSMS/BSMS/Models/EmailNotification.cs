@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
+using BSMS.bsms.localhost;
 
 namespace BSMS.Models
 {
@@ -19,7 +20,13 @@ namespace BSMS.Models
                 hashCode, userID);
             SendEmail(email, ResetPasswordMessage, "Reset Email");
         }
-
+        internal static void StaffAccountCreated(string email, String hashCode, int userID)
+        {
+            String ResetPasswordMessage = String.Format("your account have been created change your password for first use <br />" +
+                "Click here <a href='http://localhost:52350/Authentication/ResetPassword?hash={0}&userID={1}'> Reset Password </a> to reset your password",
+                hashCode, userID);
+            SendEmail(email, ResetPasswordMessage, "Reset Email");
+        }
         private static void SendEmail(String email, String Message, String title)
         {
             MailMessage mail = new MailMessage();
@@ -34,6 +41,14 @@ namespace BSMS.Models
             SmtpServer.EnableSsl = true;
 
             SmtpServer.Send(mail);
+        }
+
+        internal static void AccountDeletedNotification(USER user)
+        {
+            String message = "Your account have been remove by the administrator <br>" +
+                "You might have violated the code of ethics of BSMS";
+
+            SendEmail(user.EMAIL, message, "Account Deleted");
         }
     }
 }

@@ -78,12 +78,16 @@ namespace BSMS.Controllers
                 {
                     String fname = Generator.RandomString(10) + "." + thumbnail.FileName.Split('.')[thumbnail.FileName.Split('.').Length - 1];
                     string path = Server.MapPath("~/UserImages/") + fname; 
-                    user.THUMBNAIL_PATH = "~/UserImages/" + fname;
+                    user.THUMBNAIL_PATH = "/UserImages/" + fname;
                     thumbnail.SaveAs(path);
                 }
                 user.ROLEID = LoginSession.ISAdmin() ? UserRole.STAFF : UserRole.CUSTOMER;
 
                 AuthenticationModel.AddUser(user);
+                if (LoginSession.ISAdmin())
+                {
+                    EmailNotification.ForgetPassword(user.EMAIL, user.PASSWORDHASH, user.USERID);
+                }
                 ViewBag.Message = SuccessMessage.REGISTERATION_COMPLETED;
             }
             else

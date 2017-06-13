@@ -1,4 +1,6 @@
 ﻿using BSMS.bsms.localhost;
+using BSMS.Message;
+using BSMS.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +14,13 @@ namespace BSMS.Controllers
         // GET: Genre
         public ActionResult Index()
         {
-            return View();
+            return View(GenreModel.GetGenre());
         }
 
         // GET: Genre/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(GenreModel.Fliter(id));
         }
 
         // GET: Genre/Create
@@ -29,16 +31,24 @@ namespace BSMS.Controllers
 
         // POST: Genre/Create
         [HttpPost]
-        public ActionResult Create(GENRE collection)
+        public ActionResult Create(GENRE genre)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    GenreModel.AddGenre(genre);
+                    ViewBag.Message = SuccessMessage.GENRE_ADDED_MESSAGE;
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = ErrorMessage.REQUIRED_ASTERIC_FIELDS;
+                }
+                return View();
             }
             catch
             {
+                ViewBag.ErrorMessage = ErrorMessage.INTERNAL_ERROR;
                 return View();
             }
         }
@@ -46,21 +56,30 @@ namespace BSMS.Controllers
         // GET: Genre/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(GenreModel.Fliter(id));
         }
 
         // POST: Genre/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, GENRE genre)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    GenreModel.Update(genre);
+                    ViewBag.Message = SuccessMessage.GENRE_UPDATED_MESSAGE;
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = ErrorMessage.REQUIRED_ASTERIC_FIELDS;
+                }
 
-                return RedirectToAction("Index");
+                return View();
             }
             catch
             {
+                ViewBag.ErrorMessage = ErrorMessage.INTERNAL_ERROR;
                 return View();
             }
         }
@@ -68,23 +87,10 @@ namespace BSMS.Controllers
         // GET: Genre/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            GenreModel.Delete(id);
+            return RedirectToAction("index");
         }
 
-        // POST: Genre/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }

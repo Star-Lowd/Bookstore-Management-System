@@ -1,21 +1,21 @@
-﻿@model BSMS.bsms.localhost.CATEGORY
+﻿@model BSMS.bsms.localhost.GENRE
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_TLayout.cshtml";
 }
 
 <div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12 col-sx-12">
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>CATEGORY</h4>
+            <h4>GENRE</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.GENREID)
+
             <div class="form-group">
                 @Html.LabelFor(model => model.NAME, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -42,17 +42,18 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Save" class="btn btn-default" />
                 </div>
             </div>
         </div>
     }
-        </div>
+
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
-        </div>
 </div>
+
+
 
 
 @if (!String.IsNullOrEmpty(ViewBag.Message))
@@ -61,10 +62,10 @@
 
         var message = '@ViewBag.Message';
         swal({
-            title: 'BSMS Processing',
-            text: 'BSMS is Processing Your Request, Please wait a few seconce',
-            timer: 3000,
-            type: 'info',
+            title: 'Walting',
+            text: 'BSMS is processing your request',
+            timer: 10000,
+            type: 'error',
             background: '#fff url(http://www.planwallpaper.com/static/images/518151-backgrounds_W3qVPu2.jpg)'
         }).then(
         function () { },
@@ -75,9 +76,14 @@
                 message,
               'info'
             )
-               window.location = '@Url.Action("Index","Category")';
+                setTimeout(donothing, 5000);
+               window.location = '@Url.Action("Index","Genre")';
             }
         )
+
+        function donothing() {
+
+        }
 
     </script>
 }

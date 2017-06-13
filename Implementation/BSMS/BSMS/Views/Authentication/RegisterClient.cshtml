@@ -1,7 +1,12 @@
 ﻿@model BSMS.bsms.localhost.USER
-
+@using BSMS.Session
 @{
+    SessionHandler LoginSession = new SessionHandler();
     ViewBag.Title = "RegisterClient";
+    if (LoginSession.ISAdmin())
+    {
+        Layout = "~/Views/Shared/_TLayout.cshtml";
+    }
 }
 
 <!-- Breadcrumbs -->

@@ -190,5 +190,36 @@ namespace BSMS.SERVICE
             dataAccess.SubmitChanges();
         }
 
-    }
+        [WebMethod]
+        public List<PRODUCER> GetProducers()
+        {
+            return dataAccess.PRODUCERs.ToList();
+        }
+
+        [WebMethod]
+        public void DeleteProducer(int id)
+        {
+            PRODUCER producer = dataAccess.PRODUCERs.Single(p => p.PRODUCERID == id);
+            dataAccess.PRODUCERs.DeleteOnSubmit(producer);
+            dataAccess.SubmitChanges();
+        }
+
+
+        [WebMethod]
+        public void InsertProducer(PRODUCER producer)
+        {
+            dataAccess.PRODUCERs.InsertOnSubmit(producer);
+            dataAccess.SubmitChanges();
+        }
+
+        [WebMethod]
+        public void UpdateProducer(PRODUCER producer)
+        {
+            PRODUCER p = dataAccess.PRODUCERs.Single(pp => pp.PRODUCERID == producer.PRODUCERID);
+            p.NAME = producer.NAME;
+            p.EMAIL = producer.EMAIL;
+            p.ADDRESS = producer.ADDRESS;
+            p.CONTACT = producer.CONTACT;
+        }
+     }
 }

@@ -63,6 +63,14 @@ namespace BSMS.bsms.localhost {
         
         private System.Threading.SendOrPostCallback UpdateAuthorOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetProducersOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteProducerOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback InsertProducerOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateProducerOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -151,6 +159,18 @@ namespace BSMS.bsms.localhost {
         
         /// <remarks/>
         public event UpdateAuthorCompletedEventHandler UpdateAuthorCompleted;
+        
+        /// <remarks/>
+        public event GetProducersCompletedEventHandler GetProducersCompleted;
+        
+        /// <remarks/>
+        public event DeleteProducerCompletedEventHandler DeleteProducerCompleted;
+        
+        /// <remarks/>
+        public event InsertProducerCompletedEventHandler InsertProducerCompleted;
+        
+        /// <remarks/>
+        public event UpdateProducerCompletedEventHandler UpdateProducerCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -625,6 +645,117 @@ namespace BSMS.bsms.localhost {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetProducers", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public PRODUCER[] GetProducers() {
+            object[] results = this.Invoke("GetProducers", new object[0]);
+            return ((PRODUCER[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetProducersAsync() {
+            this.GetProducersAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetProducersAsync(object userState) {
+            if ((this.GetProducersOperationCompleted == null)) {
+                this.GetProducersOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetProducersOperationCompleted);
+            }
+            this.InvokeAsync("GetProducers", new object[0], this.GetProducersOperationCompleted, userState);
+        }
+        
+        private void OnGetProducersOperationCompleted(object arg) {
+            if ((this.GetProducersCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetProducersCompleted(this, new GetProducersCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteProducer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DeleteProducer(int id) {
+            this.Invoke("DeleteProducer", new object[] {
+                        id});
+        }
+        
+        /// <remarks/>
+        public void DeleteProducerAsync(int id) {
+            this.DeleteProducerAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteProducerAsync(int id, object userState) {
+            if ((this.DeleteProducerOperationCompleted == null)) {
+                this.DeleteProducerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteProducerOperationCompleted);
+            }
+            this.InvokeAsync("DeleteProducer", new object[] {
+                        id}, this.DeleteProducerOperationCompleted, userState);
+        }
+        
+        private void OnDeleteProducerOperationCompleted(object arg) {
+            if ((this.DeleteProducerCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteProducerCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertProducer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void InsertProducer(PRODUCER producer) {
+            this.Invoke("InsertProducer", new object[] {
+                        producer});
+        }
+        
+        /// <remarks/>
+        public void InsertProducerAsync(PRODUCER producer) {
+            this.InsertProducerAsync(producer, null);
+        }
+        
+        /// <remarks/>
+        public void InsertProducerAsync(PRODUCER producer, object userState) {
+            if ((this.InsertProducerOperationCompleted == null)) {
+                this.InsertProducerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertProducerOperationCompleted);
+            }
+            this.InvokeAsync("InsertProducer", new object[] {
+                        producer}, this.InsertProducerOperationCompleted, userState);
+        }
+        
+        private void OnInsertProducerOperationCompleted(object arg) {
+            if ((this.InsertProducerCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InsertProducerCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateProducer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateProducer(PRODUCER producer) {
+            this.Invoke("UpdateProducer", new object[] {
+                        producer});
+        }
+        
+        /// <remarks/>
+        public void UpdateProducerAsync(PRODUCER producer) {
+            this.UpdateProducerAsync(producer, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateProducerAsync(PRODUCER producer, object userState) {
+            if ((this.UpdateProducerOperationCompleted == null)) {
+                this.UpdateProducerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateProducerOperationCompleted);
+            }
+            this.InvokeAsync("UpdateProducer", new object[] {
+                        producer}, this.UpdateProducerOperationCompleted, userState);
+        }
+        
+        private void OnUpdateProducerOperationCompleted(object arg) {
+            if ((this.UpdateProducerCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateProducerCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -802,6 +933,75 @@ namespace BSMS.bsms.localhost {
             }
             set {
                 this.rOLE1Field = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class PRODUCER {
+        
+        private int pRODUCERIDField;
+        
+        private string nAMEField;
+        
+        private string aDDRESSField;
+        
+        private string cONTACTField;
+        
+        private string eMAILField;
+        
+        /// <remarks/>
+        public int PRODUCERID {
+            get {
+                return this.pRODUCERIDField;
+            }
+            set {
+                this.pRODUCERIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NAME {
+            get {
+                return this.nAMEField;
+            }
+            set {
+                this.nAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ADDRESS {
+            get {
+                return this.aDDRESSField;
+            }
+            set {
+                this.aDDRESSField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CONTACT {
+            get {
+                return this.cONTACTField;
+            }
+            set {
+                this.cONTACTField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string EMAIL {
+            get {
+                return this.eMAILField;
+            }
+            set {
+                this.eMAILField = value;
             }
         }
     }
@@ -1224,6 +1424,44 @@ namespace BSMS.bsms.localhost {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     public delegate void UpdateAuthorCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetProducersCompletedEventHandler(object sender, GetProducersCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetProducersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetProducersCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public PRODUCER[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((PRODUCER[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void DeleteProducerCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void InsertProducerCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void UpdateProducerCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

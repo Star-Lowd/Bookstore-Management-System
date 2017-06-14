@@ -127,6 +127,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProducerController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -139,6 +140,7 @@
     <Compile Include="Models\EmailNotification.cs" />
     <Compile Include="Models\GenreModel.cs" />
     <Compile Include="Models\MD5_Encoding.cs" />
+    <Compile Include="Models\ProducerModel.cs" />
     <Compile Include="Models\StaffModel.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -297,6 +299,10 @@
     <Content Include="Views\Author\Details.cshtml" />
     <Content Include="Views\Author\Create.cshtml" />
     <Content Include="Views\Author\Edit.cshtml" />
+    <Content Include="Views\Producer\Index.cshtml" />
+    <Content Include="Views\Producer\Details.cshtml" />
+    <Content Include="Views\Producer\Create.cshtml" />
+    <Content Include="Views\Producer\Edit.cshtml" />
     <None Include="Web References\bsms.localhost\bsms_service.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -318,6 +324,9 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <Content Include="Web References\bsms.localhost\GENRE.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\bsms.localhost\PRODUCER.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <None Include="Web References\bsms.localhost\Reference.map">

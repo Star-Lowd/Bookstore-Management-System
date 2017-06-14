@@ -235,7 +235,7 @@ namespace BSMS.SERVICE.App_Data
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WATCHLISTID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int WATCHLISTID
+        public int WATCHLISTID
 		{
 			get
 			{

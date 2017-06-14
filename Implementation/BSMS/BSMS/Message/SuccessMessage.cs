@@ -15,6 +15,8 @@ namespace BSMS.Message
         internal static readonly dynamic GENRE_ADDED_MESSAGE="Genre have been successfully added";
         internal static readonly dynamic GENRE_UPDATED_MESSAGE = "Genre have been Updated";
         internal static readonly dynamic PASSWORD_CHANGED = "Your password have been successfully changed <br/>This will redirect you to login page";
+        internal static readonly dynamic PRODUCER_CREATED = "New Producer have been successfully added";
+        internal static readonly dynamic PRODUCER_EDITED = "Producer have been successfully updated";
         internal static readonly dynamic REGISTERATION_COMPLETED = "Registration Successful";
     }
 }

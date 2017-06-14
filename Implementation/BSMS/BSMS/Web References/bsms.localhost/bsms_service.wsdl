@@ -249,6 +249,60 @@
       <s:element name="UpdateAuthorResponse">
         <s:complexType />
       </s:element>
+      <s:element name="GetProducers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetProducersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProducersResult" type="tns:ArrayOfPRODUCER" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPRODUCER">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PRODUCER" nillable="true" type="tns:PRODUCER" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PRODUCER">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PRODUCERID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ADDRESS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CONTACT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMAIL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DeleteProducer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteProducerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="InsertProducer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="producer" type="tns:PRODUCER" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertProducerResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateProducer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="producer" type="tns:PRODUCER" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateProducerResponse">
+        <s:complexType />
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="UpdateUserSoapIn">
@@ -353,6 +407,30 @@
   <wsdl:message name="UpdateAuthorSoapOut">
     <wsdl:part name="parameters" element="tns:UpdateAuthorResponse" />
   </wsdl:message>
+  <wsdl:message name="GetProducersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProducers" />
+  </wsdl:message>
+  <wsdl:message name="GetProducersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProducersResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteProducerSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteProducer" />
+  </wsdl:message>
+  <wsdl:message name="DeleteProducerSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteProducerResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertProducerSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertProducer" />
+  </wsdl:message>
+  <wsdl:message name="InsertProducerSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertProducerResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProducerSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateProducer" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProducerSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateProducerResponse" />
+  </wsdl:message>
   <wsdl:portType name="bsms_serviceSoap">
     <wsdl:operation name="UpdateUser">
       <wsdl:input message="tns:UpdateUserSoapIn" />
@@ -421,6 +499,22 @@
     <wsdl:operation name="UpdateAuthor">
       <wsdl:input message="tns:UpdateAuthorSoapIn" />
       <wsdl:output message="tns:UpdateAuthorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProducers">
+      <wsdl:input message="tns:GetProducersSoapIn" />
+      <wsdl:output message="tns:GetProducersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProducer">
+      <wsdl:input message="tns:DeleteProducerSoapIn" />
+      <wsdl:output message="tns:DeleteProducerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertProducer">
+      <wsdl:input message="tns:InsertProducerSoapIn" />
+      <wsdl:output message="tns:InsertProducerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProducer">
+      <wsdl:input message="tns:UpdateProducerSoapIn" />
+      <wsdl:output message="tns:UpdateProducerSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="bsms_serviceSoap" type="tns:bsms_serviceSoap">
@@ -578,6 +672,42 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetProducers">
+      <soap:operation soapAction="http://tempuri.org/GetProducers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProducer">
+      <soap:operation soapAction="http://tempuri.org/DeleteProducer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertProducer">
+      <soap:operation soapAction="http://tempuri.org/InsertProducer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProducer">
+      <soap:operation soapAction="http://tempuri.org/UpdateProducer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="bsms_serviceSoap12" type="tns:bsms_serviceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -727,6 +857,42 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateAuthor">
       <soap12:operation soapAction="http://tempuri.org/UpdateAuthor" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProducers">
+      <soap12:operation soapAction="http://tempuri.org/GetProducers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProducer">
+      <soap12:operation soapAction="http://tempuri.org/DeleteProducer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertProducer">
+      <soap12:operation soapAction="http://tempuri.org/InsertProducer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProducer">
+      <soap12:operation soapAction="http://tempuri.org/UpdateProducer" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

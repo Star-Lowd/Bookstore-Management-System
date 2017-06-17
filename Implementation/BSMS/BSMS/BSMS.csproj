@@ -152,6 +152,8 @@
     <Compile Include="Session\Constant.cs" />
     <Compile Include="Session\SessionHandler.cs" />
     <Compile Include="Utill\Generator.cs" />
+    <Compile Include="Validator\ContentValidator.cs" />
+    <Compile Include="Validator\ValidationHandler.cs" />
     <Compile Include="Web References\bsms.localhost\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

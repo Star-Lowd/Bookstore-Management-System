@@ -2,64 +2,77 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_TLayout.cshtml";
+    ViewBag.Page = "Staff";
+    ViewBag.Action = "List Staff";
+    Layout = "~/Views/Shared/LDashboard.cshtml";
 }
 
-
+<style type="text/css">
+    .staffcard{
+        transition: width 2s;
+    }
+    .staffcard:hover{
+        width:10px
+    }
+</style>
 
 <div class="container">
 
     <p>
-        @Html.ActionLink("Add Staff", "RegisterClient", "Authentication")
+        <a href="@Url.Action("AddStaff","Staff")">
+            <span class="fa fa-plus-circle"></span>
+        </a>
     </p>
     <div class="row">
 
         @foreach (var item in Model)
         {
-            <div class="col-sm-6 col-md-3">
-                @{
-                    string img_Path = item.THUMBNAIL_PATH == null ? "/UserImages/avatar.png" : @item.THUMBNAIL_PATH;
-                }
+             string img_Path = (item.THUMBNAIL_PATH == null || String.IsNullOrEmpty(item.THUMBNAIL_PATH)) ? "/UserImages/avatar.png" : @item.THUMBNAIL_PATH;
 
-                <div class="thumbnail">
-                    <div  style="background-image:url('@img_Path'); height:250px; background-size:100% 100%" ></div>
-                    <div class="caption" style="width:100%">
-                        <center><h3>@item.USERNAME  <small>@item.FIRSTNAME</small> </h3></center>
-                        
-                        <table width="100%">
-                            <tr>
-                                <td> Email </td>
-                                <td class="text-right"> @item.EMAIL </td>
-                            </tr>
-                            <tr>
-                                <td> Username </td>
-                                <td class="text-right"> @item.USERNAME </td>
-                            </tr>
-                            <tr>
-                                <td> Role </td>
-                                <td class="text-right"> @item.ROLE.ROLE1 </td>
-                            </tr>
-                        </table>
-                        <p>
-                            <div class="btn-group" style="width:100%">
-                                <a onclick="ViewDetail(@item.USERID)" class="btn btn-primary" style="width:33%">
-                                    <span class="glyphicon glyphicon-eye-open"></span>
-                                </a>
+                        <!-- Column -->
+                <div class="col-lg-3 staffcard">
+                    <div class="card">
 
-                                <a class="btn btn-danger" style="width:33%"  onclick="confirmDelete(@item.USERID)">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </a>
+                        <div class="thumbnail">
+                            <div style="background-image:url('@img_Path'); height:250px; background-size:100% 100%"></div>
+                            <div class="caption" style="width:100%">
+                                <table width="100%">
+                                    <tr>
+                                        <td> Email </td>
+                                        <td class="text-right"> @item.EMAIL </td>
+                                    </tr>
+                                    <tr>
+                                        <td> Username </td>
+                                        <td class="text-right"> @item.USERNAME </td>
+                                    </tr>
+                                    <tr>
+                                        <td> Role </td>
+                                        <td class="text-right"> @item.ROLE.ROLE1 </td>
+                                    </tr>
+                                </table>
+                                <p>
+                                    <div class="btn-group" style="width:100%">
+                                        <a href="@Url.Action("ViewProfile", new { id = item.USERID })" class="btn btn-primary" style="width:33%">
+                                            <span  style="color:white" class="fa fa-eye"></span>
+                                        </a>
 
-                                <a class="btn btn-danger" style="width:33%" href='@Url.Action("UpdateStaff", new { id = item.USERID })'>
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                </a>
+                                        <a class="btn btn-danger" style="width:33%" onclick="confirmDelete(@item.USERID)">
+                                            <span style="color:white" class="fa fa-remove"></span>
+                                        </a>
+
+                                        <a class="btn btn-danger" style="width:33%" href='@Url.Action("UpdateStaff", new { id = item.USERID })'>
+                                            <span  style="color:white" class="fa fa-edit"></span>
+                                        </a>
+                                    </div>
+
+                                </p>
                             </div>
-                            
-                        </p>
+                        </div>
+
                     </div>
                 </div>
-            </div>
-          }
+
+                }
 
     </div>
 </div>
@@ -70,14 +83,14 @@
 
         $.sweetModal({
             title: 'HTML Content',
-           
+
             theme: $.sweetModal.THEME_DARK
         });
 
     }
 
 
-    function confirmDelete(id){
+    function confirmDelete(id) {
         swal({
             title: 'Are you sure you want to Delete this user ?',
             text: "You won't be able to revert this!",
@@ -93,7 +106,7 @@
             })
             window.location = '@Url.Action("Delete", "Staff")/' + id;
         }, function (dismiss) {
-            
+
             if (dismiss === 'cancel') {
                 swal(
                   'Cancelled',

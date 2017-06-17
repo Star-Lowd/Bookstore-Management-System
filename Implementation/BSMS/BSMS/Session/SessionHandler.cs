@@ -52,5 +52,10 @@ namespace BSMS.Session
             Session[Constant.LOGIN_SESSION_NAME] = null;
         }
 
+        public USER AuthenticatedUser()
+        {
+            return (((USER)Session[Constant.LOGIN_SESSION_NAME]));
+        }
+
     }
 }

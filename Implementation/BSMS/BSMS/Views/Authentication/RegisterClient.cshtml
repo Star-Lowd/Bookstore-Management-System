@@ -5,7 +5,7 @@
     ViewBag.Title = "RegisterClient";
     if (LoginSession.ISAdmin())
     {
-        Layout = "~/Views/Shared/_TLayout.cshtml";
+        Layout = "~/Views/Shared/LDashboard.cshtml";
     }
 }
 
@@ -36,7 +36,7 @@
                        
                         <label for="USERNAME"> * Username </label>
                         
-                            @Html.EditorFor(model => model.USERNAME, new { htmlAttributes = new { @class = "form-control", placeholder="username" } })
+                            @Html.EditorFor(model => model.USERNAME, new { htmlAttributes = new { @class = "form-control form-control-line", placeholder="username", required="true" } })
                             @Html.ValidationMessageFor(model => model.USERNAME, "", new { @class = "text-danger" })
                        
                     </div>
@@ -44,7 +44,7 @@
                     <div class="form-group">
                         <label for="PASSWORDHASH"> * Password </label>
                        
-                            @Html.EditorFor(model => model.PASSWORDHASH, new { htmlAttributes = new { @class = "form-control", placeholder="password" } })
+                            @Html.EditorFor(model => model.PASSWORDHASH, new { htmlAttributes = new { @class = "form-control form-control-line", placeholder="password", required = "true" } })
                             @Html.ValidationMessageFor(model => model.PASSWORDHASH, "", new { @class = "text-danger" })
                         
                     </div>
@@ -52,15 +52,15 @@
                     <div class="form-group">
                         <label for="FIRSTNAME"> * First Name </label>
                         
-                            @Html.EditorFor(model => model.FIRSTNAME, new { htmlAttributes = new { @class = "form-control", placeholder="first name" } })
+                            @Html.EditorFor(model => model.FIRSTNAME, new { htmlAttributes = new { @class = "form-control form-control-line", placeholder="first name", required = "true" } })
                             @Html.ValidationMessageFor(model => model.FIRSTNAME, "", new { @class = "text-danger" })
                         
                     </div>
 
                     <div class="form-group">
-                        <label for="LASTNAME" > Last Name </label>
+                        <label for="LASTNAME" > * Last Name </label>
                        
-                            @Html.EditorFor(model => model.LASTNAME, new { htmlAttributes = new { @class = "form-control", placeholder="last name" } })
+                            @Html.EditorFor(model => model.LASTNAME, new { htmlAttributes = new { @class = "form-control form-control-line", placeholder="last name", required = "true" } })
                             @Html.ValidationMessageFor(model => model.LASTNAME, "", new { @class = "text-danger" })
                        
                     </div>
@@ -72,7 +72,7 @@
                     <div class="form-group">
                         <label for="MIDDLENAME"> Middle Name </label>
                        
-                            @Html.EditorFor(model => model.MIDDLENAME, new { htmlAttributes = new { @class = "form-control", placeholder="middle name" } })
+                            @Html.EditorFor(model => model.MIDDLENAME, new { htmlAttributes = new { @class = "form-control form-control-line", placeholder="middle name" } })
                             @Html.ValidationMessageFor(model => model.MIDDLENAME, "", new { @class = "text-danger" })
                      
                     </div>
@@ -80,7 +80,7 @@
                     <div class="form-group">
                         <label for="THUMBNAIL_PATH"> Thumbnail </label>
 
-                           <input type="file" class="form-control" name="thumbnail" />
+                           <input type="file" class="form-control form-control-line" name="thumbnail" />
                             @Html.ValidationMessageFor(model => model.THUMBNAIL_PATH, "", new { @class = "text-danger" })
                       
                     </div>
@@ -88,7 +88,7 @@
                     <div class="form-group">
                         <label for="EMAIL" > * Email </label>
                         
-                            @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control", placeholder="Email" } })
+                            @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control form-control-line", placeholder="Email", required = "true" } })
                             @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
                        
                     </div>

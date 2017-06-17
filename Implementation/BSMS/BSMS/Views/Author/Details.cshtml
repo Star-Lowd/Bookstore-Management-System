@@ -2,45 +2,38 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_TLayout.cshtml";
+    ViewBag.Page = "Author";
+    Layout = "~/Views/Shared/LDashboard.cshtml";
 }
 <div class="container">
 
     <div class="row">
-       <center>
 
-        <div class="col-lg-8 col-md-8 col-sm-8 col-sx-8">
-            <div class="jumbotron">
-                
-                <h2>Details <small> Author Information </small> </h2>
-                <hr>
-                <img src="@Model.THUMBNAIL_PATH" style="width:50%" />
-                <br>
-                <table>
-                    <tr>
-                        <td> Full Name </td>
-                        <td> @Model.FIRSTNAME @Model.MIDDLENAME @Model.LASTNAME </td>
-                    </tr>
+        <div class="card">
+            <div class="card-block">
 
-                    <tr>
-                        <td> Biography </td>
-                        <td> <p>@Model.BIOGRAPHY </p></td>
-                    </tr>
+                <center>
+                    <div class="col-lg-4 col-xlg-3 col-md-5">
+                        <div class="card">
+                            <div class="card-block">
+                                <center class="m-t-30">
+                                    <img src="@Model.THUMBNAIL_PATH" class="img-circle" width="150" />
+                                    <h4 class="card-title m-t-10">@Model.FIRSTNAME @Model.MIDDLENAME @Model.LASTNAME</h4>
+                                    <h6 class="card-subtitle"> @Model.BIOGRAPHY </h6>
 
-                    <tr>
-                        <td> Alias Name </td>
-                        <td> @Model.ALIASNAME </td>
-                    </tr>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
 
 
-                </table>
-            </div>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.AUTHORID }) |
+                        @Html.ActionLink("Back to List", "Index")
+                    </p>
+                </center>
+                </div>
         </div>
-           </center>
+
     </div>
 </div>
-
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AUTHORID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

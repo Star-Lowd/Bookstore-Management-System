@@ -2,78 +2,78 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_TLayout.cshtml";
+    ViewBag.Page = "Author";
+    Layout = "~/Views/Shared/LDashboard.cshtml";
 }
 <div class="container">
-    <div class="col-lg-8 col-md-8 col-sm-8">
-        <h2>Create</h2>
 
-       @using (Html.BeginForm("Create", "Author", FormMethod.Post, new { enctype = "multipart/form-data" }))
-       {
-            @Html.AntiForgeryToken()
+    <div class="card">
+        <div class="card-block">
 
-            <div class="form-horizontal">
-                <h4>AUTHOR</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.FIRSTNAME, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.FIRSTNAME, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.FIRSTNAME, "", new { @class = "text-danger" })
+
+            @using (Html.BeginForm("Create", "Author", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal form-material" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <label class="control-label col-md-12" for="FIRSTNAME"> * First Name</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.FIRSTNAME, new { htmlAttributes = new { @class = "form-control form-control-line", required="true" } })
+                            @Html.ValidationMessageFor(model => model.FIRSTNAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-12" for="LASTNAME"> * Last Name</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LASTNAME, new { htmlAttributes = new { @class = "form-control form-control-line", required="true" } })
+                            @Html.ValidationMessageFor(model => model.LASTNAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-12" for="MIDDLENAME">Middle Name</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.MIDDLENAME, new { htmlAttributes = new { @class = "form-control form-control-line" } })
+                            @Html.ValidationMessageFor(model => model.MIDDLENAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-12" for="BIOGRAPHY"> * Biography</label>
+                        <div class="col-md-10">
+                            <textarea name="BIOGRAPHY" rows="5" class="form-control form-control-line" required>  </textarea>
+                            @Html.ValidationMessageFor(model => model.BIOGRAPHY, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-12" for="ALIASNAME"> * Alias Name</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ALIASNAME, new { htmlAttributes = new { @class = "form-control form-control-line", required="true" } })
+                            @Html.ValidationMessageFor(model => model.ALIASNAME, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-12" for="thumbnail">Photo</label>
+                        <div class="col-md-10">
+                            <input type="file" name="thumbnail" class="form-control form-control-line" />
+                            @Html.ValidationMessageFor(model => model.THUMBNAIL_PATH, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Add New Author" class="btn btn-primary" />
+                        </div>
                     </div>
                 </div>
+            }
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.LASTNAME, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.LASTNAME, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.LASTNAME, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.MIDDLENAME, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.MIDDLENAME, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.MIDDLENAME, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.BIOGRAPHY, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.BIOGRAPHY, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.BIOGRAPHY, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ALIASNAME, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ALIASNAME, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ALIASNAME, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.THUMBNAIL_PATH, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <input type="file" name="thumbnail" class="form-control" />
-                        @Html.ValidationMessageFor(model => model.THUMBNAIL_PATH, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
-                </div>
-            </div>
-        }
-
-        <div>
-            @Html.ActionLink("Back to List", "Index")
         </div>
     </div>
 </div>

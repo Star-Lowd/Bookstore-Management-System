@@ -2,50 +2,53 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_TLayout.cshtml";
+    ViewBag.Page = "Category";
+    ViewBag.Action = "Category Detail";
+    Layout = "~/Views/Shared/LDashboard.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container">
+    <div class="card">
+        <div class="card-block">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.NAME)
+                </dt>
 
-<div>
-    <h4>CATEGORY</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NAME)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.NAME)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.NAME)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.DESCRIPTION)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DESCRIPTION)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DESCRIPTION)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DESCRIPTION)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.REFERENCE_KEY)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.REFERENCE_KEY)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.REFERENCE_KEY)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.REFERENCE_KEY)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CATEGORY_THUMBNAIL)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CATEGORY_THUMBNAIL)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CATEGORY_THUMBNAIL)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CATEGORY_THUMBNAIL)
-        </dd>
+            </dl>
 
-    </dl>
+            <p class="col-md-offset-1">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.CATEGORYID }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CATEGORYID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

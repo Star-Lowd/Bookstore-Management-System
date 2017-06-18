@@ -1,4 +1,6 @@
-﻿
+﻿@using BSMS.Models;
+@using BSMS.bsms.localhost;
+
 <html lang="en">
 
 <head>
@@ -33,7 +35,11 @@
     <![endif]-->
 </head>
 <body>
-
+    @{ 
+        //DEFINATION 
+        List<CATEGORY> categories = CategoryModel.GetAllCategory();
+        List<GENRE> genries = GenreModel.GetGenre();
+    }
     <!-- Top Header -->
     <div class="top-header">
         <div class="container">
@@ -84,12 +90,11 @@
                         <div class="input-group-btn">
                             <select class="selectpicker hidden-xs" data-width="150px">
                                 <option value="0">All Categories</option>
-                                <option value="1">Kids</option>
-                                <option value="2">Adult</option>
-                                <option value="3">Superstition</option>
-                                <option value="4">Chinese</option>
-                                <option value="5">Education</option>
-                                <option value="7">Others</option>
+                                @foreach (CATEGORY cat in categories)
+                                {
+                                    <option value="@cat.CATEGORYID"> @cat.NAME </option>
+                                }
+                               
                             </select>
                             <button type="button" class="btn btn-default btn-search"><i class="fa fa-search"></i></button>
                         </div>
@@ -114,35 +119,35 @@
             <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Book Series</a></li>
-
+                  
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            Book <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Sci Fi</a></li>
-                            <li class="dropdown dropdown-submenu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sci Fci</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Kids</a></li>
-                                    <li><a href="#">Adult</a></li>
-                                    <li><a href="#">Superstition</a></li>
-                                    <li><a href="#">Chinese</a></li>
-                                </ul>
-                            </li>
 
-                            <li class="dropdown dropdown-submenu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Adventure</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Kids</a></li>
-                                    <li><a href="#">Adult</a></li>
-                                    <li><a href="#">Superstition</a></li>
-                                    <li><a href="#">Chinese</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        Book <span class="caret"></span>
+    </a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Sci Fi</a></li>
+                <li class="dropdown dropdown-submenu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sci Fci</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Kids</a></li>
+                        <li><a href="#">Adult</a></li>
+                        <li><a href="#">Superstition</a></li>
+                        <li><a href="#">Chinese</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown dropdown-submenu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Adventure</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Kids</a></li>
+                        <li><a href="#">Adult</a></li>
+                        <li><a href="#">Superstition</a></li>
+                        <li><a href="#">Chinese</a></li>
+                    </ul>
+                </li>
+            </ul>
+</li>
 
                 </ul>
             </div>

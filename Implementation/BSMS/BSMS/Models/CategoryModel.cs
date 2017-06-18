@@ -14,7 +14,7 @@ namespace BSMS.Models
             Services.InserCategory(category);
         }
 
-        internal static List<CATEGORY> GetAllCategory()
+        public static List<CATEGORY> GetAllCategory()
         {
            return Services.GetCategories().ToList();
         }

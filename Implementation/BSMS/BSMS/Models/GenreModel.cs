@@ -9,7 +9,7 @@ namespace BSMS.Models
     public class GenreModel
     {
         private static bsms_service Services = new bsms_service();
-        internal static List<GENRE> GetGenre()
+        public static List<GENRE> GetGenre()
         {
             return Services.GetGenres().ToList();
         }

@@ -124,6 +124,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -136,9 +137,12 @@
     <Compile Include="Message\SuccessMessage.cs" />
     <Compile Include="Models\AuthenticationModel.cs" />
     <Compile Include="Models\AuthorModel.cs" />
+    <Compile Include="Models\BookAuthorModel.cs" />
+    <Compile Include="Models\BookModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\EmailNotification.cs" />
     <Compile Include="Models\GenreModel.cs" />
+    <Compile Include="Models\LanguageModel.cs" />
     <Compile Include="Models\MD5_Encoding.cs" />
     <Compile Include="Models\ProducerModel.cs" />
     <Compile Include="Models\StaffModel.cs" />
@@ -652,6 +656,25 @@
     <Content Include="Views\Producer\Create.cshtml" />
     <Content Include="Views\Producer\Edit.cshtml" />
     <Content Include="Views\Shared\LDashBoard.cshtml" />
+    <Content Include="Web References\bsms.localhost\BOOK.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\bsms.localhost\BOOK_AUTHOR.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\bsms.localhost\BOOK_CATEGORY.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\bsms.localhost\BOOK_IMAGE.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\bsms.localhost\BOOK_SOFTCOPY.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Views\Book\AddBook.cshtml" />
+    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Book\BookDetail.cshtml" />
+    <Content Include="Views\Book\BookList.cshtml" />
     <None Include="Web References\bsms.localhost\bsms_service.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -676,6 +699,9 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <Content Include="Web References\bsms.localhost\PRODUCER.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\bsms.localhost\LANGUAGE.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <None Include="Web References\bsms.localhost\Reference.map">

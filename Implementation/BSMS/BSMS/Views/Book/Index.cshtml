@@ -1,0 +1,123 @@
+﻿@model IEnumerable<BSMS.bsms.localhost.BOOK>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LDashBoard.cshtml";
+    ViewBag.Page = "Book";
+    ViewBag.Action = "List Books";
+}
+
+<div class="card">
+    <div class="card-block">
+        <p>
+            @Html.ActionLink("Create New", "AddBook")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ISBN_NUMBER)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NAME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.STATUS)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SYNOPOSIS)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ISPUBLISHED)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.REFERENCE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DATE_PUBLISHED)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CREATED_DATE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PRICE)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PERCENTAGE_OFF)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GENREID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.STAFFID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PRODUCERID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TRANSLATEDFROM)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LANGUAGEID)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ISBN_NUMBER)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.STATUS)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SYNOPOSIS)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ISPUBLISHED)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.REFERENCE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DATE_PUBLISHED)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CREATED_DATE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PRICE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PERCENTAGE_OFF)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GENREID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.STAFFID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PRODUCERID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TRANSLATEDFROM)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LANGUAGEID)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.BOOKID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.BOOKID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.BOOKID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        </div>
+</div>

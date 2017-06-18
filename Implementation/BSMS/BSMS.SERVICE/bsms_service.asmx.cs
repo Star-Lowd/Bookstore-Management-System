@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using BSMS.SERVICE.App_Data;
+using System.Web.Script.Services;
 
 namespace BSMS.SERVICE
 {
@@ -191,6 +192,7 @@ namespace BSMS.SERVICE
         }
 
         [WebMethod]
+        [ScriptMethod(UseHttpGet = true)]
         public List<PRODUCER> GetProducers()
         {
             return dataAccess.PRODUCERs.ToList();
@@ -223,10 +225,11 @@ namespace BSMS.SERVICE
             dataAccess.SubmitChanges();
         }
         [WebMethod]
-        public void InsertBook(BOOK book)
+        public BOOK InsertBook(BOOK book)
         {
             dataAccess.BOOKs.InsertOnSubmit(book);
             dataAccess.SubmitChanges();
+            return book;
         }
         [WebMethod]
         public void DeleteBook(int? bookid)
@@ -293,6 +296,7 @@ namespace BSMS.SERVICE
             dataAccess.SubmitChanges();
         }
         [WebMethod]
+        
         public void UpdateBookCategory(BOOK_CATEGORY bCategory)
         {
             BOOK_CATEGORY bookCategory = dataAccess.BOOK_CATEGORies.Single(bc => bc.BOOK_CATEGORYID == bCategory.BOOK_CATEGORYID);
@@ -365,7 +369,12 @@ namespace BSMS.SERVICE
         {
             return dataAccess.BOOK_SOFTCOPies.ToList();
         }
+        [WebMethod]
 
+        public List<LANGUAGE> GetLanguages()
+        {
+            return dataAccess.LANGUAGEs.ToList();
+        }
 
     }
 }

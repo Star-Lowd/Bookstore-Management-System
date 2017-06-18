@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Web;
 using BSMS.bsms.localhost;
+using BSMS.Session;
 
 namespace BSMS.Models
 {
@@ -16,8 +17,8 @@ namespace BSMS.Models
         internal static void ForgetPassword(string email, String hashCode, int userID)
         {
             String ResetPasswordMessage = String.Format("you have requested to reset your password<br />"+
-                "Click here <a href='http://localhost:52350/Authentication/ResetPassword?hash={0}&userID={1}'> Reset Password </a> to reset your password",
-                hashCode, userID);
+                "Click here <a href='{0}/Authentication/ResetPassword?hash={1}&userID={2}'> Reset Password </a> to reset your password",
+                Constant.BASE_URL,  hashCode, userID);
             SendEmail(email, ResetPasswordMessage, "Reset Email");
         }
         internal static void StaffAccountCreated(string email, String hashCode, int userID)

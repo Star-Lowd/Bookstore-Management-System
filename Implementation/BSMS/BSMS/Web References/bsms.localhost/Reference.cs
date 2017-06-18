@@ -71,6 +71,48 @@ namespace BSMS.bsms.localhost {
         
         private System.Threading.SendOrPostCallback UpdateProducerOperationCompleted;
         
+        private System.Threading.SendOrPostCallback InsertBookOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteBookOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateBookOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetBooksOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback InsertBookImageOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateBookImageOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteBookImageOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetBookImagesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback InsertBookCategoryOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateBookCategoryOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteBookCategoryOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetBookCategoriesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback InsertBookAuthorOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateBookAuthorOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteBookAuthorOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetBookAuthorsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback InsertBookSoftCopyOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateBookSoftCopyOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteBookSoftCopyOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetBookSoftCopyOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetLanguagesOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -171,6 +213,69 @@ namespace BSMS.bsms.localhost {
         
         /// <remarks/>
         public event UpdateProducerCompletedEventHandler UpdateProducerCompleted;
+        
+        /// <remarks/>
+        public event InsertBookCompletedEventHandler InsertBookCompleted;
+        
+        /// <remarks/>
+        public event DeleteBookCompletedEventHandler DeleteBookCompleted;
+        
+        /// <remarks/>
+        public event UpdateBookCompletedEventHandler UpdateBookCompleted;
+        
+        /// <remarks/>
+        public event GetBooksCompletedEventHandler GetBooksCompleted;
+        
+        /// <remarks/>
+        public event InsertBookImageCompletedEventHandler InsertBookImageCompleted;
+        
+        /// <remarks/>
+        public event UpdateBookImageCompletedEventHandler UpdateBookImageCompleted;
+        
+        /// <remarks/>
+        public event DeleteBookImageCompletedEventHandler DeleteBookImageCompleted;
+        
+        /// <remarks/>
+        public event GetBookImagesCompletedEventHandler GetBookImagesCompleted;
+        
+        /// <remarks/>
+        public event InsertBookCategoryCompletedEventHandler InsertBookCategoryCompleted;
+        
+        /// <remarks/>
+        public event UpdateBookCategoryCompletedEventHandler UpdateBookCategoryCompleted;
+        
+        /// <remarks/>
+        public event DeleteBookCategoryCompletedEventHandler DeleteBookCategoryCompleted;
+        
+        /// <remarks/>
+        public event GetBookCategoriesCompletedEventHandler GetBookCategoriesCompleted;
+        
+        /// <remarks/>
+        public event InsertBookAuthorCompletedEventHandler InsertBookAuthorCompleted;
+        
+        /// <remarks/>
+        public event UpdateBookAuthorCompletedEventHandler UpdateBookAuthorCompleted;
+        
+        /// <remarks/>
+        public event DeleteBookAuthorCompletedEventHandler DeleteBookAuthorCompleted;
+        
+        /// <remarks/>
+        public event GetBookAuthorsCompletedEventHandler GetBookAuthorsCompleted;
+        
+        /// <remarks/>
+        public event InsertBookSoftCopyCompletedEventHandler InsertBookSoftCopyCompleted;
+        
+        /// <remarks/>
+        public event UpdateBookSoftCopyCompletedEventHandler UpdateBookSoftCopyCompleted;
+        
+        /// <remarks/>
+        public event DeleteBookSoftCopyCompletedEventHandler DeleteBookSoftCopyCompleted;
+        
+        /// <remarks/>
+        public event GetBookSoftCopyCompletedEventHandler GetBookSoftCopyCompleted;
+        
+        /// <remarks/>
+        public event GetLanguagesCompletedEventHandler GetLanguagesCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -756,6 +861,589 @@ namespace BSMS.bsms.localhost {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertBook", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public BOOK InsertBook(BOOK book) {
+            object[] results = this.Invoke("InsertBook", new object[] {
+                        book});
+            return ((BOOK)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void InsertBookAsync(BOOK book) {
+            this.InsertBookAsync(book, null);
+        }
+        
+        /// <remarks/>
+        public void InsertBookAsync(BOOK book, object userState) {
+            if ((this.InsertBookOperationCompleted == null)) {
+                this.InsertBookOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertBookOperationCompleted);
+            }
+            this.InvokeAsync("InsertBook", new object[] {
+                        book}, this.InsertBookOperationCompleted, userState);
+        }
+        
+        private void OnInsertBookOperationCompleted(object arg) {
+            if ((this.InsertBookCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InsertBookCompleted(this, new InsertBookCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteBook", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DeleteBook([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] System.Nullable<int> bookid) {
+            this.Invoke("DeleteBook", new object[] {
+                        bookid});
+        }
+        
+        /// <remarks/>
+        public void DeleteBookAsync(System.Nullable<int> bookid) {
+            this.DeleteBookAsync(bookid, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteBookAsync(System.Nullable<int> bookid, object userState) {
+            if ((this.DeleteBookOperationCompleted == null)) {
+                this.DeleteBookOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteBookOperationCompleted);
+            }
+            this.InvokeAsync("DeleteBook", new object[] {
+                        bookid}, this.DeleteBookOperationCompleted, userState);
+        }
+        
+        private void OnDeleteBookOperationCompleted(object arg) {
+            if ((this.DeleteBookCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteBookCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateBook", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateBook(BOOK book) {
+            this.Invoke("UpdateBook", new object[] {
+                        book});
+        }
+        
+        /// <remarks/>
+        public void UpdateBookAsync(BOOK book) {
+            this.UpdateBookAsync(book, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateBookAsync(BOOK book, object userState) {
+            if ((this.UpdateBookOperationCompleted == null)) {
+                this.UpdateBookOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateBookOperationCompleted);
+            }
+            this.InvokeAsync("UpdateBook", new object[] {
+                        book}, this.UpdateBookOperationCompleted, userState);
+        }
+        
+        private void OnUpdateBookOperationCompleted(object arg) {
+            if ((this.UpdateBookCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateBookCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBooks", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public BOOK[] GetBooks() {
+            object[] results = this.Invoke("GetBooks", new object[0]);
+            return ((BOOK[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetBooksAsync() {
+            this.GetBooksAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetBooksAsync(object userState) {
+            if ((this.GetBooksOperationCompleted == null)) {
+                this.GetBooksOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBooksOperationCompleted);
+            }
+            this.InvokeAsync("GetBooks", new object[0], this.GetBooksOperationCompleted, userState);
+        }
+        
+        private void OnGetBooksOperationCompleted(object arg) {
+            if ((this.GetBooksCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetBooksCompleted(this, new GetBooksCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertBookImage", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void InsertBookImage(BOOK_IMAGE image) {
+            this.Invoke("InsertBookImage", new object[] {
+                        image});
+        }
+        
+        /// <remarks/>
+        public void InsertBookImageAsync(BOOK_IMAGE image) {
+            this.InsertBookImageAsync(image, null);
+        }
+        
+        /// <remarks/>
+        public void InsertBookImageAsync(BOOK_IMAGE image, object userState) {
+            if ((this.InsertBookImageOperationCompleted == null)) {
+                this.InsertBookImageOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertBookImageOperationCompleted);
+            }
+            this.InvokeAsync("InsertBookImage", new object[] {
+                        image}, this.InsertBookImageOperationCompleted, userState);
+        }
+        
+        private void OnInsertBookImageOperationCompleted(object arg) {
+            if ((this.InsertBookImageCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InsertBookImageCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateBookImage", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateBookImage(BOOK_IMAGE image) {
+            this.Invoke("UpdateBookImage", new object[] {
+                        image});
+        }
+        
+        /// <remarks/>
+        public void UpdateBookImageAsync(BOOK_IMAGE image) {
+            this.UpdateBookImageAsync(image, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateBookImageAsync(BOOK_IMAGE image, object userState) {
+            if ((this.UpdateBookImageOperationCompleted == null)) {
+                this.UpdateBookImageOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateBookImageOperationCompleted);
+            }
+            this.InvokeAsync("UpdateBookImage", new object[] {
+                        image}, this.UpdateBookImageOperationCompleted, userState);
+        }
+        
+        private void OnUpdateBookImageOperationCompleted(object arg) {
+            if ((this.UpdateBookImageCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateBookImageCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteBookImage", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DeleteBookImage(int id) {
+            this.Invoke("DeleteBookImage", new object[] {
+                        id});
+        }
+        
+        /// <remarks/>
+        public void DeleteBookImageAsync(int id) {
+            this.DeleteBookImageAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteBookImageAsync(int id, object userState) {
+            if ((this.DeleteBookImageOperationCompleted == null)) {
+                this.DeleteBookImageOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteBookImageOperationCompleted);
+            }
+            this.InvokeAsync("DeleteBookImage", new object[] {
+                        id}, this.DeleteBookImageOperationCompleted, userState);
+        }
+        
+        private void OnDeleteBookImageOperationCompleted(object arg) {
+            if ((this.DeleteBookImageCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteBookImageCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBookImages", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public BOOK_IMAGE[] GetBookImages() {
+            object[] results = this.Invoke("GetBookImages", new object[0]);
+            return ((BOOK_IMAGE[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetBookImagesAsync() {
+            this.GetBookImagesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetBookImagesAsync(object userState) {
+            if ((this.GetBookImagesOperationCompleted == null)) {
+                this.GetBookImagesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBookImagesOperationCompleted);
+            }
+            this.InvokeAsync("GetBookImages", new object[0], this.GetBookImagesOperationCompleted, userState);
+        }
+        
+        private void OnGetBookImagesOperationCompleted(object arg) {
+            if ((this.GetBookImagesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetBookImagesCompleted(this, new GetBookImagesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertBookCategory", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void InsertBookCategory(BOOK_CATEGORY bCategory) {
+            this.Invoke("InsertBookCategory", new object[] {
+                        bCategory});
+        }
+        
+        /// <remarks/>
+        public void InsertBookCategoryAsync(BOOK_CATEGORY bCategory) {
+            this.InsertBookCategoryAsync(bCategory, null);
+        }
+        
+        /// <remarks/>
+        public void InsertBookCategoryAsync(BOOK_CATEGORY bCategory, object userState) {
+            if ((this.InsertBookCategoryOperationCompleted == null)) {
+                this.InsertBookCategoryOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertBookCategoryOperationCompleted);
+            }
+            this.InvokeAsync("InsertBookCategory", new object[] {
+                        bCategory}, this.InsertBookCategoryOperationCompleted, userState);
+        }
+        
+        private void OnInsertBookCategoryOperationCompleted(object arg) {
+            if ((this.InsertBookCategoryCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InsertBookCategoryCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateBookCategory", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateBookCategory(BOOK_CATEGORY bCategory) {
+            this.Invoke("UpdateBookCategory", new object[] {
+                        bCategory});
+        }
+        
+        /// <remarks/>
+        public void UpdateBookCategoryAsync(BOOK_CATEGORY bCategory) {
+            this.UpdateBookCategoryAsync(bCategory, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateBookCategoryAsync(BOOK_CATEGORY bCategory, object userState) {
+            if ((this.UpdateBookCategoryOperationCompleted == null)) {
+                this.UpdateBookCategoryOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateBookCategoryOperationCompleted);
+            }
+            this.InvokeAsync("UpdateBookCategory", new object[] {
+                        bCategory}, this.UpdateBookCategoryOperationCompleted, userState);
+        }
+        
+        private void OnUpdateBookCategoryOperationCompleted(object arg) {
+            if ((this.UpdateBookCategoryCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateBookCategoryCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteBookCategory", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DeleteBookCategory([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] System.Nullable<int> bCategoryID) {
+            this.Invoke("DeleteBookCategory", new object[] {
+                        bCategoryID});
+        }
+        
+        /// <remarks/>
+        public void DeleteBookCategoryAsync(System.Nullable<int> bCategoryID) {
+            this.DeleteBookCategoryAsync(bCategoryID, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteBookCategoryAsync(System.Nullable<int> bCategoryID, object userState) {
+            if ((this.DeleteBookCategoryOperationCompleted == null)) {
+                this.DeleteBookCategoryOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteBookCategoryOperationCompleted);
+            }
+            this.InvokeAsync("DeleteBookCategory", new object[] {
+                        bCategoryID}, this.DeleteBookCategoryOperationCompleted, userState);
+        }
+        
+        private void OnDeleteBookCategoryOperationCompleted(object arg) {
+            if ((this.DeleteBookCategoryCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteBookCategoryCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBookCategories", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public BOOK_CATEGORY[] GetBookCategories() {
+            object[] results = this.Invoke("GetBookCategories", new object[0]);
+            return ((BOOK_CATEGORY[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetBookCategoriesAsync() {
+            this.GetBookCategoriesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetBookCategoriesAsync(object userState) {
+            if ((this.GetBookCategoriesOperationCompleted == null)) {
+                this.GetBookCategoriesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBookCategoriesOperationCompleted);
+            }
+            this.InvokeAsync("GetBookCategories", new object[0], this.GetBookCategoriesOperationCompleted, userState);
+        }
+        
+        private void OnGetBookCategoriesOperationCompleted(object arg) {
+            if ((this.GetBookCategoriesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetBookCategoriesCompleted(this, new GetBookCategoriesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertBookAuthor", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void InsertBookAuthor(BOOK_AUTHOR author) {
+            this.Invoke("InsertBookAuthor", new object[] {
+                        author});
+        }
+        
+        /// <remarks/>
+        public void InsertBookAuthorAsync(BOOK_AUTHOR author) {
+            this.InsertBookAuthorAsync(author, null);
+        }
+        
+        /// <remarks/>
+        public void InsertBookAuthorAsync(BOOK_AUTHOR author, object userState) {
+            if ((this.InsertBookAuthorOperationCompleted == null)) {
+                this.InsertBookAuthorOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertBookAuthorOperationCompleted);
+            }
+            this.InvokeAsync("InsertBookAuthor", new object[] {
+                        author}, this.InsertBookAuthorOperationCompleted, userState);
+        }
+        
+        private void OnInsertBookAuthorOperationCompleted(object arg) {
+            if ((this.InsertBookAuthorCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InsertBookAuthorCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateBookAuthor", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateBookAuthor(BOOK_AUTHOR bAuthor) {
+            this.Invoke("UpdateBookAuthor", new object[] {
+                        bAuthor});
+        }
+        
+        /// <remarks/>
+        public void UpdateBookAuthorAsync(BOOK_AUTHOR bAuthor) {
+            this.UpdateBookAuthorAsync(bAuthor, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateBookAuthorAsync(BOOK_AUTHOR bAuthor, object userState) {
+            if ((this.UpdateBookAuthorOperationCompleted == null)) {
+                this.UpdateBookAuthorOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateBookAuthorOperationCompleted);
+            }
+            this.InvokeAsync("UpdateBookAuthor", new object[] {
+                        bAuthor}, this.UpdateBookAuthorOperationCompleted, userState);
+        }
+        
+        private void OnUpdateBookAuthorOperationCompleted(object arg) {
+            if ((this.UpdateBookAuthorCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateBookAuthorCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteBookAuthor", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DeleteBookAuthor([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] System.Nullable<int> bAuthorID) {
+            this.Invoke("DeleteBookAuthor", new object[] {
+                        bAuthorID});
+        }
+        
+        /// <remarks/>
+        public void DeleteBookAuthorAsync(System.Nullable<int> bAuthorID) {
+            this.DeleteBookAuthorAsync(bAuthorID, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteBookAuthorAsync(System.Nullable<int> bAuthorID, object userState) {
+            if ((this.DeleteBookAuthorOperationCompleted == null)) {
+                this.DeleteBookAuthorOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteBookAuthorOperationCompleted);
+            }
+            this.InvokeAsync("DeleteBookAuthor", new object[] {
+                        bAuthorID}, this.DeleteBookAuthorOperationCompleted, userState);
+        }
+        
+        private void OnDeleteBookAuthorOperationCompleted(object arg) {
+            if ((this.DeleteBookAuthorCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteBookAuthorCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBookAuthors", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public BOOK_AUTHOR[] GetBookAuthors() {
+            object[] results = this.Invoke("GetBookAuthors", new object[0]);
+            return ((BOOK_AUTHOR[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetBookAuthorsAsync() {
+            this.GetBookAuthorsAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetBookAuthorsAsync(object userState) {
+            if ((this.GetBookAuthorsOperationCompleted == null)) {
+                this.GetBookAuthorsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBookAuthorsOperationCompleted);
+            }
+            this.InvokeAsync("GetBookAuthors", new object[0], this.GetBookAuthorsOperationCompleted, userState);
+        }
+        
+        private void OnGetBookAuthorsOperationCompleted(object arg) {
+            if ((this.GetBookAuthorsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetBookAuthorsCompleted(this, new GetBookAuthorsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/InsertBookSoftCopy", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void InsertBookSoftCopy(BOOK_SOFTCOPY copy) {
+            this.Invoke("InsertBookSoftCopy", new object[] {
+                        copy});
+        }
+        
+        /// <remarks/>
+        public void InsertBookSoftCopyAsync(BOOK_SOFTCOPY copy) {
+            this.InsertBookSoftCopyAsync(copy, null);
+        }
+        
+        /// <remarks/>
+        public void InsertBookSoftCopyAsync(BOOK_SOFTCOPY copy, object userState) {
+            if ((this.InsertBookSoftCopyOperationCompleted == null)) {
+                this.InsertBookSoftCopyOperationCompleted = new System.Threading.SendOrPostCallback(this.OnInsertBookSoftCopyOperationCompleted);
+            }
+            this.InvokeAsync("InsertBookSoftCopy", new object[] {
+                        copy}, this.InsertBookSoftCopyOperationCompleted, userState);
+        }
+        
+        private void OnInsertBookSoftCopyOperationCompleted(object arg) {
+            if ((this.InsertBookSoftCopyCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.InsertBookSoftCopyCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateBookSoftCopy", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateBookSoftCopy(BOOK_SOFTCOPY bSoftCopy) {
+            this.Invoke("UpdateBookSoftCopy", new object[] {
+                        bSoftCopy});
+        }
+        
+        /// <remarks/>
+        public void UpdateBookSoftCopyAsync(BOOK_SOFTCOPY bSoftCopy) {
+            this.UpdateBookSoftCopyAsync(bSoftCopy, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateBookSoftCopyAsync(BOOK_SOFTCOPY bSoftCopy, object userState) {
+            if ((this.UpdateBookSoftCopyOperationCompleted == null)) {
+                this.UpdateBookSoftCopyOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateBookSoftCopyOperationCompleted);
+            }
+            this.InvokeAsync("UpdateBookSoftCopy", new object[] {
+                        bSoftCopy}, this.UpdateBookSoftCopyOperationCompleted, userState);
+        }
+        
+        private void OnUpdateBookSoftCopyOperationCompleted(object arg) {
+            if ((this.UpdateBookSoftCopyCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateBookSoftCopyCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteBookSoftCopy", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DeleteBookSoftCopy([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] System.Nullable<int> bSCID) {
+            this.Invoke("DeleteBookSoftCopy", new object[] {
+                        bSCID});
+        }
+        
+        /// <remarks/>
+        public void DeleteBookSoftCopyAsync(System.Nullable<int> bSCID) {
+            this.DeleteBookSoftCopyAsync(bSCID, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteBookSoftCopyAsync(System.Nullable<int> bSCID, object userState) {
+            if ((this.DeleteBookSoftCopyOperationCompleted == null)) {
+                this.DeleteBookSoftCopyOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteBookSoftCopyOperationCompleted);
+            }
+            this.InvokeAsync("DeleteBookSoftCopy", new object[] {
+                        bSCID}, this.DeleteBookSoftCopyOperationCompleted, userState);
+        }
+        
+        private void OnDeleteBookSoftCopyOperationCompleted(object arg) {
+            if ((this.DeleteBookSoftCopyCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteBookSoftCopyCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBookSoftCopy", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public BOOK_SOFTCOPY[] GetBookSoftCopy() {
+            object[] results = this.Invoke("GetBookSoftCopy", new object[0]);
+            return ((BOOK_SOFTCOPY[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetBookSoftCopyAsync() {
+            this.GetBookSoftCopyAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetBookSoftCopyAsync(object userState) {
+            if ((this.GetBookSoftCopyOperationCompleted == null)) {
+                this.GetBookSoftCopyOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBookSoftCopyOperationCompleted);
+            }
+            this.InvokeAsync("GetBookSoftCopy", new object[0], this.GetBookSoftCopyOperationCompleted, userState);
+        }
+        
+        private void OnGetBookSoftCopyOperationCompleted(object arg) {
+            if ((this.GetBookSoftCopyCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetBookSoftCopyCompleted(this, new GetBookSoftCopyCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetLanguages", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public LANGUAGE[] GetLanguages() {
+            object[] results = this.Invoke("GetLanguages", new object[0]);
+            return ((LANGUAGE[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetLanguagesAsync() {
+            this.GetLanguagesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetLanguagesAsync(object userState) {
+            if ((this.GetLanguagesOperationCompleted == null)) {
+                this.GetLanguagesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetLanguagesOperationCompleted);
+            }
+            this.InvokeAsync("GetLanguages", new object[0], this.GetLanguagesOperationCompleted, userState);
+        }
+        
+        private void OnGetLanguagesOperationCompleted(object arg) {
+            if ((this.GetLanguagesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetLanguagesCompleted(this, new GetLanguagesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -943,6 +1631,520 @@ namespace BSMS.bsms.localhost {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class BOOK_SOFTCOPY {
+        
+        private int bSCIDField;
+        
+        private System.Nullable<int> bOOKIDField;
+        
+        private string vERSIONField;
+        
+        private string fILEPATHField;
+        
+        private System.Nullable<double> fILESIZEField;
+        
+        private BOOK bOOKField;
+        
+        /// <remarks/>
+        public int BSCID {
+            get {
+                return this.bSCIDField;
+            }
+            set {
+                this.bSCIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> BOOKID {
+            get {
+                return this.bOOKIDField;
+            }
+            set {
+                this.bOOKIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string VERSION {
+            get {
+                return this.vERSIONField;
+            }
+            set {
+                this.vERSIONField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FILEPATH {
+            get {
+                return this.fILEPATHField;
+            }
+            set {
+                this.fILEPATHField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> FILESIZE {
+            get {
+                return this.fILESIZEField;
+            }
+            set {
+                this.fILESIZEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BOOK BOOK {
+            get {
+                return this.bOOKField;
+            }
+            set {
+                this.bOOKField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class BOOK {
+        
+        private int bOOKIDField;
+        
+        private long iSBN_NUMBERField;
+        
+        private string nAMEField;
+        
+        private string sTATUSField;
+        
+        private string sYNOPOSISField;
+        
+        private System.Nullable<bool> iSPUBLISHEDField;
+        
+        private string rEFERENCEField;
+        
+        private System.Nullable<System.DateTime> dATE_PUBLISHEDField;
+        
+        private System.Nullable<System.DateTime> cREATED_DATEField;
+        
+        private System.Nullable<double> pRICEField;
+        
+        private System.Nullable<int> pERCENTAGE_OFFField;
+        
+        private System.Nullable<int> gENREIDField;
+        
+        private System.Nullable<int> sTAFFIDField;
+        
+        private System.Nullable<int> pRODUCERIDField;
+        
+        private System.Nullable<int> tRANSLATEDFROMField;
+        
+        private System.Nullable<int> lANGUAGEIDField;
+        
+        private BOOK_IMAGE[] bOOK_IMAGEsField;
+        
+        private BOOK bOOK1Field;
+        
+        private GENRE gENREField;
+        
+        private LANGUAGE lANGUAGEField;
+        
+        private PRODUCER pRODUCERField;
+        
+        private USER uSERField;
+        
+        /// <remarks/>
+        public int BOOKID {
+            get {
+                return this.bOOKIDField;
+            }
+            set {
+                this.bOOKIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long ISBN_NUMBER {
+            get {
+                return this.iSBN_NUMBERField;
+            }
+            set {
+                this.iSBN_NUMBERField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NAME {
+            get {
+                return this.nAMEField;
+            }
+            set {
+                this.nAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string STATUS {
+            get {
+                return this.sTATUSField;
+            }
+            set {
+                this.sTATUSField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SYNOPOSIS {
+            get {
+                return this.sYNOPOSISField;
+            }
+            set {
+                this.sYNOPOSISField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<bool> ISPUBLISHED {
+            get {
+                return this.iSPUBLISHEDField;
+            }
+            set {
+                this.iSPUBLISHEDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string REFERENCE {
+            get {
+                return this.rEFERENCEField;
+            }
+            set {
+                this.rEFERENCEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DATE_PUBLISHED {
+            get {
+                return this.dATE_PUBLISHEDField;
+            }
+            set {
+                this.dATE_PUBLISHEDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> CREATED_DATE {
+            get {
+                return this.cREATED_DATEField;
+            }
+            set {
+                this.cREATED_DATEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> PRICE {
+            get {
+                return this.pRICEField;
+            }
+            set {
+                this.pRICEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> PERCENTAGE_OFF {
+            get {
+                return this.pERCENTAGE_OFFField;
+            }
+            set {
+                this.pERCENTAGE_OFFField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> GENREID {
+            get {
+                return this.gENREIDField;
+            }
+            set {
+                this.gENREIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> STAFFID {
+            get {
+                return this.sTAFFIDField;
+            }
+            set {
+                this.sTAFFIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> PRODUCERID {
+            get {
+                return this.pRODUCERIDField;
+            }
+            set {
+                this.pRODUCERIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> TRANSLATEDFROM {
+            get {
+                return this.tRANSLATEDFROMField;
+            }
+            set {
+                this.tRANSLATEDFROMField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> LANGUAGEID {
+            get {
+                return this.lANGUAGEIDField;
+            }
+            set {
+                this.lANGUAGEIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BOOK_IMAGE[] BOOK_IMAGEs {
+            get {
+                return this.bOOK_IMAGEsField;
+            }
+            set {
+                this.bOOK_IMAGEsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BOOK BOOK1 {
+            get {
+                return this.bOOK1Field;
+            }
+            set {
+                this.bOOK1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public GENRE GENRE {
+            get {
+                return this.gENREField;
+            }
+            set {
+                this.gENREField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public LANGUAGE LANGUAGE {
+            get {
+                return this.lANGUAGEField;
+            }
+            set {
+                this.lANGUAGEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public PRODUCER PRODUCER {
+            get {
+                return this.pRODUCERField;
+            }
+            set {
+                this.pRODUCERField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public USER USER {
+            get {
+                return this.uSERField;
+            }
+            set {
+                this.uSERField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class BOOK_IMAGE {
+        
+        private int bOOK_IMAGEIDField;
+        
+        private System.Nullable<int> bOOKIDField;
+        
+        private string iMAGEPATHField;
+        
+        private BOOK bOOKField;
+        
+        /// <remarks/>
+        public int BOOK_IMAGEID {
+            get {
+                return this.bOOK_IMAGEIDField;
+            }
+            set {
+                this.bOOK_IMAGEIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> BOOKID {
+            get {
+                return this.bOOKIDField;
+            }
+            set {
+                this.bOOKIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IMAGEPATH {
+            get {
+                return this.iMAGEPATHField;
+            }
+            set {
+                this.iMAGEPATHField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BOOK BOOK {
+            get {
+                return this.bOOKField;
+            }
+            set {
+                this.bOOKField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class GENRE {
+        
+        private int gENREIDField;
+        
+        private string nAMEField;
+        
+        private string dESCRIPTIONField;
+        
+        private string rEFERENCE_KEYField;
+        
+        /// <remarks/>
+        public int GENREID {
+            get {
+                return this.gENREIDField;
+            }
+            set {
+                this.gENREIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NAME {
+            get {
+                return this.nAMEField;
+            }
+            set {
+                this.nAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DESCRIPTION {
+            get {
+                return this.dESCRIPTIONField;
+            }
+            set {
+                this.dESCRIPTIONField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string REFERENCE_KEY {
+            get {
+                return this.rEFERENCE_KEYField;
+            }
+            set {
+                this.rEFERENCE_KEYField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class LANGUAGE {
+        
+        private int lANGUAGEIDField;
+        
+        private string lANGUAGE1Field;
+        
+        /// <remarks/>
+        public int LANGUAGEID {
+            get {
+                return this.lANGUAGEIDField;
+            }
+            set {
+                this.lANGUAGEIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LANGUAGE1 {
+            get {
+                return this.lANGUAGE1Field;
+            }
+            set {
+                this.lANGUAGE1Field = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public partial class PRODUCER {
         
         private int pRODUCERIDField;
@@ -1002,6 +2204,77 @@ namespace BSMS.bsms.localhost {
             }
             set {
                 this.eMAILField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class BOOK_AUTHOR {
+        
+        private int bOOK_AUTHORIDField;
+        
+        private System.Nullable<int> bOOKIDField;
+        
+        private System.Nullable<int> aUTHORIDField;
+        
+        private AUTHOR aUTHORField;
+        
+        private BOOK bOOKField;
+        
+        /// <remarks/>
+        public int BOOK_AUTHORID {
+            get {
+                return this.bOOK_AUTHORIDField;
+            }
+            set {
+                this.bOOK_AUTHORIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> BOOKID {
+            get {
+                return this.bOOKIDField;
+            }
+            set {
+                this.bOOKIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> AUTHORID {
+            get {
+                return this.aUTHORIDField;
+            }
+            set {
+                this.aUTHORIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public AUTHOR AUTHOR {
+            get {
+                return this.aUTHORField;
+            }
+            set {
+                this.aUTHORField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BOOK BOOK {
+            get {
+                return this.bOOKField;
+            }
+            set {
+                this.bOOKField = value;
             }
         }
     }
@@ -1105,53 +2378,67 @@ namespace BSMS.bsms.localhost {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class GENRE {
+    public partial class BOOK_CATEGORY {
         
-        private int gENREIDField;
+        private int bOOK_CATEGORYIDField;
         
-        private string nAMEField;
+        private System.Nullable<int> bOOKIDField;
         
-        private string dESCRIPTIONField;
+        private System.Nullable<int> cATEGORYIDField;
         
-        private string rEFERENCE_KEYField;
+        private BOOK bOOKField;
+        
+        private CATEGORY cATEGORYField;
         
         /// <remarks/>
-        public int GENREID {
+        public int BOOK_CATEGORYID {
             get {
-                return this.gENREIDField;
+                return this.bOOK_CATEGORYIDField;
             }
             set {
-                this.gENREIDField = value;
+                this.bOOK_CATEGORYIDField = value;
             }
         }
         
         /// <remarks/>
-        public string NAME {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> BOOKID {
             get {
-                return this.nAMEField;
+                return this.bOOKIDField;
             }
             set {
-                this.nAMEField = value;
+                this.bOOKIDField = value;
             }
         }
         
         /// <remarks/>
-        public string DESCRIPTION {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> CATEGORYID {
             get {
-                return this.dESCRIPTIONField;
+                return this.cATEGORYIDField;
             }
             set {
-                this.dESCRIPTIONField = value;
+                this.cATEGORYIDField = value;
             }
         }
         
         /// <remarks/>
-        public string REFERENCE_KEY {
+        public BOOK BOOK {
             get {
-                return this.rEFERENCE_KEYField;
+                return this.bOOKField;
             }
             set {
-                this.rEFERENCE_KEYField = value;
+                this.bOOKField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public CATEGORY CATEGORY {
+            get {
+                return this.cATEGORYField;
+            }
+            set {
+                this.cATEGORYField = value;
             }
         }
     }
@@ -1462,6 +2749,244 @@ namespace BSMS.bsms.localhost {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     public delegate void UpdateProducerCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void InsertBookCompletedEventHandler(object sender, InsertBookCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class InsertBookCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal InsertBookCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public BOOK Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((BOOK)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void DeleteBookCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void UpdateBookCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetBooksCompletedEventHandler(object sender, GetBooksCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetBooksCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetBooksCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public BOOK[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((BOOK[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void InsertBookImageCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void UpdateBookImageCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void DeleteBookImageCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetBookImagesCompletedEventHandler(object sender, GetBookImagesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetBookImagesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetBookImagesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public BOOK_IMAGE[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((BOOK_IMAGE[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void InsertBookCategoryCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void UpdateBookCategoryCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void DeleteBookCategoryCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetBookCategoriesCompletedEventHandler(object sender, GetBookCategoriesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetBookCategoriesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetBookCategoriesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public BOOK_CATEGORY[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((BOOK_CATEGORY[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void InsertBookAuthorCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void UpdateBookAuthorCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void DeleteBookAuthorCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetBookAuthorsCompletedEventHandler(object sender, GetBookAuthorsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetBookAuthorsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetBookAuthorsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public BOOK_AUTHOR[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((BOOK_AUTHOR[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void InsertBookSoftCopyCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void UpdateBookSoftCopyCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void DeleteBookSoftCopyCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetBookSoftCopyCompletedEventHandler(object sender, GetBookSoftCopyCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetBookSoftCopyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetBookSoftCopyCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public BOOK_SOFTCOPY[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((BOOK_SOFTCOPY[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetLanguagesCompletedEventHandler(object sender, GetLanguagesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetLanguagesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetLanguagesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public LANGUAGE[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((LANGUAGE[])(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591

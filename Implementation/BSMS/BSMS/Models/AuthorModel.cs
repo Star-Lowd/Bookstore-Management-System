@@ -40,5 +40,11 @@ namespace BSMS.Models
         {
             localhost.DeleteAuthor(id);
         }
+
+        internal static void AddBookAuthor(BOOK_AUTHOR bookAuthor)
+        {
+            localhost.InsertBookAuthor(bookAuthor);
+        }
+
     }
 }

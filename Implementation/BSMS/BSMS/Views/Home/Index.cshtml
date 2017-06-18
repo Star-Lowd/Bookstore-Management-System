@@ -1,7 +1,7 @@
-﻿@{
+﻿@model IEnumerable<BSMS.bsms.localhost.BOOK>
+
+@{
     ViewBag.Title = "Home Page";
-
-
 }
 
 <!-- Full Slider -->
@@ -22,31 +22,44 @@
 </div>
 <!-- End Full Slider -->
 <div class="container">
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </div>
+    <div class="row"><br><br>
+        <div class="title"><span>New Books</span></div><br>
+        @foreach (BSMS.bsms.localhost.BOOK item in BSMS.Models.BookModel.GetBooks())
+        {
+            IEnumerable<BSMS.bsms.localhost.BOOK_IMAGE> bookImage = BSMS.Models.BookModel.GetBooksImages().Where(bi => bi.BOOKID == item.BOOKID);
+            <div class="col-sm-4 col-lg-3 box-product-outer">
+                <div class="box-product">
+                    <div class="img-wrapper">
+                        <a href="@Url.Action("BookDetail","Book", new { id = item.BOOKID})">
+                            <img alt="Product" src="@bookImage.ElementAt(0).IMAGEPATH">
+                        </a>
+                        <div class="tags">
+                            <span class="label-tags"><span class="label label-default arrowed">New</span></span>
+                        </div>
+                        <div class="tags tags-left">
+                            <span class="label-tags"><span class="label label-danger arrowed-right">Sale</span></span>
+                        </div>
+                        <div class="option">
+                            <a href="#" data-toggle="tooltip" title="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                            <a href="#" data-toggle="tooltip" title="Add to Compare"><i class="fa fa-align-left"></i></a>
+                            <a href="#" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
+                        </div>
+                    </div>
+                    <h6><a href="detail.html"> @item.NAME </a></h6>
+                    <div class="price">
+                        <div>$@(item.PRICE - ((item.PRICE * item.PERCENTAGE_OFF) / 100)) <span class="label-tags"><span class="label label-default">-@item.PERCENTAGE_OFF%</span></span></div>
+                        <span class="price-old">$@item.PRICE</span>
+                    </div>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <a href="#">(5 reviews)</a>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </div>

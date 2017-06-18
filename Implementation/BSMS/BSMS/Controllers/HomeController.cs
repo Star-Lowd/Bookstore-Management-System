@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BSMS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,7 @@ namespace BSMS.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View(BookModel.GetBooks());
         }
 
         public ActionResult About()

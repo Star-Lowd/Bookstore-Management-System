@@ -40,5 +40,10 @@ namespace BSMS.Models
         {
             Services.DeleteCategory(id);
         }
+
+        internal static void AddBookCategory(BOOK_CATEGORY bookCategory)
+        {
+            Services.InsertBookCategory(bookCategory);
+        }
     }
 }

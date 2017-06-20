@@ -9,6 +9,12 @@ namespace BSMS.Models
     public class BookModel
     {
         private static bsms_service Service = new bsms_service();
+
+        public static int CountBookByAuthor(int? authorid)
+        {
+            return Service.GetBookAuthors().Where(bookA => bookA.AUTHORID == authorid.Value).Count();
+        }
+
         public static List<BOOK> GetBooks()
         {
             return Service.GetBooks().ToList();
@@ -22,6 +28,11 @@ namespace BSMS.Models
         internal static BOOK AddBook(BOOK book)
         {
             return Service.InsertBook(book);
+        }
+
+        internal static IEnumerable<BOOK_CATEGORY> GetBookCategories()
+        {
+            return Service.GetBookCategories();
         }
 
         internal static void AddBookImage(BOOK_IMAGE bookImage)

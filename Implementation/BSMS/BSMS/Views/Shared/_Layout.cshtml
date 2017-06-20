@@ -1,5 +1,6 @@
 ﻿@using BSMS.Models;
 @using BSMS.bsms.localhost;
+@using BSMS.Session;
 
 <html lang="en">
 
@@ -10,7 +11,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="~/Content/Image/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="~/Content/Image/favicons/favicon-16x16.png">
-    
+
     <link rel="mask-icon" href="~/Content/Image/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -36,8 +37,9 @@
     <![endif]-->
 </head>
 <body>
-    @{ 
-        //DEFINATION 
+    @{
+        //Data DEFINATION
+        SessionHandler loginSession = new SessionHandler();
         List<CATEGORY> categories = CategoryModel.GetAllCategory();
         List<GENRE> genries = GenreModel.GetGenre();
     }
@@ -59,20 +61,32 @@
                         <li class="hidden-xs"><a href="mailto:cs@domain.tld"><i class="fa fa-envelope"></i> olaoluwase03975@fpt.edu.vn</a></li>
                     </ul>
                     <ul class="list-inline pull-right">
-                        <li class="hidden-xs"><a href="wishlist.html"><i class="fa fa-heart"></i> Watchlist (0)</a></li>
-                        <li> 
-                            <a href='@Url.Action("Login","Authentication")'>   
-                                <span class="glyphicon glyphicon-log-in" style="font-size:120%"></span>
-                                Login
-                            </a> 
-                        </li>
-
+                        <li class="hidden-xs"><a href="wishlist.html"><i class="fa fa-heart"></i> Watchlist (<span id="wishlistCount">0</span>) </a></li>
                         <li>
-                            <a href='@Url.Action("RegisterClient","Authentication")'>
-                                <span class="glyphicon glyphicon-registration-mark" style="font-size:120%"></span>
-                                Register
-                            </a>
+                            @if (loginSession.AuthenticatedUser() != null)
+                            {
+                                <a href='@Url.Action("Logout","Authentication")'>
+                                    <span class="glyphicon glyphicon-log-out" style="font-size:120%"></span>
+                                    Logout
+                                </a>
+                            }
+                            else
+                            {
+                                <a href='@Url.Action("Login","Authentication")'>
+                                    <span class="glyphicon glyphicon-log-in" style="font-size:120%"></span>
+                                    Login
+                                </a>
+                            }
                         </li>
+                        @if (loginSession.AuthenticatedUser() == null)
+                        {
+                            <li>
+                                <a href='@Url.Action("RegisterClient", "Authentication")'>
+                                    <span class="glyphicon glyphicon-registration-mark" style="font-size:120%"></span>
+                                    Register
+                                </a>
+                            </li>
+                        }
 
                     </ul>
                 </div>
@@ -88,20 +102,22 @@
                     <img src="~/Content/assets/images/logo-icon.png" />
                 </div>
                 <div class="col-sm-8 col-md-6 search-box m-t-2">
-                    <div class="input-group">
-                        <input type="text" class="form-control form-control-line" aria-label="Search here..." placeholder="Search here...">
-                        <div class="input-group-btn">
-                            <select class="selectpicker hidden-xs" data-width="150px">
-                                <option value="0">All Categories</option>
-                                @foreach (CATEGORY cat in categories)
-                                {
-                                    <option value="@cat.CATEGORYID"> @cat.NAME </option>
-                                }
-                               
-                            </select>
-                            <button type="button" class="btn btn-default btn-search"><i class="fa fa-search"></i></button>
+                    <form method="GET" action="@Url.Action("index", "Search")">
+                        <div class="input-group">
+                            <input type="text" name="query" class="form-control form-control-line" aria-label="Search here..." placeholder="Search here...">
+                            <div class="input-group-btn">
+                                <select class="selectpicker hidden-xs" data-width="150px" name="id">
+                                    <option value="-1">All Categories</option>
+                                    @foreach (CATEGORY cat in categories)
+                                    {
+                                        <option value="@cat.CATEGORYID"> @cat.NAME </option>
+                                    }
+
+                                </select>
+                                <button type="submit" class="btn btn-default btn-search"><i class="fa fa-search"></i></button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -121,16 +137,15 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="@Url.Action("Index", "Home")" >Home</a></li>
-                    <li><a href="@Url.Action("BookList", "Book")" >Book</a></li>
-                    <li><a href="#">Author</a></li>
-                    <li><a href="#">Producer</a></li>
+                    <li class='@(ViewBag.Page == "Home" ? "active" : "")'><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li class='@(ViewBag.Page == "Book" ? "active" : "")'><a href="@Url.Action("BookList", "Book")">Book</a></li>
+                    <li class='@(ViewBag.Page == "Author" ? "active" : "")'><a href="@Url.Action("AuthorList", "Author")">Author</a></li>
+                    <li class='@(ViewBag.Page == "Producer" ? "active" : "")'><a href="#">Producer</a></li>
                 </ul>
             </div>
         </div>
     </nav>
     <!-- End Navigation Bar -->
-    
     <!-- Main Content -->
     <div class="">
 
@@ -240,10 +255,24 @@
     <script src="~/Content/js/bootstrap-select.js"></script>
     <script src="~/Content/js/owl.carousel.js"></script>
     <script src="~/Content/js/mimity.js"></script>
-   
+
 
     <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+
+    <script>
+        function addToWishList(id) {
+            swal(id + ' Wishlist added');
+            document.getElementById("wishlistCount").innerHTML = parseInt(document.getElementById("wishlistCount").innerHTML)+1;
+            
+        }
+
+        function loginRequired() {
+            swal('you are required to login to use this feature<br>Navigate to login page');
+            
+        }
+    </script>
+
 </body>
 
 </html>

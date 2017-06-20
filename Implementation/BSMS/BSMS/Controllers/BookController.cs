@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace BSMS.Controllers
 {
@@ -101,9 +102,10 @@ namespace BSMS.Controllers
             return View();
         }
 
-        public ActionResult BookList()
+        public ActionResult BookList(int page = 1, int pageSize=6)
         {
-            return View(BookModel.GetBooks());
+            IPagedList<BOOK> books = new PagedList<BOOK>(BookModel.GetBooks(), page,pageSize);
+            return View(books);
         }
 
         public ActionResult BookDetail(int id)

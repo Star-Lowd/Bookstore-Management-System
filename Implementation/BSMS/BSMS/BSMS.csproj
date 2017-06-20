@@ -49,6 +49,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -129,7 +137,9 @@
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProducerController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
+    <Compile Include="Controllers\WishListController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -252,6 +262,7 @@
     <Content Include="Content\images\demo\vneck4.jpg" />
     <Content Include="Content\images\en.jpg" />
     <Content Include="Content\images\fr.jpg" />
+    <Content Include="Content\images\leftSideBar.jpg" />
     <Content Include="Content\images\logo-teal.png" />
     <Content Include="Content\images\logo-teal2.png" />
     <Content Include="Content\images\payment-1.png" />
@@ -259,6 +270,7 @@
     <Content Include="Content\images\payment-3.png" />
     <Content Include="Content\images\payment-4.png" />
     <Content Include="Content\images\payment-5.png" />
+    <Content Include="Content\images\rightSidebar.jpg" />
     <Content Include="Content\images\slidebar1.jpg" />
     <Content Include="Content\images\slidebar2.jpg" />
     <Content Include="Content\images\slidebar3.jpg" />
@@ -284,6 +296,7 @@
     <Content Include="Content\js\sweetalert2.min.js" />
     <Content Include="Content\js\waves.js" />
     <Content Include="Content\js\wizard.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\scss\icons\flag-icon-css\flag-icon.min.css" />
     <Content Include="Content\scss\icons\flag-icon-css\flags\ad.svg" />
     <Content Include="Content\scss\icons\flag-icon-css\flags\ae.svg" />
@@ -675,6 +688,10 @@
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Book\BookDetail.cshtml" />
     <Content Include="Views\Book\BookList.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Staff\AddStaff.cshtml" />
+    <Content Include="Views\Author\AuthorList.cshtml" />
+    <Content Include="Views\Author\AuthorDetail.cshtml" />
     <None Include="Web References\bsms.localhost\bsms_service.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -719,6 +736,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\fonts\" />
     <Folder Include="Content\images\favicons\" />
+    <Folder Include="Views\WishList\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

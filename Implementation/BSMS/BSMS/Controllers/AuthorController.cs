@@ -7,13 +7,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace BSMS.Controllers
 {
     public class AuthorController : Controller
     {
+        public ActionResult AuthorList(int page=1, int pageSize=3)
+        {
+            IPagedList<AUTHOR> author = new PagedList<AUTHOR>(AuthorModel.GetAuthors(),page, pageSize);
+            return View(author);
+        }
+
+        public ActionResult AuthorDetail(int? id)
+        {
+            AUTHOR author = AuthorModel.Filter(id.Value);
+            if (author == null)
+            {
+                return HttpNotFound();
+            }
+            return View(author);
+        }
+
         // GET: Author
-        public ActionResult Index()
+        public ActionResult Index()  
         {
             return View(AuthorModel.GetAuthors());
         }
@@ -21,7 +38,12 @@ namespace BSMS.Controllers
         // GET: Author/Details/5
         public ActionResult Details(int id)
         {
-            return View(AuthorModel.Filter(id));
+            AUTHOR author = AuthorModel.Filter(id);
+            if (author == null)
+            {
+                return HttpNotFound();
+            }
+            return View(author);
         }
 
         // GET: Author/Create

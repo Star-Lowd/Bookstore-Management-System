@@ -46,5 +46,30 @@ namespace BSMS.Models
             localhost.InsertBookAuthor(bookAuthor);
         }
 
+        public static List<BOOK> BookByAuthor(int id)
+        {
+            List<BOOK> bookByAuthor = new List<BOOK>();
+            foreach(BOOK_AUTHOR bookAuthor in localhost.GetBookAuthors())
+            {
+                if (bookAuthor.AUTHORID == id)
+                {
+                    bookByAuthor.Add(bookAuthor.BOOK);
+                }
+            }
+            return bookByAuthor;
+        }
+
+        public static List<AUTHOR> BookAuthor(int id)
+        {
+            List<AUTHOR> bookAuthors = new List<AUTHOR>();
+            foreach (BOOK_AUTHOR bookAuthor in localhost.GetBookAuthors())
+            {
+                if (bookAuthor.BOOKID == id)
+                {
+                    bookAuthors.Add(bookAuthor.AUTHOR);
+                }
+            }
+            return bookAuthors;
+        }
     }
 }

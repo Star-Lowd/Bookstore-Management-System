@@ -12,6 +12,7 @@ namespace BSMS.Controllers
 {
     public class StaffController : Controller
     {
+      
         //GET : Staff //List of all staff
         public ActionResult Index()
         {
@@ -67,6 +68,40 @@ namespace BSMS.Controllers
             EmailNotification.AccountDeletedNotification(user);
 
             return RedirectToAction("index");
+        }
+
+        
+        public ActionResult AddStaff()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddStaff(USER user, HttpPostedFileBase thumbnail)
+        {
+            if (ModelState.IsValid && !String.IsNullOrEmpty(user.PASSWORDHASH))
+            {
+                if (thumbnail != null && !String.IsNullOrEmpty(thumbnail.FileName))
+                {
+                    String fname = Generator.RandomString(10) + "." + thumbnail.FileName.Split('.')[thumbnail.FileName.Split('.').Length - 1];
+                    string path = Server.MapPath("~/UserImages/") + fname;
+                    user.THUMBNAIL_PATH = "/UserImages/" + fname;
+                    thumbnail.SaveAs(path);
+                }
+                user.ROLEID = UserRole.STAFF;
+
+                AuthenticationModel.AddUser(user);
+               
+                    EmailNotification.ForgetPassword(user.EMAIL, user.PASSWORDHASH, user.USERID);
+               
+                ViewBag.Message = SuccessMessage.REGISTERATION_COMPLETED;
+            }
+            else
+            {
+                ViewBag.ErrorMessage = ErrorMessage.REQUIRED_ASTERIC_FIELDS;
+            }
+            return View();
+
         }
 
     }

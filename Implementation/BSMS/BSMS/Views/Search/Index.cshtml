@@ -1,34 +1,20 @@
 ﻿@model IEnumerable<BSMS.bsms.localhost.BOOK>
 
 @{
-    ViewBag.Title = "Home Page";
-    ViewBag.Page = "Home";
+    ViewBag.Title = "Index";
 }
 
-<!-- Full Slider -->
-<div class="container-fluid">
-    <div class="row">
-        <div class="home-slider">
-            <div class="item">
-                <a href="products.html"><img src="~/Content/images/demo/slide-1-full.jpg" alt="Slider"></a>
-            </div>
-            <div class="item">
-                <a href="products.html"><img src="~/Content/images/demo/slide-2-full.jpg" alt="Slider"></a>
-            </div>
-            <div class="item">
-                <a href="products.html"><img src="~/Content/images/demo/slide-3-full.jpg" alt="Slider"></a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Full Slider -->
+
 <div class="container">
-    <div class="row"><br><br>
-        <div class="title"><span>Top 8 Books</span></div><br>
-        @foreach (BSMS.bsms.localhost.BOOK item in BSMS.Models.BookModel.GetBooks())
-        {
-            IEnumerable<BSMS.bsms.localhost.BOOK_IMAGE> bookImage = BSMS.Models.BookModel.GetBooksImages().Where(bi => bi.BOOKID == item.BOOKID);
-            <div class="col-sm-4 col-lg-3 box-product-outer">
+    <div class="col-md-8">
+
+
+        <br><br>
+        <div class="title"><span>New Books</span></div><br>
+        @foreach (var item in Model)
+            {
+                IEnumerable<BSMS.bsms.localhost.BOOK_IMAGE> bookImage = BSMS.Models.BookModel.GetBooksImages().Where(bi => bi.BOOKID == item.BOOKID);
+            <div class="col-sm-4 col-lg-4 box-product-outer">
                 <div class="box-product">
                     <div class="img-wrapper">
                         <a href="@Url.Action("BookDetail","Book", new { id = item.BOOKID})">
@@ -48,7 +34,7 @@
                     </div>
                     <h6><a href="detail.html"> @item.NAME </a></h6>
                     <div class="price">
-                        <div>$@(item.PRICE - ((item.PRICE * item.PERCENTAGE_OFF) / 100)) <span class="label-tags"><span class="label label-default">-@item.PERCENTAGE_OFF%</span></span></div>
+                        <div>$@(item.PRICE - ((item.PRICE * item.PERCENTAGE_OFF) / 100) ) <span class="label-tags"><span class="label label-default">-@item.PERCENTAGE_OFF%</span></span></div>
                         <span class="price-old">$@item.PRICE</span>
                     </div>
                     <div class="rating">
@@ -63,4 +49,5 @@
             </div>
         }
     </div>
+   
 </div>

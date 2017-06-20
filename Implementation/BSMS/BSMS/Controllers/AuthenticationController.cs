@@ -46,7 +46,7 @@ namespace BSMS.Controllers
                 }
                 else if (LoginSession.ISCustomer())
                 {
-                    return RedirectToAction("Index", "WishList");
+                    return RedirectToAction("BookList", "Book");
                 }
 
             }

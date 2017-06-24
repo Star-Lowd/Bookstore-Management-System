@@ -9,7 +9,30 @@ namespace BSMS.Models
     public class AuthorModel
     {
         private static bsms_service localhost = new bsms_service();
-        internal static List<AUTHOR> GetAuthors()
+
+        public static String ReducedText(int length, string input)
+        {
+            if (input.Length <= length)
+                return input;
+            else
+            {
+                int lengthCount = 0;
+                string output = "";
+                foreach(char c in input)
+                {
+                    output += c;
+                    if (lengthCount >= length)
+                    {
+                        output += ".... Read More >>";
+                        return output;
+                    }
+                    lengthCount++;
+                }
+            }
+            return input;
+        }
+
+        public static List<AUTHOR> GetAuthors()
         {
             return localhost.GetAuthors().ToList();
         }

@@ -1,5 +1,6 @@
 ﻿@model PagedList.IPagedList<BSMS.bsms.localhost.BOOK>
 @using BSMS.Session;
+@using BSMS.Models;
 @using PagedList.Mvc;
 @{
     SessionHandler loginSession = new SessionHandler();
@@ -43,7 +44,7 @@
                     <div class="box-product">
                         <div class="img-wrapper">
                             <a href="@Url.Action("BookDetail", "Book", new { id = item.BOOKID })">
-                                <img alt="Product" src="@bookImage.ElementAt(0).IMAGEPATH">
+                                <div class="img-innerWrapper" style="background-image:url('@bookImage.ElementAt(0).IMAGEPATH'); background-size:100%; height:300px"> </div>
                             </a>
                             <div class="tags">
                                 <span class="label-tags"><span class="label label-default arrowed">New</span></span>
@@ -61,12 +62,12 @@
                                     }
                                     else if (loginSession.ISCustomer())
                                     {
-                                        <a onclick="addToWishList(@item.BOOKID)" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
+                                        if (!WishListModel.Exist(loginSession.AuthenticatedUser().USERID, item.BOOKID))
+                                        {
+                                         <a onclick="addToWishList(@item.BOOKID)" data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
+                                        }
                                     }
-                                    else
-                                    {
-                                        <a disabled data-toggle="tooltip" title="Add to Wishlist" class="wishlist"><i class="fa fa-heart"></i></a>
-                                    }
+
                             </div>
                         </div>
                         <h6><a href="detail.html"> @item.NAME </a></h6>

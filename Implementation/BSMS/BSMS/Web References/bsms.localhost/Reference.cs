@@ -113,6 +113,12 @@ namespace BSMS.bsms.localhost {
         
         private System.Threading.SendOrPostCallback GetLanguagesOperationCompleted;
         
+        private System.Threading.SendOrPostCallback AddWishListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetWishListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteWishListOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -276,6 +282,15 @@ namespace BSMS.bsms.localhost {
         
         /// <remarks/>
         public event GetLanguagesCompletedEventHandler GetLanguagesCompleted;
+        
+        /// <remarks/>
+        public event AddWishListCompletedEventHandler AddWishListCompleted;
+        
+        /// <remarks/>
+        public event GetWishListCompletedEventHandler GetWishListCompleted;
+        
+        /// <remarks/>
+        public event DeleteWishListCompletedEventHandler DeleteWishListCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1444,6 +1459,93 @@ namespace BSMS.bsms.localhost {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddWishList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void AddWishList(int userid, int bookid) {
+            this.Invoke("AddWishList", new object[] {
+                        userid,
+                        bookid});
+        }
+        
+        /// <remarks/>
+        public void AddWishListAsync(int userid, int bookid) {
+            this.AddWishListAsync(userid, bookid, null);
+        }
+        
+        /// <remarks/>
+        public void AddWishListAsync(int userid, int bookid, object userState) {
+            if ((this.AddWishListOperationCompleted == null)) {
+                this.AddWishListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddWishListOperationCompleted);
+            }
+            this.InvokeAsync("AddWishList", new object[] {
+                        userid,
+                        bookid}, this.AddWishListOperationCompleted, userState);
+        }
+        
+        private void OnAddWishListOperationCompleted(object arg) {
+            if ((this.AddWishListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddWishListCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetWishList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public WATCHLIST[] GetWishList(int userid) {
+            object[] results = this.Invoke("GetWishList", new object[] {
+                        userid});
+            return ((WATCHLIST[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetWishListAsync(int userid) {
+            this.GetWishListAsync(userid, null);
+        }
+        
+        /// <remarks/>
+        public void GetWishListAsync(int userid, object userState) {
+            if ((this.GetWishListOperationCompleted == null)) {
+                this.GetWishListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetWishListOperationCompleted);
+            }
+            this.InvokeAsync("GetWishList", new object[] {
+                        userid}, this.GetWishListOperationCompleted, userState);
+        }
+        
+        private void OnGetWishListOperationCompleted(object arg) {
+            if ((this.GetWishListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetWishListCompleted(this, new GetWishListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteWishList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DeleteWishList(int id) {
+            this.Invoke("DeleteWishList", new object[] {
+                        id});
+        }
+        
+        /// <remarks/>
+        public void DeleteWishListAsync(int id) {
+            this.DeleteWishListAsync(id, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteWishListAsync(int id, object userState) {
+            if ((this.DeleteWishListOperationCompleted == null)) {
+                this.DeleteWishListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteWishListOperationCompleted);
+            }
+            this.InvokeAsync("DeleteWishList", new object[] {
+                        id}, this.DeleteWishListOperationCompleted, userState);
+        }
+        
+        private void OnDeleteWishListOperationCompleted(object arg) {
+            if ((this.DeleteWishListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteWishListCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -1631,27 +1733,25 @@ namespace BSMS.bsms.localhost {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class BOOK_SOFTCOPY {
+    public partial class WATCHLIST {
         
-        private int bSCIDField;
+        private int wATCHLISTIDField;
         
         private System.Nullable<int> bOOKIDField;
         
-        private string vERSIONField;
+        private System.Nullable<int> uSERIDField;
         
-        private string fILEPATHField;
-        
-        private System.Nullable<double> fILESIZEField;
+        private USER uSERField;
         
         private BOOK bOOKField;
         
         /// <remarks/>
-        public int BSCID {
+        public int WATCHLISTID {
             get {
-                return this.bSCIDField;
+                return this.wATCHLISTIDField;
             }
             set {
-                this.bSCIDField = value;
+                this.wATCHLISTIDField = value;
             }
         }
         
@@ -1667,33 +1767,23 @@ namespace BSMS.bsms.localhost {
         }
         
         /// <remarks/>
-        public string VERSION {
-            get {
-                return this.vERSIONField;
-            }
-            set {
-                this.vERSIONField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string FILEPATH {
-            get {
-                return this.fILEPATHField;
-            }
-            set {
-                this.fILEPATHField = value;
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<double> FILESIZE {
+        public System.Nullable<int> USERID {
             get {
-                return this.fILESIZEField;
+                return this.uSERIDField;
             }
             set {
-                this.fILESIZEField = value;
+                this.uSERIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public USER USER {
+            get {
+                return this.uSERField;
+            }
+            set {
+                this.uSERField = value;
             }
         }
         
@@ -1747,10 +1837,6 @@ namespace BSMS.bsms.localhost {
         private System.Nullable<int> tRANSLATEDFROMField;
         
         private System.Nullable<int> lANGUAGEIDField;
-        
-        private BOOK_IMAGE[] bOOK_IMAGEsField;
-        
-        private BOOK bOOK1Field;
         
         private GENRE gENREField;
         
@@ -1931,26 +2017,6 @@ namespace BSMS.bsms.localhost {
         }
         
         /// <remarks/>
-        public BOOK_IMAGE[] BOOK_IMAGEs {
-            get {
-                return this.bOOK_IMAGEsField;
-            }
-            set {
-                this.bOOK_IMAGEsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public BOOK BOOK1 {
-            get {
-                return this.bOOK1Field;
-            }
-            set {
-                this.bOOK1Field = value;
-            }
-        }
-        
-        /// <remarks/>
         public GENRE GENRE {
             get {
                 return this.gENREField;
@@ -1987,64 +2053,6 @@ namespace BSMS.bsms.localhost {
             }
             set {
                 this.uSERField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class BOOK_IMAGE {
-        
-        private int bOOK_IMAGEIDField;
-        
-        private System.Nullable<int> bOOKIDField;
-        
-        private string iMAGEPATHField;
-        
-        private BOOK bOOKField;
-        
-        /// <remarks/>
-        public int BOOK_IMAGEID {
-            get {
-                return this.bOOK_IMAGEIDField;
-            }
-            set {
-                this.bOOK_IMAGEIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> BOOKID {
-            get {
-                return this.bOOKIDField;
-            }
-            set {
-                this.bOOKIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string IMAGEPATH {
-            get {
-                return this.iMAGEPATHField;
-            }
-            set {
-                this.iMAGEPATHField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public BOOK BOOK {
-            get {
-                return this.bOOKField;
-            }
-            set {
-                this.bOOKField = value;
             }
         }
     }
@@ -2204,6 +2212,89 @@ namespace BSMS.bsms.localhost {
             }
             set {
                 this.eMAILField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class BOOK_SOFTCOPY {
+        
+        private int bSCIDField;
+        
+        private System.Nullable<int> bOOKIDField;
+        
+        private string vERSIONField;
+        
+        private string fILEPATHField;
+        
+        private System.Nullable<double> fILESIZEField;
+        
+        private BOOK bOOKField;
+        
+        /// <remarks/>
+        public int BSCID {
+            get {
+                return this.bSCIDField;
+            }
+            set {
+                this.bSCIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> BOOKID {
+            get {
+                return this.bOOKIDField;
+            }
+            set {
+                this.bOOKIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string VERSION {
+            get {
+                return this.vERSIONField;
+            }
+            set {
+                this.vERSIONField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FILEPATH {
+            get {
+                return this.fILEPATHField;
+            }
+            set {
+                this.fILEPATHField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> FILESIZE {
+            get {
+                return this.fILESIZEField;
+            }
+            set {
+                this.fILESIZEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BOOK BOOK {
+            get {
+                return this.bOOKField;
+            }
+            set {
+                this.bOOKField = value;
             }
         }
     }
@@ -2386,9 +2477,9 @@ namespace BSMS.bsms.localhost {
         
         private System.Nullable<int> cATEGORYIDField;
         
-        private BOOK bOOKField;
-        
         private CATEGORY cATEGORYField;
+        
+        private BOOK bOOKField;
         
         /// <remarks/>
         public int BOOK_CATEGORYID {
@@ -2423,22 +2514,22 @@ namespace BSMS.bsms.localhost {
         }
         
         /// <remarks/>
-        public BOOK BOOK {
-            get {
-                return this.bOOKField;
-            }
-            set {
-                this.bOOKField = value;
-            }
-        }
-        
-        /// <remarks/>
         public CATEGORY CATEGORY {
             get {
                 return this.cATEGORYField;
             }
             set {
                 this.cATEGORYField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BOOK BOOK {
+            get {
+                return this.bOOKField;
+            }
+            set {
+                this.bOOKField = value;
             }
         }
     }
@@ -2508,6 +2599,64 @@ namespace BSMS.bsms.localhost {
             }
             set {
                 this.cATEGORY_THUMBNAILField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class BOOK_IMAGE {
+        
+        private int bOOK_IMAGEIDField;
+        
+        private System.Nullable<int> bOOKIDField;
+        
+        private string iMAGEPATHField;
+        
+        private BOOK bOOKField;
+        
+        /// <remarks/>
+        public int BOOK_IMAGEID {
+            get {
+                return this.bOOK_IMAGEIDField;
+            }
+            set {
+                this.bOOK_IMAGEIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> BOOKID {
+            get {
+                return this.bOOKIDField;
+            }
+            set {
+                this.bOOKIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IMAGEPATH {
+            get {
+                return this.iMAGEPATHField;
+            }
+            set {
+                this.iMAGEPATHField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BOOK BOOK {
+            get {
+                return this.bOOKField;
+            }
+            set {
+                this.bOOKField = value;
             }
         }
     }
@@ -2987,6 +3136,40 @@ namespace BSMS.bsms.localhost {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void AddWishListCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetWishListCompletedEventHandler(object sender, GetWishListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetWishListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetWishListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public WATCHLIST[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((WATCHLIST[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void DeleteWishListCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

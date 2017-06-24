@@ -27,7 +27,21 @@
             <img src="@Model.THUMBNAIL_PATH" width="100%" />
         </div>
         <div class="col-md-8">
-            @Model.BIOGRAPHY
+            <table class="table table-detail">
+                <tr>
+                    <td> Name </td>
+                    <td>  <p> @Model.FIRSTNAME @Model.MIDDLENAME @Model.LASTNAME </p> </td>
+                </tr>
+                <tr>
+                    <td> Alias Name </td>
+                    <td>  <p> @Model.ALIASNAME </p> </td>
+                </tr>
+             
+                <tr>
+                    <td> Biography </td>
+                    <td>  <p> @Model.BIOGRAPHY </p> </td>
+                </tr>
+            </table>
         </div>
     </div>
 
@@ -40,7 +54,7 @@
                 <div class="box-product">
                     <div class="img-wrapper">
                         <a href="@Url.Action("BookDetail", "Book", new { id = item.BOOKID })">
-                            <img alt="Product" src="@bookImage.ElementAt(0).IMAGEPATH">
+                            <div class="img-innerWrapper" style="background-image:url('@bookImage.ElementAt(0).IMAGEPATH'); background-size:100%; height:300px"> </div>
                         </a>
                         <div class="tags">
                             <span class="label-tags"><span class="label label-default arrowed">New</span></span>
@@ -80,9 +94,8 @@
                         <a href="#">(5 reviews)</a>
                     </div>
                 </div>
-            </div>
+          </div>
 
         }
 
-    </div>
 </div>

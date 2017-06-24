@@ -376,5 +376,31 @@ namespace BSMS.SERVICE
             return dataAccess.LANGUAGEs.ToList();
         }
 
+
+        [WebMethod]
+        public void AddWishList(int userid, int bookid)
+        {
+            WATCHLIST watchlist = new WATCHLIST();
+            watchlist.BOOKID = bookid;
+            watchlist.USERID = userid;
+            dataAccess.WATCHLISTs.InsertOnSubmit(watchlist);
+            dataAccess.SubmitChanges();
+        }
+        [WebMethod]
+        public List<WATCHLIST> GetWishList(int userid)
+        {
+            return dataAccess.WATCHLISTs.ToList().Where(wt => wt.USERID.Value == userid).ToList();
+        }
+
+        [WebMethod]
+        public void DeleteWishList(int id)
+        {
+            WATCHLIST watchList = dataAccess.WATCHLISTs.Single(wl => wl.WATCHLISTID == id);
+            if (watchList != null)
+            {
+                dataAccess.WATCHLISTs.DeleteOnSubmit(watchList);
+            }
+            dataAccess.SubmitChanges();
+        }
     }
 }

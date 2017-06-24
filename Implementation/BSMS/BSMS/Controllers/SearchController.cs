@@ -1,5 +1,6 @@
 ﻿using BSMS.bsms.localhost;
 using BSMS.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace BSMS.Controllers
     public class SearchController : Controller
     {
         // GET: Search
-        public ActionResult Index(int id=-1, String query="")
+        public ActionResult Index(int id=-1, String query="",int page=1, int pageSize=4)
         {
             
             List<BOOK> books = new List<BOOK>();
@@ -41,9 +42,9 @@ namespace BSMS.Controllers
                     }
                 }
             }
-            return View(books);
+            IPagedList<BOOK> pBooks = new PagedList<BOOK>(books, page, pageSize);
+            return View(pBooks);
         }
-
 
     }
 }

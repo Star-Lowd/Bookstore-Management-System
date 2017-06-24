@@ -40,7 +40,6 @@ namespace BSMS.Controllers
         {
             try
             {
-                ViewBag.Message = " ProducerID" + book.PRODUCERID + " Genre" + book.GENREID + " Language" + book.LANGUAGEID;
                 book.CREATED_DATE = DateTime.Now;
                 book = BookModel.AddBook(book);
 

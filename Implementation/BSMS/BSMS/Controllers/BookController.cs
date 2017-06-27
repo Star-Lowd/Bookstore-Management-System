@@ -71,25 +71,23 @@ namespace BSMS.Controllers
                         BookModel.AddBookImage(bookImage);
                    
                 }
-
-                foreach (HttpPostedFileBase bookSC in bookSoftCopy)
+                if (bookSoftCopy != null)
                 {
-                    if (!bookSC.FileName.ToLower().Contains(".pdf"))
+
+                    foreach (HttpPostedFileBase bookSC in bookSoftCopy)
                     {
-                        ViewBag.ErrorMessage = "Book Soft copy must be in PDF";
-                        continue;
+                        String fname = Generator.RandomString(10) + "." + bookSC.FileName.Split('.')[bookSC.FileName.Split('.').Length - 1];
+                        string path = Server.MapPath("~/UserImages/") + fname;
+                        BOOK_SOFTCOPY bSC = new BOOK_SOFTCOPY();
+                        bSC.BOOKID = book.BOOKID;
+                        bSC.FILEPATH = "/UserImages/" + fname;
+                        bSC.FILESIZE = bookSC.ContentLength;
+                        bookSC.SaveAs(path);
+                        BookModel.AddBookSoftCopy(bSC);
+
                     }
-                    String fname = Generator.RandomString(10) + "." + bookSC.FileName.Split('.')[bookSC.FileName.Split('.').Length - 1];
-                    string path = Server.MapPath("~/UserImages/") + fname;
-                    BOOK_SOFTCOPY bSC = new BOOK_SOFTCOPY();
-                    bSC.BOOKID = book.BOOKID;
-                    bSC.FILEPATH = "/UserImages/" + fname;
-                    bSC.FILESIZE = bookSC.ContentLength;
-                    bookSC.SaveAs(path);
-                    BookModel.AddBookSoftCopy(bSC);
 
                 }
-
                 ViewBag.Message = SuccessMessage.BOOK_ADDED;
 
             }
@@ -118,6 +116,24 @@ namespace BSMS.Controllers
             {
                 return View(book);
             }
+        }
+
+
+        public ActionResult Delete(int id)
+        {
+            BookModel.DeleteBook(id);
+            return null;
+        }
+
+        public ActionResult Detail(int id)
+        {
+            BOOK book = BookModel.FilterBook(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(book);
         }
     }
 }

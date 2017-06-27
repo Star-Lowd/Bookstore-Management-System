@@ -277,7 +277,7 @@ namespace BSMS.SERVICE
         [WebMethod]
         public void DeleteBookImage(int id)
         {
-            BOOK_IMAGE bookImage = dataAccess.BOOK_IMAGEs.Single(bi => bi.BOOKID == id);
+            BOOK_IMAGE bookImage = dataAccess.BOOK_IMAGEs.Single(bi => bi.BOOK_IMAGEID == id);
             dataAccess.BOOK_IMAGEs.DeleteOnSubmit(bookImage);
             dataAccess.SubmitChanges();
         }
@@ -331,9 +331,9 @@ namespace BSMS.SERVICE
             dataAccess.SubmitChanges();
         }
         [WebMethod]
-        public void DeleteBookAuthor(int? bAuthorID)
+        public void DeleteBookAuthor(int bAuthorID)
         {
-            BOOK_AUTHOR bookAuthor = dataAccess.BOOK_AUTHORs.Single(bAuthor => bAuthor.AUTHORID == bAuthorID);
+            BOOK_AUTHOR bookAuthor = dataAccess.BOOK_AUTHORs.First(bAuthor => bAuthor.BOOK_AUTHORID == bAuthorID);
             dataAccess.BOOK_AUTHORs.DeleteOnSubmit(bookAuthor);
             dataAccess.SubmitChanges();
         }
@@ -391,6 +391,13 @@ namespace BSMS.SERVICE
         {
             return dataAccess.WATCHLISTs.ToList().Where(wt => wt.USERID.Value == userid).ToList();
         }
+
+        [WebMethod]
+        public List<WATCHLIST> GetAllWishList()
+        {
+            return dataAccess.WATCHLISTs.ToList();
+        }
+
 
         [WebMethod]
         public void DeleteWishList(int id)

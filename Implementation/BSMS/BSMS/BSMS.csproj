@@ -694,6 +694,7 @@
     <Content Include="Views\Author\AuthorList.cshtml" />
     <Content Include="Views\Author\AuthorDetail.cshtml" />
     <Content Include="Views\WishList\Index.cshtml" />
+    <Content Include="Views\Book\Detail.cshtml" />
     <None Include="Web References\bsms.localhost\bsms_service.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

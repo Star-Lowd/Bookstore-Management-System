@@ -521,7 +521,7 @@
       <s:element name="DeleteBookAuthor">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="bAuthorID" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="bAuthorID" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -652,6 +652,16 @@
           <s:element minOccurs="0" maxOccurs="1" name="BOOK" type="tns:BOOK" />
         </s:sequence>
       </s:complexType>
+      <s:element name="GetAllWishList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllWishListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllWishListResult" type="tns:ArrayOfWATCHLIST" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="DeleteWishList">
         <s:complexType>
           <s:sequence>
@@ -928,6 +938,12 @@
   <wsdl:message name="GetWishListSoapOut">
     <wsdl:part name="parameters" element="tns:GetWishListResponse" />
   </wsdl:message>
+  <wsdl:message name="GetAllWishListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllWishList" />
+  </wsdl:message>
+  <wsdl:message name="GetAllWishListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllWishListResponse" />
+  </wsdl:message>
   <wsdl:message name="DeleteWishListSoapIn">
     <wsdl:part name="parameters" element="tns:DeleteWishList" />
   </wsdl:message>
@@ -1110,6 +1126,10 @@
     <wsdl:operation name="GetWishList">
       <wsdl:input message="tns:GetWishListSoapIn" />
       <wsdl:output message="tns:GetWishListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllWishList">
+      <wsdl:input message="tns:GetAllWishListSoapIn" />
+      <wsdl:output message="tns:GetAllWishListSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="DeleteWishList">
       <wsdl:input message="tns:DeleteWishListSoapIn" />
@@ -1507,6 +1527,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetWishList">
       <soap:operation soapAction="http://tempuri.org/GetWishList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllWishList">
+      <soap:operation soapAction="http://tempuri.org/GetAllWishList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1915,6 +1944,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetWishList">
       <soap12:operation soapAction="http://tempuri.org/GetWishList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllWishList">
+      <soap12:operation soapAction="http://tempuri.org/GetAllWishList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -1,10 +1,11 @@
 ﻿@model BSMS.bsms.localhost.BOOK
 @using BSMS.Models;
+@using BSMS.Session;
 @{
     ViewBag.Title = "BookDetail";
     ViewBag.Page = "Book";
     IEnumerable<BSMS.bsms.localhost.BOOK_IMAGE> bookImage = BSMS.Models.BookModel.GetBooksImages().Where(bi => bi.BOOKID == Model.BOOKID);
-
+    SessionHandler loginSession = new SessionHandler();
 }
 
 
@@ -98,6 +99,28 @@
                             @Model.SYNOPOSIS
                         </td>
                     </tr>
+
+                    @{
+                        if (BookModel.getBookSoftCopy(Model.BOOKID).Count > 0 && loginSession.AuthenticatedUser() != null)
+                        {
+                            int count = 1;
+                            <tr>
+                                <td> Book Soft Copy </td>
+                                <td>
+                                    
+                                    @foreach (var bCopy in BookModel.getBookSoftCopy(Model.BOOKID))
+                                    {
+                                        <a href="@bCopy.FILEPATH" target="_blank"> Read Version @count Online </a>
+                                        <br>
+                                        <a href="@bCopy.FILEPATH" download> Download Version @count Online </a>
+                                        <br><br>
+                                        count++;
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+
                 </tbody>
             </table>
         </div>

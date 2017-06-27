@@ -61,6 +61,10 @@ namespace BSMS.Models
 
         internal static void Delete(int id)
         {
+            foreach(BOOK_AUTHOR bAuthor in localhost.GetBookAuthors().Where(bAu=> bAu.AUTHORID == id))
+            {
+               localhost.DeleteBookAuthor(bAuthor.BOOK_AUTHORID);
+            }
             localhost.DeleteAuthor(id);
         }
 

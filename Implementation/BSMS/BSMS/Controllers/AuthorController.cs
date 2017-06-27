@@ -134,7 +134,8 @@ namespace BSMS.Controllers
         public ActionResult Delete(int id)
         {
             AuthorModel.Delete(id);
-            return RedirectToAction("index");
+            // return RedirectToAction("index");
+            return null;
         }
 
     }

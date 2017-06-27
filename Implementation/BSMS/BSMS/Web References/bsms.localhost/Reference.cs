@@ -117,6 +117,8 @@ namespace BSMS.bsms.localhost {
         
         private System.Threading.SendOrPostCallback GetWishListOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetAllWishListOperationCompleted;
+        
         private System.Threading.SendOrPostCallback DeleteWishListOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
@@ -288,6 +290,9 @@ namespace BSMS.bsms.localhost {
         
         /// <remarks/>
         public event GetWishListCompletedEventHandler GetWishListCompleted;
+        
+        /// <remarks/>
+        public event GetAllWishListCompletedEventHandler GetAllWishListCompleted;
         
         /// <remarks/>
         public event DeleteWishListCompletedEventHandler DeleteWishListCompleted;
@@ -1267,18 +1272,18 @@ namespace BSMS.bsms.localhost {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteBookAuthor", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void DeleteBookAuthor([System.Xml.Serialization.XmlElementAttribute(IsNullable=true)] System.Nullable<int> bAuthorID) {
+        public void DeleteBookAuthor(int bAuthorID) {
             this.Invoke("DeleteBookAuthor", new object[] {
                         bAuthorID});
         }
         
         /// <remarks/>
-        public void DeleteBookAuthorAsync(System.Nullable<int> bAuthorID) {
+        public void DeleteBookAuthorAsync(int bAuthorID) {
             this.DeleteBookAuthorAsync(bAuthorID, null);
         }
         
         /// <remarks/>
-        public void DeleteBookAuthorAsync(System.Nullable<int> bAuthorID, object userState) {
+        public void DeleteBookAuthorAsync(int bAuthorID, object userState) {
             if ((this.DeleteBookAuthorOperationCompleted == null)) {
                 this.DeleteBookAuthorOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteBookAuthorOperationCompleted);
             }
@@ -1514,6 +1519,33 @@ namespace BSMS.bsms.localhost {
             if ((this.GetWishListCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetWishListCompleted(this, new GetWishListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAllWishList", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public WATCHLIST[] GetAllWishList() {
+            object[] results = this.Invoke("GetAllWishList", new object[0]);
+            return ((WATCHLIST[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAllWishListAsync() {
+            this.GetAllWishListAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetAllWishListAsync(object userState) {
+            if ((this.GetAllWishListOperationCompleted == null)) {
+                this.GetAllWishListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllWishListOperationCompleted);
+            }
+            this.InvokeAsync("GetAllWishList", new object[0], this.GetAllWishListOperationCompleted, userState);
+        }
+        
+        private void OnGetAllWishListOperationCompleted(object arg) {
+            if ((this.GetAllWishListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAllWishListCompleted(this, new GetAllWishListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -3154,6 +3186,32 @@ namespace BSMS.bsms.localhost {
         private object[] results;
         
         internal GetWishListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public WATCHLIST[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((WATCHLIST[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetAllWishListCompletedEventHandler(object sender, GetAllWishListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAllWishListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAllWishListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

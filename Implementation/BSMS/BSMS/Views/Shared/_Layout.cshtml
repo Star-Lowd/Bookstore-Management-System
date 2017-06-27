@@ -136,9 +136,12 @@
                         </div>
                     </form>
                 </div>
-            </div>
+                <div class="col-sm-3 col-md-3 search-box m-t-2">
+                    <a href="@Url.Action("AdvanceSearch","Search")"> Advance Search</a>
+                </div>  
         </div>
     </div>
+        </div>
     <!-- End Middle Header -->
     <!-- Navigation Bar -->
     <nav class="navbar navbar-default shadow-navbar" role="navigation">
@@ -272,18 +275,28 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <img src="@loginSession.AuthenticatedUser().THUMBNAIL_PATH">
+                                <img src="@loginSession.AuthenticatedUser().THUMBNAIL_PATH" width="100%">
                             </div>
                             <div class="col-md-6">
                                 <table class="table">
                                     <tr>
-                                        <td>Full Name</td>
-                                        <td>@loginSession.AuthenticatedUser().FIRSTNAME @loginSession.AuthenticatedUser().MIDDLENAME @loginSession.AuthenticatedUser().LASTNAME</td>
+                                        <td>First Name</td>
+                                        <td>@loginSession.AuthenticatedUser().FIRSTNAME</td>
                                     </tr>
 
                                     <tr>
-                                        <td>Full Name</td>
-                                        <td>@loginSession.AuthenticatedUser().FIRSTNAME @loginSession.AuthenticatedUser().MIDDLENAME @loginSession.AuthenticatedUser().LASTNAME</td>
+                                        <td>Middle Name</td>
+                                        <td>@loginSession.AuthenticatedUser().MIDDLENAME</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Last Name</td>
+                                        <td>@loginSession.AuthenticatedUser().LASTNAME</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Email </td>
+                                        <td>@loginSession.AuthenticatedUser().EMAIL</td>
                                     </tr>
 
 

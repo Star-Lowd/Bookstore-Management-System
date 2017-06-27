@@ -35,6 +35,12 @@ namespace BSMS.Models
             return Service.GetBookCategories();
         }
 
+
+        public static List<BOOK_SOFTCOPY> getBookSoftCopy(int bookid)
+        {
+            return Service.GetBookSoftCopy().Where(bCopy => bCopy.BOOKID == bookid).ToList();
+        }
+
         internal static void AddBookImage(BOOK_IMAGE bookImage)
         {
             Service.InsertBookImage(bookImage);
@@ -55,6 +61,31 @@ namespace BSMS.Models
                 }
             }
             return null;
+        }
+
+        internal static void DeleteBook(int id)
+        {
+            foreach(BOOK_AUTHOR bAuthors in Service.GetBookAuthors().Where(bA=>bA.BOOKID == id))
+            {
+                Service.DeleteBookAuthor(bAuthors.BOOK_AUTHORID);
+            }
+            foreach (BOOK_CATEGORY bCategory in Service.GetBookCategories().Where(bC => bC.BOOKID == id))
+            {
+                Service.DeleteBookCategory(bCategory.BOOK_CATEGORYID);
+            }
+            foreach (BOOK_IMAGE bImage in Service.GetBookImages().Where(bI => bI.BOOKID == id))
+            {
+                Service.DeleteBookImage(bImage.BOOK_IMAGEID);
+            }
+            foreach (BOOK_SOFTCOPY bCopy in Service.GetBookSoftCopy().Where(bS => bS.BOOKID == id))
+            {
+                Service.DeleteBookSoftCopy(bCopy.BSCID);
+            }
+            foreach (WATCHLIST watchlist in Service.GetAllWishList().Where(bS => bS.BOOKID == id))
+            {
+                Service.DeleteWishList(watchlist.WATCHLISTID);
+            }
+            Service.DeleteBook(id);
         }
     }
 }

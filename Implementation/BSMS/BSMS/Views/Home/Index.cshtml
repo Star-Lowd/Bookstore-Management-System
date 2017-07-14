@@ -25,7 +25,7 @@
 <div class="container">
     <div class="row"><br><br>
         <div class="title"><span>Featured Books</span></div><br>
-        @foreach (BSMS.bsms.localhost.BOOK item in (BSMS.Models.BookModel.GetBooks().Count() <= 8 ? BSMS.Models.BookModel.GetBooks() : BSMS.Models.BookModel.GetBooks().GetRange(0, 8)))
+        @foreach (BSMS.bsms.localhost.BOOK item in (BSMS.Models.BookModel.getApprovedBooks().Count() <= 8 ? BSMS.Models.BookModel.getApprovedBooks() : BSMS.Models.BookModel.getApprovedBooks().GetRange(0, 8)))
         {
             IEnumerable<BSMS.bsms.localhost.BOOK_IMAGE> bookImage = BSMS.Models.BookModel.GetBooksImages().Where(bi => bi.BOOKID == item.BOOKID);
             <div class="col-sm-4 col-lg-3 box-product-outer">

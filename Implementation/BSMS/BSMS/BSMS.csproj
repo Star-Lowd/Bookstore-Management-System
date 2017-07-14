@@ -137,9 +137,11 @@
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProducerController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\WishListController.cs" />
+    <Compile Include="Entity\AdvanceSearch.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -223,6 +225,7 @@
     <Content Include="Content\css\sweetalert2.min.css" />
     <Content Include="Content\css\table.css" />
     <Content Include="Content\css\wizard.css" />
+    <Content Include="Content\fonts\fontawesome-webfont3e6e.svg" />
     <Content Include="Content\images\demo\blog-detail.jpg" />
     <Content Include="Content\images\demo\blog1.jpg" />
     <Content Include="Content\images\demo\blog2.jpg" />
@@ -279,6 +282,7 @@
     <Content Include="Content\js\bootstrap3-typeahead.min.js" />
     <Content Include="Content\js\custom.min.js" />
     <Content Include="Content\js\flot-data.js" />
+    <Content Include="Content\js\FormHandler.js" />
     <Content Include="Content\js\jquery.bootstrap-touchspin.js" />
     <Content Include="Content\js\jquery.ez-plus.js" />
     <Content Include="Content\js\jquery.js" />
@@ -625,6 +629,35 @@
     <Content Include="Content\scss\icons\themify-icons\fonts\themify9f24.eot" />
     <Content Include="Content\scss\icons\themify-icons\fonts\themifyd41d.eot" />
     <Content Include="Content\scss\icons\weather-icons\fonts\weathericons-regular-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont3e6e.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont3e6e.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont3e6e.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont3e6e.woff2" />
+    <Content Include="Content\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="Content\fonts\robotodraft\Black\RobotoDraft-Blacke209.ttf" />
+    <Content Include="Content\fonts\robotodraft\Black\RobotoDraft-Blacke209.woff" />
+    <Content Include="Content\fonts\robotodraft\Black\RobotoDraft-Blacke209.woff2" />
+    <Content Include="Content\fonts\robotodraft\BoldItalic\RobotoDraft-BoldItalice209.ttf" />
+    <Content Include="Content\fonts\robotodraft\BoldItalic\RobotoDraft-BoldItalice209.woff" />
+    <Content Include="Content\fonts\robotodraft\BoldItalic\RobotoDraft-BoldItalice209.woff2" />
+    <Content Include="Content\fonts\robotodraft\Bold\RobotoDraft-Bolde209.ttf" />
+    <Content Include="Content\fonts\robotodraft\Bold\RobotoDraft-Bolde209.woff" />
+    <Content Include="Content\fonts\robotodraft\Bold\RobotoDraft-Bolde209.woff2" />
+    <Content Include="Content\fonts\robotodraft\Italic\RobotoDraft-Italice209.ttf" />
+    <Content Include="Content\fonts\robotodraft\Italic\RobotoDraft-Italice209.woff" />
+    <Content Include="Content\fonts\robotodraft\Italic\RobotoDraft-Italice209.woff2" />
+    <Content Include="Content\fonts\robotodraft\Light\RobotoDraft-Lighte209.ttf" />
+    <Content Include="Content\fonts\robotodraft\Light\RobotoDraft-Lighte209.woff" />
+    <Content Include="Content\fonts\robotodraft\Light\RobotoDraft-Lighte209.woff2" />
+    <Content Include="Content\fonts\robotodraft\Medium\RobotoDraft-Mediume209.ttf" />
+    <Content Include="Content\fonts\robotodraft\Medium\RobotoDraft-Mediume209.woff" />
+    <Content Include="Content\fonts\robotodraft\Medium\RobotoDraft-Mediume209.woff2" />
+    <Content Include="Content\fonts\robotodraft\Regular\RobotoDraft-Regulare209.ttf" />
+    <Content Include="Content\fonts\robotodraft\Regular\RobotoDraft-Regulare209.woff" />
+    <Content Include="Content\fonts\robotodraft\Regular\RobotoDraft-Regulare209.woff2" />
+    <Content Include="Content\fonts\robotodraft\Thin\RobotoDraft-Thine209.ttf" />
+    <Content Include="Content\fonts\robotodraft\Thin\RobotoDraft-Thine209.woff" />
+    <Content Include="Content\fonts\robotodraft\Thin\RobotoDraft-Thine209.woff2" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -695,6 +728,12 @@
     <Content Include="Views\Author\AuthorDetail.cshtml" />
     <Content Include="Views\WishList\Index.cshtml" />
     <Content Include="Views\Book\Detail.cshtml" />
+    <Content Include="Views\Producer\Producer.cshtml" />
+    <Content Include="Views\Book\Edit.cshtml" />
+    <Content Include="Views\Book\PendingBooks.cshtml" />
+    <Content Include="Views\Profile\ChangePassword.cshtml" />
+    <Content Include="Views\Profile\EditProfile.cshtml" />
+    <Content Include="Views\Search\AdvanceSearch.cshtml" />
     <None Include="Web References\bsms.localhost\bsms_service.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -740,7 +779,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\fonts\" />
     <Folder Include="Content\images\favicons\" />
   </ItemGroup>
   <ItemGroup>

@@ -31,7 +31,7 @@
                 <tbody class="table-hover">
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr id="@("category_"+item.CATEGORYID)">
                             <td>
                                 @Html.DisplayFor(modelItem => item.NAME)
                             </td>
@@ -49,7 +49,7 @@
                                 <a href='\Category\Details\@item.CATEGORYID'>
                                     <span class="fa fa-info"></span>
                                 </a> |
-                                <a onclick="confirmMessage(@item.CATEGORYID)">
+                                <a onclick="DeleteRequest('@Url.Action("Delete","Category", new { id = item.CATEGORYID})','@("category_"+item.CATEGORYID)')">
                                     <span class="fa fa-remove"></span>
                                 </a>
                             </td>

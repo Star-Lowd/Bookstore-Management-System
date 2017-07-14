@@ -16,5 +16,7 @@ namespace BSMS.Message
         internal static readonly dynamic PASSWORD_CHANGED = "There was a Problem Changing your Password, Go back to reset password page";
         internal static readonly dynamic INTERNAL_ERROR = "Internal Error Occured, Contact Development Team for more information";
         internal static readonly dynamic USER_UPDATED="User have successfully been updated";
+        internal static readonly dynamic INCORRECT_USER_PASSWORD = "Incorrect Password, you are not allowed to take this action";
+       
     }
 }

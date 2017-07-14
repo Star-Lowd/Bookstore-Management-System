@@ -17,6 +17,18 @@ namespace BSMS.Controllers
             return View(ProducerModel.GetProducers());
         }
 
+
+        /// <summary>
+        //List producers (HttpGet)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Producer()
+        {
+            return View(ProducerModel.GetProducers());
+        }
+
+
         // GET: Producer/Details/5
         public ActionResult Details(int id)
         {

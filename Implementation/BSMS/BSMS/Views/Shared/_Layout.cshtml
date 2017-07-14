@@ -45,6 +45,19 @@
         List<GENRE> genries = GenreModel.GetGenre();
     }
 
+    <style>
+        .round {
+    line-height: 45px;
+    color: #ffffff;
+    width: 45px;
+    height: 45px;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    border-radius: 100%;
+    background: #009efb;
+}
+    </style>
 
     <!-- Top Header -->
     <div class="top-header">
@@ -54,7 +67,7 @@
                     <ul class="list-inline pull-left">
                         <li>
                             <select class="selectpicker" data-width="95px" data-style="btn-default">
-                                <option value="English" data-content="<img alt='English' src='~/Content/images/en.jpg'> English">English</option>
+                                <option value="English" data-content="<img alt='English' src='/Content/images/en.jpg'> English">English</option>
                             </select>
                         </li>
 
@@ -83,19 +96,33 @@
                         @if (loginSession.AuthenticatedUser() != null && !loginSession.ISAdmin())
                         {
                             <li class="hidden-xs"><a href="@Url.Action("Index","WishList", new { id = (loginSession.AuthenticatedUser().USERID)})"><i class="fa fa-heart"></i> Watchlist (<span id="wishlistCount">@WishListModel.CountWishList(loginSession.AuthenticatedUser().USERID)</span>) </a></li>
-                            <li class="hidden-xs"><a href="javascript:void(0)" onclick="user()" ><i class="fa fa-user"></i> @loginSession.AuthenticatedUser().USERNAME </a></li>
-                        }
 
-                        @if (loginSession.AuthenticatedUser() != null)
-                        {
-                            <li>
-                                <a href='@Url.Action("Logout","Authentication")'>
-                                    <span class="glyphicon glyphicon-log-out" style="font-size:120%"></span>
-                                    Logout
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    @loginSession.AuthenticatedUser().USERNAME <span class="fa fa-cog">  <span class="caret"></span> </span>
                                 </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="@Url.Action("ChangePassword","Profile")">
+                                        <span class="fa fa-key"> </span> Change Password
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("EditProfile","Profile")">
+                                            <span class="fa fa-edit"> </span> Edit Profile 
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href='@Url.Action("Logout","Authentication")'>
+                                            <span class="glyphicon glyphicon-log-out"></span>
+                                            Logout
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         }
-                        else
+
+                        @if (loginSession.AuthenticatedUser() == null)
                         {
                             <li>
                                 <a href='@Url.Action("Login","Authentication")'>
@@ -105,6 +132,8 @@
 
                             </li>
                         }
+
+
                     </ul>
                 </div>
             </div>
@@ -116,22 +145,29 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 logo">
-                    <img src="~/Content/assets/images/logo-icon.png" />
+                    <img src="/Content/assets/images/logo-icon.png" />
                 </div>
                 <div class="col-sm-8 col-md-6 search-box m-t-2">
                     <form method="GET" action="@Url.Action("index", "Search")">
                         <div class="input-group">
-                            <input type="text" name="query" class="form-control form-control-line" aria-label="Search here..." placeholder="Search here...">
+                            <input type="text" name="query" class="form-control form-control-line" aria-label="Search here..." placeholder="Search here..." value="@( Request.QueryString["query"] == null ? "" : Request.QueryString["query"] )">
                             <div class="input-group-btn">
                                 <select class="selectpicker hidden-xs" data-width="150px" name="id">
                                     <option value="-1">All Categories</option>
                                     @foreach (CATEGORY cat in categories)
                                     {
-                                        <option value="@cat.CATEGORYID"> @cat.NAME </option>
+                                        if (Request.QueryString["id"] != null && Int32.Parse(Request.QueryString["id"]) == cat.CATEGORYID)
+                                        {
+                                            <option value="@cat.CATEGORYID" selected> @cat.NAME </option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@cat.CATEGORYID"> @cat.NAME </option>
+                                        }
                                     }
 
                                 </select>
-                                <button type="submit" class="btn btn-default btn-search"><i class="fa fa-search"></i></button>
+                                <button type="submit" class="btn btn-default btn-search" style="height:100%"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
                     </form>
@@ -160,7 +196,6 @@
                     <li class='@(ViewBag.Page == "Home" ? "active" : "")'><a href="@Url.Action("Index", "Home")">Home</a></li>
                     <li class='@(ViewBag.Page == "Book" ? "active" : "")'><a href="@Url.Action("BookList", "Book")">Book</a></li>
                     <li class='@(ViewBag.Page == "Author" ? "active" : "")'><a href="@Url.Action("AuthorList", "Author")">Author</a></li>
-                    <li class='@(ViewBag.Page == "Producer" ? "active" : "")'><a href="#">Producer</a></li>
                 </ul>
             </div>
         </div>

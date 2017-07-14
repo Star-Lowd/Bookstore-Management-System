@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using BSMS.bsms.localhost;
+using BSMS.Session;
 
 namespace BSMS.Models
 {
     public class BookModel
     {
         private static bsms_service Service = new bsms_service();
+
+
+        public static List<BOOK> getApprovedBooks()
+        {
+            List<BOOK> approvedBooks = GetBooks().Where(book => book.STATUS == Constant.APPROVED_TEXT).ToList();
+            return approvedBooks;
+        }
 
         public static int CountBookByAuthor(int? authorid)
         {
@@ -17,7 +25,9 @@ namespace BSMS.Models
 
         public static List<BOOK> GetBooks()
         {
-            return Service.GetBooks().ToList();
+            List<BOOK> allBooks = Service.GetBooks().ToList();
+            allBooks.Reverse();
+            return allBooks;
         }
 
         public static List<BOOK_IMAGE> GetBooksImages()
@@ -86,6 +96,12 @@ namespace BSMS.Models
                 Service.DeleteWishList(watchlist.WATCHLISTID);
             }
             Service.DeleteBook(id);
+        }
+
+        internal static BOOK UpdateBook(BOOK book)
+        {
+            Service.UpdateBook(book);
+            return book;
         }
     }
 }

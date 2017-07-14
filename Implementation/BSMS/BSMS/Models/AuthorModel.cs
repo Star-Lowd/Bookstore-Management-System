@@ -98,5 +98,24 @@ namespace BSMS.Models
             }
             return bookAuthors;
         }
+
+
+        public static bool BookAuthorExist(int bookid, int Authorid)
+        {
+            foreach (BOOK_AUTHOR bookAuthor in localhost.GetBookAuthors())
+            {
+                if (bookAuthor.BOOKID == bookid && bookAuthor.AUTHORID == Authorid)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        internal static void DeleteBookAuthor(int aUTHORID, int bOOKID)
+        {
+            BOOK_AUTHOR bAuthor = localhost.GetBookAuthors().Single(bA => bA.AUTHORID == aUTHORID && bA.BOOKID == bOOKID);
+            localhost.DeleteBookAuthor(bAuthor.BOOK_AUTHORID);
+        }
     }
 }

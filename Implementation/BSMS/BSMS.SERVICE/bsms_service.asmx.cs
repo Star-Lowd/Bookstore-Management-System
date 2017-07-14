@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using BSMS.SERVICE.App_Data;
 using System.Web.Script.Services;
+using System.Web.Script.Serialization;
 
 namespace BSMS.SERVICE
 {
@@ -19,6 +20,17 @@ namespace BSMS.SERVICE
     public class bsms_service : System.Web.Services.WebService
     {
         private DataAccessDataContext dataAccess = new DataAccessDataContext();
+
+        [WebMethod]
+        public List<BOOK> GetAllInJson()
+        {
+            Context.Response.ContentType = "JSON";
+            //JavaScriptSerializer json = new JavaScriptSerializer();
+            // Context.Response.Write(json.Serialize(dataAccess.BOOKs.ToList()));
+            return dataAccess.BOOKs.ToList();
+        }
+
+
         [WebMethod]
         public void UpdateUser(USER user)
         {
@@ -31,6 +43,7 @@ namespace BSMS.SERVICE
                     u.MIDDLENAME = user.MIDDLENAME;
                     u.EMAIL = user.EMAIL;
                     u.THUMBNAIL_PATH = user.THUMBNAIL_PATH;
+                    u.PASSWORDHASH = user.PASSWORDHASH == null ? u.PASSWORDHASH : user.PASSWORDHASH;
                 }
             }
             dataAccess.SubmitChanges();
@@ -243,15 +256,21 @@ namespace BSMS.SERVICE
         {
             BOOK existingBook = dataAccess.BOOKs.Single(b => b.BOOKID == book.BOOKID);
             
-            //existingBook.NAME = book.NAME;
-            //existingBook.ISBN_NUMBER = book.ISBN_NUMBER;
-            // existingBook.STATUS = book.STATUS;
-            // existingBook.SYNOPOSIS = book.SYNOPOSIS;
-            // existingBook.ISPUBLISHED = book.ISPUBLISHED;
-            // existingBook.REFERENCE = book.REFERENCE;
-            // existingBook.DATE_PUBLISHED = book.DATE_PUBLISHED;
-            // existingBook.CREATED_DATE = book.CREATED_DATE;
-            existingBook = book;
+            existingBook.NAME = book.NAME;
+            existingBook.ISBN_NUMBER = book.ISBN_NUMBER;
+            existingBook.STATUS = book.STATUS;
+            existingBook.SYNOPOSIS = book.SYNOPOSIS;
+            existingBook.ISPUBLISHED = book.ISPUBLISHED;
+            existingBook.REFERENCE = book.REFERENCE;
+            existingBook.DATE_PUBLISHED = book.DATE_PUBLISHED;
+            existingBook.CREATED_DATE = book.CREATED_DATE;
+            existingBook.PRICE = book.PRICE;
+            existingBook.PERCENTAGE_OFF = book.PERCENTAGE_OFF;
+            existingBook.GENREID = book.GENREID;
+            existingBook.PRODUCERID = book.PRODUCERID;
+            existingBook.TRANSLATEDFROM = book.TRANSLATEDFROM;
+            existingBook.LANGUAGEID = book.LANGUAGEID;
+            //existingBook = book;
             dataAccess.SubmitChanges();
         }
         [WebMethod]

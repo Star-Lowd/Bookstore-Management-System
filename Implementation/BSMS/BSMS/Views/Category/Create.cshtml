@@ -10,7 +10,7 @@
 <div class="container">
     <div class="card">
         <div class="card-block">
-            @using (Html.BeginForm("Create", "Category", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal form-material" }))
+            @using (Html.BeginForm("Create", "Category", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal form-material",id="AddCategory" }))
             {
                 @Html.AntiForgeryToken()
 
@@ -43,7 +43,7 @@
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-12">
-                            <input type="submit" value="Add Category" class="btn btn-default" />
+                            <input type="button" value="Add Category" class="btn btn-default" onclick="submitForm('AddCategory','@Url.Action("Create", "Category")','@Url.Action("Index", "Category")') " />
                         </div>
                     </div>
                 </div>

@@ -32,7 +32,7 @@
     <script src="~/Content/js/jquery.sweet-modal.min.js"></script>
     <link href="~/Content/css/sweetalert2.min.css" rel="stylesheet" />
     <script src="~/Content/js/sweetalert2.min.js"></script>
-
+    <script src="~/Content/js/FormHandler.js"></script>
 
 
 </head>
@@ -112,6 +112,7 @@
                                 <img src="@img_Path" alt="user" class="profile-pic m-r-5" />@loggedUser.USERNAME
                             </a>
                         </li>
+
                     </ul>
                 </div>
             </nav>
@@ -128,32 +129,50 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li>
-                            <a href='@Url.Action("index","Category")' class="waves-effect"><i class="fa fa-clock-o m-r-10" aria-hidden="true"></i> Category </a>
-                        </li>
-                        <li>
-                            <a href='@Url.Action("index","Genre")' class="waves-effect"><i class="fa fa-user m-r-10" aria-hidden="true"></i> Genre </a>
-                        </li>
-                        <li>
-                            <a href='@Url.Action("index","Author")' class="waves-effect"><i class="fa fa-table m-r-10" aria-hidden="true"></i> Author </a>
-                        </li>
-                        <li>
-                            <a href='@Url.Action("index","Staff")' class="waves-effect"><i class="fa fa-user m-r-10" aria-hidden="true"></i> Staff </a>
-                        </li>
-                        <li>
-                            <a href='@Url.Action("index","Producer")' class="waves-effect"><i class="fa fa-product-hunt m-r-10" aria-hidden="true"></i> Producer </a>
-                        </li>
+                        @if (LoginSession.ISAdmin())
+                        {
+                            <li>
+                                <a href='@Url.Action("index","Category")' class="waves-effect"><i class="fa fa-clock-o m-r-10" aria-hidden="true"></i> Category </a>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("index","Genre")' class="waves-effect"><i class="fa fa-user m-r-10" aria-hidden="true"></i> Genre </a>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("index","Staff")' class="waves-effect"><i class="fa fa-user m-r-10" aria-hidden="true"></i> Staff </a>
+                            </li>
+                        }
+
+                        @if (LoginSession.ISStaff())
+                        {
+                            <li>
+                                <a href='@Url.Action("index","Author")' class="waves-effect"><i class="fa fa-table m-r-10" aria-hidden="true"></i> Author </a>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("index","Producer")' class="waves-effect"><i class="fa fa-product-hunt m-r-10" aria-hidden="true"></i> Producer </a>
+                            </li>
+                          
+                        }
+                        
                         <li>
                             <a href='@Url.Action("index","Book")' class="waves-effect"><i class="fa fa-book m-r-10" aria-hidden="true"></i>Books </a>
                         </li>
-                       
+                        
+                       @if (LoginSession.ISAdmin())
+                       {
+                        <li>
+                            <a href="@Url.Action("PendingBooks", "Book")">
+                                <span class="badge m-r-10" id="pendingcount" style="background-color:cadetblue; border-radius:30px; font-weight:400; height:inherit; width:inherit"> @(BSMS.Models.BookModel.GetBooks().Where(query => String.IsNullOrEmpty(query.STATUS)).Count())   </span>
+                               &nbsp; &nbsp;Pending Books
+                            </a>
+                        </li>
+                       }
                         <li>
                             <a onclick="logout()" class="waves-effect"><i class="fa fa-sign-out m-r-10" aria-hidden="true"></i>Logout </a>
                         </li>
                         
                     </ul>
                     <div class="text-center m-t-30">
-                        <a href="@Url.Action("index", "Home")" class="btn btn-danger"> Preview Guest </a>
+                        <a href="@Url.Action("index", "Home")" target="new" class="btn btn-danger"> Preview Guest </a>
                     </div>
                 </nav>
                 <!-- End Sidebar navigation -->

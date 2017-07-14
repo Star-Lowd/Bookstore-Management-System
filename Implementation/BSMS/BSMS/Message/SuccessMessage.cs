@@ -19,5 +19,6 @@ namespace BSMS.Message
         internal static readonly dynamic PRODUCER_CREATED = "New Producer have been successfully added";
         internal static readonly dynamic PRODUCER_EDITED = "Producer have been successfully updated";
         internal static readonly dynamic REGISTERATION_COMPLETED = "Registration Successful";
+      
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BSMS.bsms.localhost;
+using BSMS.Entity;
 using BSMS.Models;
 using PagedList;
 using System;
@@ -11,6 +12,16 @@ namespace BSMS.Controllers
 {
     public class SearchController : Controller
     {
+        [HttpGet]
+        public ActionResult AdvanceSearch(AdvanceSearch query = null)
+        {
+            if (query == null)
+            {
+                return View();
+            }
+            return View();
+        }
+
         // GET: Search
         public ActionResult Index(int id=-1, String query="",int page=1, int pageSize=4)
         {

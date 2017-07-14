@@ -32,7 +32,7 @@
 
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    <tr id="@("producer_"+item.PRODUCERID)">
                         <td>
                             @Html.DisplayFor(modelItem => item.NAME)
                         </td>
@@ -52,7 +52,7 @@
                             <a href='\Producer\Details\@item.PRODUCERID'>
                                 <span class="fa fa-info-circle"></span>
                             </a> |
-                            <a onclick="confirmMessage(@item.PRODUCERID)">
+                            <a onclick="DeleteRequest('@Url.Action("Delete", "Producer", new { id = item.PRODUCERID})', '@("producer_"+item.PRODUCERID)' )">
                                 <span class="fa fa-remove"></span>
                             </a>
                         </td>
@@ -63,36 +63,3 @@
 
         </div>
 </div></div>
-
-
-        <script>
-
-
-            function confirmMessage(id) {
-                swal({
-                    title: 'Are you sure you want to Delete this producer including books written by him ?',
-                    text: "You won't be able to revert this!",
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then(function () {
-                    swal({
-                        title: 'Request Processing',
-                        text: 'BSMS is processing producer removal request'
-                    })
-                    window.location = '@Url.Action("Delete", "Producer")/' + id;
-                }, function (dismiss) {
-
-                    if (dismiss === 'cancel') {
-                        swal(
-                          'Cancelled',
-                          'You have Cancel the Delete Event :)',
-                          'error'
-                        )
-                    }
-                })
-
-            }
-        </script>

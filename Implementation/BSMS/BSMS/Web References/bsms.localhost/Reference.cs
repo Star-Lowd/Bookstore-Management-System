@@ -23,11 +23,13 @@ namespace BSMS.bsms.localhost {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="bsms_serviceSoap", Namespace="http://tempuri.org/")]
     public partial class bsms_service : System.Web.Services.Protocols.SoapHttpClientProtocol {
+        
+        private System.Threading.SendOrPostCallback GetAllInJsonOperationCompleted;
         
         private System.Threading.SendOrPostCallback UpdateUserOperationCompleted;
         
@@ -121,6 +123,32 @@ namespace BSMS.bsms.localhost {
         
         private System.Threading.SendOrPostCallback DeleteWishListOperationCompleted;
         
+        private System.Threading.SendOrPostCallback AddLikeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback RemoveLikeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetAllLikesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddAnonymousViewOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetViewsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddRatingOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateRatingOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetRatingOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetRatingByBookIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddReviewOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetBookReviewwOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteReviewOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetAllReviewsOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -158,6 +186,9 @@ namespace BSMS.bsms.localhost {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
+        
+        /// <remarks/>
+        public event GetAllInJsonCompletedEventHandler GetAllInJsonCompleted;
         
         /// <remarks/>
         public event UpdateUserCompletedEventHandler UpdateUserCompleted;
@@ -298,6 +329,72 @@ namespace BSMS.bsms.localhost {
         public event DeleteWishListCompletedEventHandler DeleteWishListCompleted;
         
         /// <remarks/>
+        public event AddLikeCompletedEventHandler AddLikeCompleted;
+        
+        /// <remarks/>
+        public event RemoveLikeCompletedEventHandler RemoveLikeCompleted;
+        
+        /// <remarks/>
+        public event GetAllLikesCompletedEventHandler GetAllLikesCompleted;
+        
+        /// <remarks/>
+        public event AddAnonymousViewCompletedEventHandler AddAnonymousViewCompleted;
+        
+        /// <remarks/>
+        public event GetViewsCompletedEventHandler GetViewsCompleted;
+        
+        /// <remarks/>
+        public event AddRatingCompletedEventHandler AddRatingCompleted;
+        
+        /// <remarks/>
+        public event UpdateRatingCompletedEventHandler UpdateRatingCompleted;
+        
+        /// <remarks/>
+        public event GetRatingCompletedEventHandler GetRatingCompleted;
+        
+        /// <remarks/>
+        public event GetRatingByBookIdCompletedEventHandler GetRatingByBookIdCompleted;
+        
+        /// <remarks/>
+        public event AddReviewCompletedEventHandler AddReviewCompleted;
+        
+        /// <remarks/>
+        public event GetBookReviewwCompletedEventHandler GetBookReviewwCompleted;
+        
+        /// <remarks/>
+        public event DeleteReviewCompletedEventHandler DeleteReviewCompleted;
+        
+        /// <remarks/>
+        public event GetAllReviewsCompletedEventHandler GetAllReviewsCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAllInJson", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public BOOK[] GetAllInJson() {
+            object[] results = this.Invoke("GetAllInJson", new object[0]);
+            return ((BOOK[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAllInJsonAsync() {
+            this.GetAllInJsonAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetAllInJsonAsync(object userState) {
+            if ((this.GetAllInJsonOperationCompleted == null)) {
+                this.GetAllInJsonOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllInJsonOperationCompleted);
+            }
+            this.InvokeAsync("GetAllInJson", new object[0], this.GetAllInJsonOperationCompleted, userState);
+        }
+        
+        private void OnGetAllInJsonOperationCompleted(object arg) {
+            if ((this.GetAllInJsonCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAllInJsonCompleted(this, new GetAllInJsonCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void UpdateUser(USER user) {
             this.Invoke("UpdateUser", new object[] {
@@ -327,10 +424,10 @@ namespace BSMS.bsms.localhost {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool AddUser(USER user) {
+        public USER AddUser(USER user) {
             object[] results = this.Invoke("AddUser", new object[] {
                         user});
-            return ((bool)(results[0]));
+            return ((USER)(results[0]));
         }
         
         /// <remarks/>
@@ -1578,6 +1675,397 @@ namespace BSMS.bsms.localhost {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddLike", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool AddLike(LIKE like) {
+            object[] results = this.Invoke("AddLike", new object[] {
+                        like});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddLikeAsync(LIKE like) {
+            this.AddLikeAsync(like, null);
+        }
+        
+        /// <remarks/>
+        public void AddLikeAsync(LIKE like, object userState) {
+            if ((this.AddLikeOperationCompleted == null)) {
+                this.AddLikeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddLikeOperationCompleted);
+            }
+            this.InvokeAsync("AddLike", new object[] {
+                        like}, this.AddLikeOperationCompleted, userState);
+        }
+        
+        private void OnAddLikeOperationCompleted(object arg) {
+            if ((this.AddLikeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddLikeCompleted(this, new AddLikeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/RemoveLike", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool RemoveLike(int userid, int bookid) {
+            object[] results = this.Invoke("RemoveLike", new object[] {
+                        userid,
+                        bookid});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void RemoveLikeAsync(int userid, int bookid) {
+            this.RemoveLikeAsync(userid, bookid, null);
+        }
+        
+        /// <remarks/>
+        public void RemoveLikeAsync(int userid, int bookid, object userState) {
+            if ((this.RemoveLikeOperationCompleted == null)) {
+                this.RemoveLikeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRemoveLikeOperationCompleted);
+            }
+            this.InvokeAsync("RemoveLike", new object[] {
+                        userid,
+                        bookid}, this.RemoveLikeOperationCompleted, userState);
+        }
+        
+        private void OnRemoveLikeOperationCompleted(object arg) {
+            if ((this.RemoveLikeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.RemoveLikeCompleted(this, new RemoveLikeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAllLikes", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public LIKE[] GetAllLikes() {
+            object[] results = this.Invoke("GetAllLikes", new object[0]);
+            return ((LIKE[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAllLikesAsync() {
+            this.GetAllLikesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetAllLikesAsync(object userState) {
+            if ((this.GetAllLikesOperationCompleted == null)) {
+                this.GetAllLikesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllLikesOperationCompleted);
+            }
+            this.InvokeAsync("GetAllLikes", new object[0], this.GetAllLikesOperationCompleted, userState);
+        }
+        
+        private void OnGetAllLikesOperationCompleted(object arg) {
+            if ((this.GetAllLikesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAllLikesCompleted(this, new GetAllLikesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddAnonymousView", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool AddAnonymousView(int bookid, int userid) {
+            object[] results = this.Invoke("AddAnonymousView", new object[] {
+                        bookid,
+                        userid});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddAnonymousViewAsync(int bookid, int userid) {
+            this.AddAnonymousViewAsync(bookid, userid, null);
+        }
+        
+        /// <remarks/>
+        public void AddAnonymousViewAsync(int bookid, int userid, object userState) {
+            if ((this.AddAnonymousViewOperationCompleted == null)) {
+                this.AddAnonymousViewOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddAnonymousViewOperationCompleted);
+            }
+            this.InvokeAsync("AddAnonymousView", new object[] {
+                        bookid,
+                        userid}, this.AddAnonymousViewOperationCompleted, userState);
+        }
+        
+        private void OnAddAnonymousViewOperationCompleted(object arg) {
+            if ((this.AddAnonymousViewCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddAnonymousViewCompleted(this, new AddAnonymousViewCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetViews", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public VIEW[] GetViews(int bookid) {
+            object[] results = this.Invoke("GetViews", new object[] {
+                        bookid});
+            return ((VIEW[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetViewsAsync(int bookid) {
+            this.GetViewsAsync(bookid, null);
+        }
+        
+        /// <remarks/>
+        public void GetViewsAsync(int bookid, object userState) {
+            if ((this.GetViewsOperationCompleted == null)) {
+                this.GetViewsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetViewsOperationCompleted);
+            }
+            this.InvokeAsync("GetViews", new object[] {
+                        bookid}, this.GetViewsOperationCompleted, userState);
+        }
+        
+        private void OnGetViewsOperationCompleted(object arg) {
+            if ((this.GetViewsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetViewsCompleted(this, new GetViewsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddRating", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool AddRating(int bookid, int userid, int rating) {
+            object[] results = this.Invoke("AddRating", new object[] {
+                        bookid,
+                        userid,
+                        rating});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddRatingAsync(int bookid, int userid, int rating) {
+            this.AddRatingAsync(bookid, userid, rating, null);
+        }
+        
+        /// <remarks/>
+        public void AddRatingAsync(int bookid, int userid, int rating, object userState) {
+            if ((this.AddRatingOperationCompleted == null)) {
+                this.AddRatingOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddRatingOperationCompleted);
+            }
+            this.InvokeAsync("AddRating", new object[] {
+                        bookid,
+                        userid,
+                        rating}, this.AddRatingOperationCompleted, userState);
+        }
+        
+        private void OnAddRatingOperationCompleted(object arg) {
+            if ((this.AddRatingCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddRatingCompleted(this, new AddRatingCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateRating", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool UpdateRating(int userid, int bookid, int rating) {
+            object[] results = this.Invoke("UpdateRating", new object[] {
+                        userid,
+                        bookid,
+                        rating});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UpdateRatingAsync(int userid, int bookid, int rating) {
+            this.UpdateRatingAsync(userid, bookid, rating, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateRatingAsync(int userid, int bookid, int rating, object userState) {
+            if ((this.UpdateRatingOperationCompleted == null)) {
+                this.UpdateRatingOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateRatingOperationCompleted);
+            }
+            this.InvokeAsync("UpdateRating", new object[] {
+                        userid,
+                        bookid,
+                        rating}, this.UpdateRatingOperationCompleted, userState);
+        }
+        
+        private void OnUpdateRatingOperationCompleted(object arg) {
+            if ((this.UpdateRatingCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateRatingCompleted(this, new UpdateRatingCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetRating", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public RATING GetRating(int userid, int bookid) {
+            object[] results = this.Invoke("GetRating", new object[] {
+                        userid,
+                        bookid});
+            return ((RATING)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetRatingAsync(int userid, int bookid) {
+            this.GetRatingAsync(userid, bookid, null);
+        }
+        
+        /// <remarks/>
+        public void GetRatingAsync(int userid, int bookid, object userState) {
+            if ((this.GetRatingOperationCompleted == null)) {
+                this.GetRatingOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetRatingOperationCompleted);
+            }
+            this.InvokeAsync("GetRating", new object[] {
+                        userid,
+                        bookid}, this.GetRatingOperationCompleted, userState);
+        }
+        
+        private void OnGetRatingOperationCompleted(object arg) {
+            if ((this.GetRatingCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetRatingCompleted(this, new GetRatingCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetRatingByBookId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public RATING[] GetRatingByBookId(int bookid) {
+            object[] results = this.Invoke("GetRatingByBookId", new object[] {
+                        bookid});
+            return ((RATING[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetRatingByBookIdAsync(int bookid) {
+            this.GetRatingByBookIdAsync(bookid, null);
+        }
+        
+        /// <remarks/>
+        public void GetRatingByBookIdAsync(int bookid, object userState) {
+            if ((this.GetRatingByBookIdOperationCompleted == null)) {
+                this.GetRatingByBookIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetRatingByBookIdOperationCompleted);
+            }
+            this.InvokeAsync("GetRatingByBookId", new object[] {
+                        bookid}, this.GetRatingByBookIdOperationCompleted, userState);
+        }
+        
+        private void OnGetRatingByBookIdOperationCompleted(object arg) {
+            if ((this.GetRatingByBookIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetRatingByBookIdCompleted(this, new GetRatingByBookIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddReview", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool AddReview(string review, int bookid, int userid) {
+            object[] results = this.Invoke("AddReview", new object[] {
+                        review,
+                        bookid,
+                        userid});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddReviewAsync(string review, int bookid, int userid) {
+            this.AddReviewAsync(review, bookid, userid, null);
+        }
+        
+        /// <remarks/>
+        public void AddReviewAsync(string review, int bookid, int userid, object userState) {
+            if ((this.AddReviewOperationCompleted == null)) {
+                this.AddReviewOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddReviewOperationCompleted);
+            }
+            this.InvokeAsync("AddReview", new object[] {
+                        review,
+                        bookid,
+                        userid}, this.AddReviewOperationCompleted, userState);
+        }
+        
+        private void OnAddReviewOperationCompleted(object arg) {
+            if ((this.AddReviewCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddReviewCompleted(this, new AddReviewCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBookRevieww", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public REVIEW[] GetBookRevieww(int bookid) {
+            object[] results = this.Invoke("GetBookRevieww", new object[] {
+                        bookid});
+            return ((REVIEW[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetBookReviewwAsync(int bookid) {
+            this.GetBookReviewwAsync(bookid, null);
+        }
+        
+        /// <remarks/>
+        public void GetBookReviewwAsync(int bookid, object userState) {
+            if ((this.GetBookReviewwOperationCompleted == null)) {
+                this.GetBookReviewwOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBookReviewwOperationCompleted);
+            }
+            this.InvokeAsync("GetBookRevieww", new object[] {
+                        bookid}, this.GetBookReviewwOperationCompleted, userState);
+        }
+        
+        private void OnGetBookReviewwOperationCompleted(object arg) {
+            if ((this.GetBookReviewwCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetBookReviewwCompleted(this, new GetBookReviewwCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteReview", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool DeleteReview(int reviewid) {
+            object[] results = this.Invoke("DeleteReview", new object[] {
+                        reviewid});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DeleteReviewAsync(int reviewid) {
+            this.DeleteReviewAsync(reviewid, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteReviewAsync(int reviewid, object userState) {
+            if ((this.DeleteReviewOperationCompleted == null)) {
+                this.DeleteReviewOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteReviewOperationCompleted);
+            }
+            this.InvokeAsync("DeleteReview", new object[] {
+                        reviewid}, this.DeleteReviewOperationCompleted, userState);
+        }
+        
+        private void OnDeleteReviewOperationCompleted(object arg) {
+            if ((this.DeleteReviewCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteReviewCompleted(this, new DeleteReviewCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAllReviews", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public REVIEW[] GetAllReviews() {
+            object[] results = this.Invoke("GetAllReviews", new object[0]);
+            return ((REVIEW[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetAllReviewsAsync() {
+            this.GetAllReviewsAsync(null);
+        }
+        
+        /// <remarks/>
+        public void GetAllReviewsAsync(object userState) {
+            if ((this.GetAllReviewsOperationCompleted == null)) {
+                this.GetAllReviewsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllReviewsOperationCompleted);
+            }
+            this.InvokeAsync("GetAllReviews", new object[0], this.GetAllReviewsOperationCompleted, userState);
+        }
+        
+        private void OnGetAllReviewsOperationCompleted(object arg) {
+            if ((this.GetAllReviewsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetAllReviewsCompleted(this, new GetAllReviewsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -1597,246 +2085,13 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class USER {
-        
-        private int uSERIDField;
-        
-        private string uSERNAMEField;
-        
-        private string pASSWORDHASHField;
-        
-        private string fIRSTNAMEField;
-        
-        private string lASTNAMEField;
-        
-        private string mIDDLENAMEField;
-        
-        private string tHUMBNAIL_PATHField;
-        
-        private string eMAILField;
-        
-        private System.Nullable<int> rOLEIDField;
-        
-        private ROLE rOLEField;
-        
-        /// <remarks/>
-        public int USERID {
-            get {
-                return this.uSERIDField;
-            }
-            set {
-                this.uSERIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string USERNAME {
-            get {
-                return this.uSERNAMEField;
-            }
-            set {
-                this.uSERNAMEField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string PASSWORDHASH {
-            get {
-                return this.pASSWORDHASHField;
-            }
-            set {
-                this.pASSWORDHASHField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string FIRSTNAME {
-            get {
-                return this.fIRSTNAMEField;
-            }
-            set {
-                this.fIRSTNAMEField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string LASTNAME {
-            get {
-                return this.lASTNAMEField;
-            }
-            set {
-                this.lASTNAMEField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string MIDDLENAME {
-            get {
-                return this.mIDDLENAMEField;
-            }
-            set {
-                this.mIDDLENAMEField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string THUMBNAIL_PATH {
-            get {
-                return this.tHUMBNAIL_PATHField;
-            }
-            set {
-                this.tHUMBNAIL_PATHField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string EMAIL {
-            get {
-                return this.eMAILField;
-            }
-            set {
-                this.eMAILField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> ROLEID {
-            get {
-                return this.rOLEIDField;
-            }
-            set {
-                this.rOLEIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public ROLE ROLE {
-            get {
-                return this.rOLEField;
-            }
-            set {
-                this.rOLEField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ROLE {
-        
-        private int rOLEIDField;
-        
-        private string rOLE1Field;
-        
-        /// <remarks/>
-        public int ROLEID {
-            get {
-                return this.rOLEIDField;
-            }
-            set {
-                this.rOLEIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ROLE1 {
-            get {
-                return this.rOLE1Field;
-            }
-            set {
-                this.rOLE1Field = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class WATCHLIST {
-        
-        private int wATCHLISTIDField;
-        
-        private System.Nullable<int> bOOKIDField;
-        
-        private System.Nullable<int> uSERIDField;
-        
-        private USER uSERField;
-        
-        private BOOK bOOKField;
-        
-        /// <remarks/>
-        public int WATCHLISTID {
-            get {
-                return this.wATCHLISTIDField;
-            }
-            set {
-                this.wATCHLISTIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> BOOKID {
-            get {
-                return this.bOOKIDField;
-            }
-            set {
-                this.bOOKIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> USERID {
-            get {
-                return this.uSERIDField;
-            }
-            set {
-                this.uSERIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public USER USER {
-            get {
-                return this.uSERField;
-            }
-            set {
-                this.uSERField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public BOOK BOOK {
-            get {
-                return this.bOOKField;
-            }
-            set {
-                this.bOOKField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class BOOK {
+    public partial class BOOK
+    {
         
         private int bOOKIDField;
         
@@ -2087,10 +2342,11 @@ namespace BSMS.bsms.localhost {
                 this.uSERField = value;
             }
         }
+ 
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2147,93 +2403,183 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class LANGUAGE {
+    public partial class REVIEW {
         
-        private int lANGUAGEIDField;
+        private int rEVIEWIDField;
         
-        private string lANGUAGE1Field;
+        private System.Nullable<int> uSERIDField;
+        
+        private System.Nullable<int> bOOKIDField;
+        
+        private string rEVIEW1Field;
+        
+        private BOOK bOOKField;
+        
+        private USER uSERField;
         
         /// <remarks/>
-        public int LANGUAGEID {
+        public int REVIEWID {
             get {
-                return this.lANGUAGEIDField;
+                return this.rEVIEWIDField;
             }
             set {
-                this.lANGUAGEIDField = value;
+                this.rEVIEWIDField = value;
             }
         }
         
         /// <remarks/>
-        public string LANGUAGE1 {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> USERID {
             get {
-                return this.lANGUAGE1Field;
+                return this.uSERIDField;
             }
             set {
-                this.lANGUAGE1Field = value;
+                this.uSERIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> BOOKID {
+            get {
+                return this.bOOKIDField;
+            }
+            set {
+                this.bOOKIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string REVIEW1 {
+            get {
+                return this.rEVIEW1Field;
+            }
+            set {
+                this.rEVIEW1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BOOK BOOK {
+            get {
+                return this.bOOKField;
+            }
+            set {
+                this.bOOKField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public USER USER {
+            get {
+                return this.uSERField;
+            }
+            set {
+                this.uSERField = value;
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class PRODUCER {
+    public partial class USER {
         
-        private int pRODUCERIDField;
+        private int uSERIDField;
         
-        private string nAMEField;
+        private string uSERNAMEField;
         
-        private string aDDRESSField;
+        private string pASSWORDHASHField;
         
-        private string cONTACTField;
+        private string fIRSTNAMEField;
+        
+        private string lASTNAMEField;
+        
+        private string mIDDLENAMEField;
+        
+        private string tHUMBNAIL_PATHField;
         
         private string eMAILField;
         
+        private System.Nullable<int> rOLEIDField;
+        
+        private ROLE rOLEField;
+        
         /// <remarks/>
-        public int PRODUCERID {
+        public int USERID {
             get {
-                return this.pRODUCERIDField;
+                return this.uSERIDField;
             }
             set {
-                this.pRODUCERIDField = value;
+                this.uSERIDField = value;
             }
         }
         
         /// <remarks/>
-        public string NAME {
+        public string USERNAME {
             get {
-                return this.nAMEField;
+                return this.uSERNAMEField;
             }
             set {
-                this.nAMEField = value;
+                this.uSERNAMEField = value;
             }
         }
         
         /// <remarks/>
-        public string ADDRESS {
+        public string PASSWORDHASH {
             get {
-                return this.aDDRESSField;
+                return this.pASSWORDHASHField;
             }
             set {
-                this.aDDRESSField = value;
+                this.pASSWORDHASHField = value;
             }
         }
         
         /// <remarks/>
-        public string CONTACT {
+        public string FIRSTNAME {
             get {
-                return this.cONTACTField;
+                return this.fIRSTNAMEField;
             }
             set {
-                this.cONTACTField = value;
+                this.fIRSTNAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LASTNAME {
+            get {
+                return this.lASTNAMEField;
+            }
+            set {
+                this.lASTNAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MIDDLENAME {
+            get {
+                return this.mIDDLENAMEField;
+            }
+            set {
+                this.mIDDLENAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string THUMBNAIL_PATH {
+            get {
+                return this.tHUMBNAIL_PATHField;
+            }
+            set {
+                this.tHUMBNAIL_PATHField = value;
             }
         }
         
@@ -2246,10 +2592,361 @@ namespace BSMS.bsms.localhost {
                 this.eMAILField = value;
             }
         }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> ROLEID {
+            get {
+                return this.rOLEIDField;
+            }
+            set {
+                this.rOLEIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ROLE ROLE {
+            get {
+                return this.rOLEField;
+            }
+            set {
+                this.rOLEField = value;
+            }
+        }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ROLE {
+        
+        private int rOLEIDField;
+        
+        private string rOLE1Field;
+        
+        /// <remarks/>
+        public int ROLEID {
+            get {
+                return this.rOLEIDField;
+            }
+            set {
+                this.rOLEIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ROLE1 {
+            get {
+                return this.rOLE1Field;
+            }
+            set {
+                this.rOLE1Field = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class RATING {
+        
+        private int rATINGIDField;
+        
+        private System.Nullable<int> uSERIDField;
+        
+        private System.Nullable<int> bOOKIDField;
+        
+        private System.Nullable<int> rATING1Field;
+        
+        private BOOK bOOKField;
+        
+        private USER uSERField;
+        
+        /// <remarks/>
+        public int RATINGID {
+            get {
+                return this.rATINGIDField;
+            }
+            set {
+                this.rATINGIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> USERID {
+            get {
+                return this.uSERIDField;
+            }
+            set {
+                this.uSERIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> BOOKID {
+            get {
+                return this.bOOKIDField;
+            }
+            set {
+                this.bOOKIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> RATING1 {
+            get {
+                return this.rATING1Field;
+            }
+            set {
+                this.rATING1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BOOK BOOK {
+            get {
+                return this.bOOKField;
+            }
+            set {
+                this.bOOKField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public USER USER {
+            get {
+                return this.uSERField;
+            }
+            set {
+                this.uSERField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class VIEW {
+        
+        private int vIEWIDField;
+        
+        private System.Nullable<int> uSERIDField;
+        
+        private System.Nullable<int> bOOKIDField;
+        
+        private BOOK bOOKField;
+        
+        private USER uSERField;
+        
+        /// <remarks/>
+        public int VIEWID {
+            get {
+                return this.vIEWIDField;
+            }
+            set {
+                this.vIEWIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> USERID {
+            get {
+                return this.uSERIDField;
+            }
+            set {
+                this.uSERIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> BOOKID {
+            get {
+                return this.bOOKIDField;
+            }
+            set {
+                this.bOOKIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BOOK BOOK {
+            get {
+                return this.bOOKField;
+            }
+            set {
+                this.bOOKField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public USER USER {
+            get {
+                return this.uSERField;
+            }
+            set {
+                this.uSERField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class LIKE {
+        
+        private int lIKEIDField;
+        
+        private System.Nullable<int> uSERIDField;
+        
+        private System.Nullable<int> bOOKIDField;
+        
+        private BOOK bOOKField;
+        
+        private USER uSERField;
+        
+        /// <remarks/>
+        public int LIKEID {
+            get {
+                return this.lIKEIDField;
+            }
+            set {
+                this.lIKEIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> USERID {
+            get {
+                return this.uSERIDField;
+            }
+            set {
+                this.uSERIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> BOOKID {
+            get {
+                return this.bOOKIDField;
+            }
+            set {
+                this.bOOKIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BOOK BOOK {
+            get {
+                return this.bOOKField;
+            }
+            set {
+                this.bOOKField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public USER USER {
+            get {
+                return this.uSERField;
+            }
+            set {
+                this.uSERField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class WATCHLIST {
+        
+        private int wATCHLISTIDField;
+        
+        private System.Nullable<int> bOOKIDField;
+        
+        private System.Nullable<int> uSERIDField;
+        
+        private USER uSERField;
+        
+        private BOOK bOOKField;
+        
+        /// <remarks/>
+        public int WATCHLISTID {
+            get {
+                return this.wATCHLISTIDField;
+            }
+            set {
+                this.wATCHLISTIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> BOOKID {
+            get {
+                return this.bOOKIDField;
+            }
+            set {
+                this.bOOKIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> USERID {
+            get {
+                return this.uSERIDField;
+            }
+            set {
+                this.uSERIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public USER USER {
+            get {
+                return this.uSERField;
+            }
+            set {
+                this.uSERField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BOOK BOOK {
+            get {
+                return this.bOOKField;
+            }
+            set {
+                this.bOOKField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2332,7 +3029,7 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2403,7 +3100,7 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2496,7 +3193,7 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2567,7 +3264,7 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2636,7 +3333,7 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2694,15 +3391,143 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class PRODUCER {
+        
+        private int pRODUCERIDField;
+        
+        private string nAMEField;
+        
+        private string aDDRESSField;
+        
+        private string cONTACTField;
+        
+        private string eMAILField;
+        
+        /// <remarks/>
+        public int PRODUCERID {
+            get {
+                return this.pRODUCERIDField;
+            }
+            set {
+                this.pRODUCERIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NAME {
+            get {
+                return this.nAMEField;
+            }
+            set {
+                this.nAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ADDRESS {
+            get {
+                return this.aDDRESSField;
+            }
+            set {
+                this.aDDRESSField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CONTACT {
+            get {
+                return this.cONTACTField;
+            }
+            set {
+                this.cONTACTField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string EMAIL {
+            get {
+                return this.eMAILField;
+            }
+            set {
+                this.eMAILField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class LANGUAGE {
+        
+        private int lANGUAGEIDField;
+        
+        private string lANGUAGE1Field;
+        
+        /// <remarks/>
+        public int LANGUAGEID {
+            get {
+                return this.lANGUAGEIDField;
+            }
+            set {
+                this.lANGUAGEIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LANGUAGE1 {
+            get {
+                return this.lANGUAGE1Field;
+            }
+            set {
+                this.lANGUAGE1Field = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void GetAllInJsonCompletedEventHandler(object sender, GetAllInJsonCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAllInJsonCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAllInJsonCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public BOOK[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((BOOK[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void UpdateUserCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void AddUserCompletedEventHandler(object sender, AddUserCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AddUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2715,20 +3540,20 @@ namespace BSMS.bsms.localhost {
         }
         
         /// <remarks/>
-        public bool Result {
+        public USER Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
+                return ((USER)(this.results[0]));
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetRolesCompletedEventHandler(object sender, GetRolesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetRolesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2750,11 +3575,11 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetUsersCompletedEventHandler(object sender, GetUsersCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetUsersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2776,11 +3601,11 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetCategoriesCompletedEventHandler(object sender, GetCategoriesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetCategoriesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2802,23 +3627,23 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void UpdateCategoryCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void InserCategoryCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void DeleteCategoryCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetGenresCompletedEventHandler(object sender, GetGenresCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetGenresCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2840,27 +3665,27 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void UpdateGenreCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void InserGenreCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void DeleteGenreCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void DeleteUserCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetAuthorsCompletedEventHandler(object sender, GetAuthorsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetAuthorsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2882,23 +3707,23 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void DeleteAuthorCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void AddAuthorCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void UpdateAuthorCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetProducersCompletedEventHandler(object sender, GetProducersCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetProducersCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2920,23 +3745,23 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void DeleteProducerCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void InsertProducerCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void UpdateProducerCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void InsertBookCompletedEventHandler(object sender, InsertBookCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class InsertBookCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2958,19 +3783,19 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void DeleteBookCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void UpdateBookCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetBooksCompletedEventHandler(object sender, GetBooksCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBooksCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -2992,23 +3817,23 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void InsertBookImageCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void UpdateBookImageCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void DeleteBookImageCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetBookImagesCompletedEventHandler(object sender, GetBookImagesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBookImagesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3030,23 +3855,23 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void InsertBookCategoryCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void UpdateBookCategoryCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void DeleteBookCategoryCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetBookCategoriesCompletedEventHandler(object sender, GetBookCategoriesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBookCategoriesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3068,23 +3893,23 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void InsertBookAuthorCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void UpdateBookAuthorCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void DeleteBookAuthorCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetBookAuthorsCompletedEventHandler(object sender, GetBookAuthorsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBookAuthorsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3106,23 +3931,23 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void InsertBookSoftCopyCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void UpdateBookSoftCopyCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void DeleteBookSoftCopyCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetBookSoftCopyCompletedEventHandler(object sender, GetBookSoftCopyCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBookSoftCopyCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3144,11 +3969,11 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetLanguagesCompletedEventHandler(object sender, GetLanguagesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetLanguagesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3170,15 +3995,15 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void AddWishListCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetWishListCompletedEventHandler(object sender, GetWishListCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetWishListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3200,11 +4025,11 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void GetAllWishListCompletedEventHandler(object sender, GetAllWishListCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetAllWishListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -3226,8 +4051,346 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
     public delegate void DeleteWishListCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void AddLikeCompletedEventHandler(object sender, AddLikeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddLikeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddLikeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void RemoveLikeCompletedEventHandler(object sender, RemoveLikeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class RemoveLikeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal RemoveLikeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void GetAllLikesCompletedEventHandler(object sender, GetAllLikesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAllLikesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAllLikesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public LIKE[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((LIKE[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void AddAnonymousViewCompletedEventHandler(object sender, AddAnonymousViewCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddAnonymousViewCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddAnonymousViewCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void GetViewsCompletedEventHandler(object sender, GetViewsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetViewsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetViewsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public VIEW[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((VIEW[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void AddRatingCompletedEventHandler(object sender, AddRatingCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddRatingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddRatingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void UpdateRatingCompletedEventHandler(object sender, UpdateRatingCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UpdateRatingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UpdateRatingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void GetRatingCompletedEventHandler(object sender, GetRatingCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetRatingCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetRatingCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RATING Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RATING)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void GetRatingByBookIdCompletedEventHandler(object sender, GetRatingByBookIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetRatingByBookIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetRatingByBookIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RATING[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RATING[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void AddReviewCompletedEventHandler(object sender, AddReviewCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddReviewCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddReviewCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void GetBookReviewwCompletedEventHandler(object sender, GetBookReviewwCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetBookReviewwCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetBookReviewwCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public REVIEW[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((REVIEW[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void DeleteReviewCompletedEventHandler(object sender, DeleteReviewCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DeleteReviewCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DeleteReviewCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    public delegate void GetAllReviewsCompletedEventHandler(object sender, GetAllReviewsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetAllReviewsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetAllReviewsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public REVIEW[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((REVIEW[])(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591

@@ -33,7 +33,7 @@ namespace BSMS.Controllers
                 ViewBag.PRODUCERID = new SelectList(ProducerModel.GetProducers(), "PRODUCERID", "NAME", book.PRODUCER);
                 ViewBag.Categories = new MultiSelectList(CategoryModel.GetAllCategory(), "CATEGORYID", "NAME");
                 ViewBag.GENREID = new SelectList(GenreModel.GetGenre(), "GENREID", "NAME", book.GENREID);
-                ViewBag.LANGUAGEID = new SelectList(LanguageModel.GetLanguages(), "LANGUAGEID", "LANGUAGE1",book.LANGUAGEID );
+                ViewBag.LANGUAGEID = new SelectList(LanguageModel.GetLanguages(), "LANGUAGEID", "LANGUAGE1", book.LANGUAGEID);
                 ViewBag.TRANSLATEDFROM = new SelectList(BookModel.getApprovedBooks(), "BOOKID", "NAME", book.TRANSLATEDFROM);
             }
         }
@@ -50,75 +50,75 @@ namespace BSMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddBook(BOOK book, List<int> Authors, List<int> Categories, 
+        public ActionResult AddBook(BOOK book, List<int> Authors, List<int> Categories,
             List<HttpPostedFileBase> bookImages, List<HttpPostedFileBase> bookSoftCopy)
         {
-             try
-             {
-                 book.CREATED_DATE = DateTime.Now;
-                 book = BookModel.AddBook(book);
+            try
+            {
+                book.CREATED_DATE = DateTime.Now;
+                book = BookModel.AddBook(book);
 
-                 foreach(int aID in Authors)
-                 {
-                     BOOK_AUTHOR bookAuthor = new BOOK_AUTHOR();
-                     bookAuthor.BOOKID = book.BOOKID;
-                     bookAuthor.AUTHORID = aID;
-                     AuthorModel.AddBookAuthor(bookAuthor);
-                 }
+                foreach (int aID in Authors)
+                {
+                    BOOK_AUTHOR bookAuthor = new BOOK_AUTHOR();
+                    bookAuthor.BOOKID = book.BOOKID;
+                    bookAuthor.AUTHORID = aID;
+                    AuthorModel.AddBookAuthor(bookAuthor);
+                }
 
-                 foreach (int bCID in Categories)
-                 {
-                     BOOK_CATEGORY bookCat = new BOOK_CATEGORY();
-                     bookCat.BOOKID = book.BOOKID;
-                     bookCat.CATEGORYID = bCID;
-                     CategoryModel.AddBookCategory(bookCat);
-                 }
+                foreach (int bCID in Categories)
+                {
+                    BOOK_CATEGORY bookCat = new BOOK_CATEGORY();
+                    bookCat.BOOKID = book.BOOKID;
+                    bookCat.CATEGORYID = bCID;
+                    CategoryModel.AddBookCategory(bookCat);
+                }
 
-                 foreach(HttpPostedFileBase image in bookImages)
-                 {
+                foreach (HttpPostedFileBase image in bookImages)
+                {
 
-                         String fname = Generator.RandomString(10) + "." + image.FileName.Split('.')[image.FileName.Split('.').Length - 1];
-                         string path = Server.MapPath("~/UserImages/") + fname;
-                         BOOK_IMAGE bookImage = new BOOK_IMAGE();
-                         bookImage.BOOKID = book.BOOKID;
-                         bookImage.IMAGEPATH = "/UserImages/" + fname;
-                         image.SaveAs(path);
-                         BookModel.AddBookImage(bookImage);
+                    String fname = Generator.RandomString(10) + "." + image.FileName.Split('.')[image.FileName.Split('.').Length - 1];
+                    string path = Server.MapPath("~/UserImages/") + fname;
+                    BOOK_IMAGE bookImage = new BOOK_IMAGE();
+                    bookImage.BOOKID = book.BOOKID;
+                    bookImage.IMAGEPATH = "/UserImages/" + fname;
+                    image.SaveAs(path);
+                    BookModel.AddBookImage(bookImage);
 
-                 }
-                 if (bookSoftCopy != null)
-                 {
+                }
+                if (bookSoftCopy != null)
+                {
 
-                     foreach (HttpPostedFileBase bookSC in bookSoftCopy)
-                     {
-                         String fname = Generator.RandomString(10) + "." + bookSC.FileName.Split('.')[bookSC.FileName.Split('.').Length - 1];
-                         string path = Server.MapPath("~/UserImages/") + fname;
-                         BOOK_SOFTCOPY bSC = new BOOK_SOFTCOPY();
-                         bSC.BOOKID = book.BOOKID;
-                         bSC.FILEPATH = "/UserImages/" + fname;
-                         bSC.FILESIZE = bookSC.ContentLength;
-                         bookSC.SaveAs(path);
-                         BookModel.AddBookSoftCopy(bSC);
+                    foreach (HttpPostedFileBase bookSC in bookSoftCopy)
+                    {
+                        String fname = Generator.RandomString(10) + "." + bookSC.FileName.Split('.')[bookSC.FileName.Split('.').Length - 1];
+                        string path = Server.MapPath("~/UserImages/") + fname;
+                        BOOK_SOFTCOPY bSC = new BOOK_SOFTCOPY();
+                        bSC.BOOKID = book.BOOKID;
+                        bSC.FILEPATH = "/UserImages/" + fname;
+                        bSC.FILESIZE = bookSC.ContentLength;
+                        bookSC.SaveAs(path);
+                        BookModel.AddBookSoftCopy(bSC);
 
-                     }
+                    }
 
-                 }
-                 ViewBag.Message = SuccessMessage.BOOK_ADDED;
+                }
+                ViewBag.Message = SuccessMessage.BOOK_ADDED;
 
-             }
-             catch(Exception e)
-             {
-                 ViewBag.Message = e.Message;
-             }
-             
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+            }
+
             initialiseViewBag();
             return View(book);
         }
 
-      
-        public ActionResult BookList(int page = 1, int pageSize=6)
+
+        public ActionResult BookList(int page = 1, int pageSize = 6)
         {
-            IPagedList<BOOK> books = new PagedList<BOOK>(BookModel.GetBooks(), page,pageSize);
+            IPagedList<BOOK> books = new PagedList<BOOK>(BookModel.GetBooks(), page, pageSize);
             return View(books);
         }
 
@@ -196,7 +196,7 @@ namespace BSMS.Controllers
                         CategoryModel.AddBookCategory(bookCat);
                     }
                 }
-            
+
 
                 foreach (HttpPostedFileBase image in bookImages)
                 {
@@ -210,7 +210,7 @@ namespace BSMS.Controllers
                     BookModel.AddBookImage(bookImage);
 
                 }
-              
+
                 foreach (HttpPostedFileBase bookSC in bookSoftCopy)
                 {
                     String fname = Generator.RandomString(10) + "." + bookSC.FileName.Split('.')[bookSC.FileName.Split('.').Length - 1];
@@ -224,7 +224,7 @@ namespace BSMS.Controllers
 
                 }
 
-             
+
                 ViewBag.Message = SuccessMessage.BOOK_ADDED;
 
             }
@@ -232,7 +232,7 @@ namespace BSMS.Controllers
             {
                 ViewBag.Message = e.Message;
             }
-           
+
             initialiseViewBag();
             return View(book);
         }
@@ -265,7 +265,7 @@ namespace BSMS.Controllers
             int pendingApprovalCount = BookModel.GetBooks().Where(query => String.IsNullOrEmpty(query.STATUS)).Count();
             return Json(pendingApprovalCount, JsonRequestBehavior.AllowGet);
         }
-        
+
 
         [HttpGet]
         public ActionResult PendingBooks()
@@ -273,5 +273,31 @@ namespace BSMS.Controllers
             return View(BookModel.GetBooks().Where(query => String.IsNullOrEmpty(query.STATUS)));
         }
 
+
+        [HttpPost]
+        public JsonResult AddLike(int bookid)
+        {
+            return Json(BookModel.AddLikes(bookid), JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpPost]
+        public JsonResult AddView(int bookid)
+        {
+            return Json(BookModel.AddView(bookid), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult DisLike(int bookid)
+        {
+            return Json(BookModel.RemoveLike(bookid), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+
+        public JsonResult AddRating(int bookid, int rating)
+        {
+            return Json(BookModel.AddRating(bookid, rating), JsonRequestBehavior.AllowGet);
+        }
     }
 }

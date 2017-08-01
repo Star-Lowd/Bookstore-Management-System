@@ -4,7 +4,16 @@
         url: formHandlerUrl,
         data: $("#" + formName).serialize(), // serializes the form's elements.
         success: function (data) {
-            window.location = redirectUrl
+            if (data.length > 2) {
+            swal({
+                title: 'Field Validation Error',
+                text: data,
+                type: 'error'
+            });
+            }
+            else {
+                window.location = redirectUrl;
+            }
         },
         error: function (jqXHR, exception) {
             var msg = '';

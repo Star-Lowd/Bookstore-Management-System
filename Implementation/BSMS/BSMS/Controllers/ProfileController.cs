@@ -31,7 +31,7 @@ namespace BSMS.Controllers
             {
                 AuthenticationModel.UpdateUser(user);
             }
-            return View();
+            return RedirectToAction("EditProfile");
         }
 
         [HttpGet]

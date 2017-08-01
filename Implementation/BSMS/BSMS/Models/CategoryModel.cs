@@ -9,9 +9,10 @@ namespace BSMS.Models
     public class CategoryModel
     {
         private static bsms_service Services = new bsms_service();
-        internal static void AddCategory(CATEGORY category)
+        public static bool AddCategory(CATEGORY category)
         {
             Services.InserCategory(category);
+            return true;
         }
 
         public static List<CATEGORY> GetAllCategory()
@@ -19,12 +20,12 @@ namespace BSMS.Models
            return Services.GetCategories().ToList();
         }
 
-        internal static void EditCategory(CATEGORY category)
+        public static void EditCategory(CATEGORY category)
         {
             Services.UpdateCategory(category);
         }
 
-        internal static CATEGORY Fliter(int id)
+        public static CATEGORY Fliter(int id)
         {
             foreach(CATEGORY cat in GetAllCategory())
             {
@@ -36,14 +37,15 @@ namespace BSMS.Models
             return null;
         }
 
-        internal static void DeleteCategory(int id)
+        public static void DeleteCategory(int id)
         {
             Services.DeleteCategory(id);
         }
 
-        internal static void AddBookCategory(BOOK_CATEGORY bookCategory)
+        public static bool AddBookCategory(BOOK_CATEGORY bookCategory)
         {
             Services.InsertBookCategory(bookCategory);
+            return true;
         }
     }
 }

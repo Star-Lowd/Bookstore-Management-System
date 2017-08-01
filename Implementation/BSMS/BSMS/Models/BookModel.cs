@@ -103,5 +103,117 @@ namespace BSMS.Models
             Service.UpdateBook(book);
             return book;
         }
+
+
+        public static bool AddLikes(int bookid)
+        {
+            LIKE like = new LIKE()
+            {
+                USERID = (new SessionHandler().AuthenticatedUser().USERID),
+                BOOKID = bookid
+            };
+            return Service.AddLike(like);
+        }
+
+
+        public static bool RemoveLike(int bookid)
+        {
+            return Service.RemoveLike((new SessionHandler()).AuthenticatedUser().USERID, bookid);
+        }
+        public static int LikeCount(int bookid)
+        {
+            return Service.GetAllLikes().Where(like => like.BOOKID.Value == bookid).Count();
+        }
+
+        public static int ViewsCount(int bookid)
+        {
+            return Service.GetViews(bookid).Count();
+        }
+
+        public static bool AddView(int bookid)
+        {
+            SessionHandler loginSession = new SessionHandler();
+            if (loginSession.AuthenticatedUser() == null)
+            {
+                return Service.AddAnonymousView(bookid, -1);
+            }
+            else
+            {
+                return Service.AddAnonymousView(bookid, (new SessionHandler()).AuthenticatedUser().USERID);
+            }
+        }
+        
+        public static List<BOOK> MostViewedBooks(int count)
+        {
+            List<BOOK> mostViewedBooks = new List<BOOK>();
+            Dictionary<int, int> books = new Dictionary<int, int>();
+            
+            foreach(BOOK book in getApprovedBooks())
+            {
+                books.Add(book.BOOKID, ViewsCount(book.BOOKID));    
+            }
+
+            for(int a = 0; a < count; a++)
+            {
+                int maxValue = books.Values.Max();
+                KeyValuePair<int, int> max = books.FirstOrDefault(b => b.Value == maxValue);
+                mostViewedBooks.Add(BookModel.FilterBook(max.Key));
+                books.Remove(max.Key);
+            }
+
+            return mostViewedBooks;
+        }
+
+
+        public static bool Liked(int bookid)
+        {
+            return Service.GetAllLikes().Where(lk => lk.BOOKID == bookid &&
+            lk.USERID == (new SessionHandler()).AuthenticatedUser().USERID).Count() != 0;
+        }
+
+        public static List<BOOK> MostLikedBooks(int count)
+        {
+            List<BOOK> mostLikedBooks = new List<BOOK>();
+            Dictionary<int, int> books = new Dictionary<int, int>();
+            
+            foreach (BOOK book in getApprovedBooks())
+            {
+                books.Add(book.BOOKID, LikeCount(book.BOOKID));
+            }
+            
+            for (int a = 0; a < count; a++)
+            {
+                int maxValue = books.Values.Max();
+                KeyValuePair<int,int> max = books.FirstOrDefault(b => b.Value == maxValue);
+                mostLikedBooks.Add(BookModel.FilterBook(max.Key));
+                books.Remove(max.Key);
+            }
+
+            return mostLikedBooks;
+        }
+        
+        internal static bool AddRating(int bookid, int rating)
+        {
+            USER user = (new SessionHandler()).AuthenticatedUser();
+            
+            if (Service.GetRating(user.USERID, bookid) != null)
+            {
+                return Service.UpdateRating(user.USERID, bookid, rating);    
+            }
+            return Service.AddRating(bookid, user.USERID, rating);
+            
+        }
+
+        public static int GetRating(int bookid)
+        {
+            int sumRating = 0;
+            RATING[] ratings = Service.GetRatingByBookId(bookid);
+            foreach (RATING rating in ratings)
+            {
+                sumRating += rating.RATING1.Value;
+            }
+
+            return ratings.Count() == 0 ? 1 : (sumRating / ratings.Count());
+        }
     }
 }

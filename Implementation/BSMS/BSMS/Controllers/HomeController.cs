@@ -1,4 +1,5 @@
-﻿using BSMS.Models;
+﻿using BSMS.bsms.localhost;
+using BSMS.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,25 @@ namespace BSMS.Controllers
         public ActionResult Index()
         {
             return View(BookModel.GetBooks());
+        }
+
+        public ActionResult AutoComplete(string keyword)
+        {
+            List<BOOK> match = new List<BOOK>();
+            int cnt = 0;
+            foreach(BOOK book in BookModel.GetBooks())
+            {
+                if (book.NAME.ToLower().Contains(keyword.ToLower()))
+                {
+                    match.Add(book);
+                    cnt++;
+                }
+                if (cnt >= 4)
+                {
+                    break;
+                }
+            }
+            return Json(match, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult About()

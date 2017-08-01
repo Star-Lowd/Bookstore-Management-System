@@ -2,15 +2,37 @@
 @using BSMS.Models;
 @using BSMS.Session;
 @{
-    ViewBag.Title = "BookDetail";
+    ViewBag.Title = Model.NAME;
     ViewBag.Page = "Book";
     IEnumerable<BSMS.bsms.localhost.BOOK_IMAGE> bookImage = BSMS.Models.BookModel.GetBooksImages().Where(bi => bi.BOOKID == Model.BOOKID);
     SessionHandler loginSession = new SessionHandler();
 }
 
+<style>
+    .addtionImgDiv {
+        padding: 5px;
+        border-width: 1px;
+        border-color: white;
+    }
+
+    .addtionImgDiv:hover {
+        cursor: pointer;
+        transform:scale(0.9);
+    }
+
+    .slidable {
+        transition: all 0.5s ease;
+        width:100%;
+       
+    }
+    .slidable:hover{
+        transform:scale(0.8);
+    }
+
+</style>
 
 <!-- Breadcrumbs -->
-<div class="breadcrumb-container">
+<div class="breadcrumb-container" onload="bindView()">
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="index.html">Home</a></li>
@@ -26,28 +48,38 @@
 
         <!-- Image List -->
         <div class="col-sm-4">
-            <div class="image-detail">
-                <img id="bookImage" style="transition: opacity 1s ease-in-out;" src="@bookImage.ElementAt(0).IMAGEPATH" data-zoom-image="images/demo/p1-large-1.jpg" alt="">
+            <div class="image-detail" style="height:550px">
+                <img id="bookImage" class="img-innerWrapper slidable" src="@bookImage.ElementAt(0).IMAGEPATH" data-zoom-image="images/demo/p1-large-1.jpg" alt="">
             </div>
-            <div class="products-slider-detail m-b-2">
+            <div class="row" style="border-style: solid; border-width: 5px; border-color:#666">
+                <div class="products-slider-detail m-b-2">
 
-                @foreach (var image in bookImage)
-                {
-                    <div class="owl-item active" style="width: 51.25px; margin-right: 5px; float:left" onmouseover="changeImage('@image.IMAGEPATH')">
-                        <a ><img src="@image.IMAGEPATH" alt="" class="img-thumbnail"></a>
-                    </div>
-                }
+                    @foreach (var image in bookImage)
+                    {
+                       
+                            <div class="owl-item active" style="width: 51.25px; margin-right: 5px; float:left" onmouseover="changeImage('@image.IMAGEPATH')">
+                                <center>  <a><img src="@image.IMAGEPATH" alt="" class="img-thumbnail addtionImgDiv"></a></center>
+                            </div>   
+                    }
 
+                </div>
             </div>
-            <br><br>
-            <div class="title"><span>Share to</span></div>
+            <br>
+           
             <div class="share-button m-b-3">
-                <button type="button" class="btn btn-primary"><i class="fa fa-facebook"></i></button>
-                <button type="button" class="btn btn-info"><i class="fa fa-twitter"></i></button>
-                <button type="button" class="btn btn-danger"><i class="fa fa-google-plus"></i></button>
-                <button type="button" class="btn btn-primary"><i class="fa fa-linkedin"></i></button>
-                <button type="button" class="btn btn-warning"><i class="fa fa-envelope"></i></button>
+                @BookModel.LikeCount(Model.BOOKID) <a style="color:#666; padding-right:10px"> <i class="fa fa-thumbs-up fa-2x"></i> </a>
+                @BookModel.ViewsCount(Model.BOOKID) <a style="color:#666"> <i class="fa fa-eye fa-2x"></i> </a>
             </div>
+
+            <div class="rating">
+                <i id="star1" onclick="rating(1)" class="fa fa-star" onmouseover="FillIn(1)" onmousedown="FillOut(1)"></i>
+                <i id="star2" onclick="rating(2)" class="fa fa-star" onmouseover="FillIn(2)" onmousedown="FillOut(2)"></i>
+                <i id="star3" onclick="rating(3)" class="fa fa-star" onmouseover="FillIn(3)" onmousedown="FillOut(3)"></i>
+                <i id="star4" onclick="rating(4)" class="fa fa-star" onmouseover="FillIn(4)" onmousedown="FillOut(4)"></i>
+                <i id="star5" onclick="rating(5)" class="fa fa-star-half-o" onmouseover="FillIn(5)" onmousedown="FillOut(5)"></i>
+                <a href="#">(5 reviews)</a>
+            </div>
+
         </div>
         <!-- End Image List -->
 
@@ -195,7 +227,7 @@
                     <div class="img-wrapper">
                         <a href="@Url.Action("AuthorDetail", "Author", new { id = item.AUTHORID })">
 
-                            <div style="height:300px; background-image:url(@item.THUMBNAIL_PATH); background-size:100%"></div>
+                            <div class="author-img" style="height:300px; background-image:url(@item.THUMBNAIL_PATH); background-size:100%"></div>
                         </a>
                         <div class="tags">
                             <span class="label-tags"><span class="label label-default arrowed">New</span></span>
@@ -231,5 +263,59 @@
     function changeImage(imgPath) {
        // swal('trigged');
         document.getElementById("bookImage").src = imgPath;
+    }
+    window.onload = function () {
+        var bookid = '@Model.BOOKID';
+        FillIn(@BookModel.GetRating(Model.BOOKID));
+        $.ajax({
+            method: 'POST',
+            url: '@Url.Action("AddView", "Book")',
+            data: { bookid: bookid },
+            success: function (data) {
+
+            }
+        });
+    };
+
+    function FillOut() {
+        $("#star1").attr("class", "fa fa-star-o");
+        $("#star2").attr("class", "fa fa-star-o");
+        $("#star3").attr("class", "fa fa-star-o");
+        $("#star4").attr("class", "fa fa-star-o");
+        $("#star5").attr("class", "fa fa-star-o");
+        //FillIn(@BookModel.GetRating(Model.BOOKID));
+    }
+
+    function FillIn(numFill) {
+        FillOut();
+        if (numFill >= 1) {
+            $("#star1").attr("class", "fa fa-star");
+        }
+        if (numFill >= 2) {
+            $("#star2").attr("class", "fa fa-star");
+        }
+        if (numFill >= 3) {
+            $("#star3").attr("class", "fa fa-star");
+        }
+        if (numFill >= 4) {
+            $("#star4").attr("class", "fa fa-star");
+        }
+        if (numFill >= 5) {
+            $("#star5").attr("class", "fa fa-star");
+        }
+    }
+
+
+    function rating(ratingValue) {
+        FillIn(ratingValue);
+        var bookid = '@Model.BOOKID';
+        $.ajax({
+            type:'POST',
+            url:'@Url.Action("AddRating", "Book")',
+            data:{bookid:bookid, rating:ratingValue},
+            success: function (data) {
+                FillIn(@BookModel.GetRating(Model.BOOKID));
+            }
+        });
     }
 </script>

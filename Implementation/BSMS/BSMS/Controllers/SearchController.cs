@@ -23,10 +23,10 @@ namespace BSMS.Controllers
         }
 
         // GET: Search
-        public ActionResult Index(int id=-1, String query="",int page=1, int pageSize=4)
+        public ActionResult Index(int id = -1, String query = "", int page = 1, int pageSize = 4)
         {
             String[] searchSequence = query.Split(' ');
-            IEnumerable<String> wordSequesnce = searchSequence.ToList();   
+            IEnumerable<String> wordSequesnce = searchSequence.ToList();
             List<BOOK> books = new List<BOOK>();
             if (id == -1 && query == "")
             {
@@ -35,7 +35,7 @@ namespace BSMS.Controllers
             else if (id != -1 && query != "")
             {
                 IEnumerable<BOOK_CATEGORY> bookCat = BookModel.GetBookCategories();
-                foreach(BOOK_CATEGORY bCat in bookCat)
+                foreach (BOOK_CATEGORY bCat in bookCat)
                 {
                     if (bCat.CATEGORYID == id && bCat.BOOK.NAME.ToLower().Contains(query.ToLower()) || bCat.BOOK.SYNOPOSIS.ToLower().Contains(query.ToLower()))
                     {
@@ -68,6 +68,7 @@ namespace BSMS.Controllers
             IPagedList<BOOK> pBooks = new PagedList<BOOK>(books, page, pageSize);
             return View(pBooks);
         }
+
 
     }
 }

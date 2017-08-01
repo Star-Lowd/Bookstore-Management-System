@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace BSMS.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoryController : BSMSController<CATEGORY>
     {
         public ActionResult Index()
         {
@@ -28,29 +28,26 @@ namespace BSMS.Controllers
             return View();
         }
 
+
+
         // POST: Catrgory/Create
         [HttpPost]
         public ActionResult Create(CATEGORY category)
         {
             try
             {
-                if (ModelState.IsValid)
+                jsonResultMessage = categoryContainsError(category);
+                if (jsonResultMessage == "")
                 {
                     CategoryModel.AddCategory(category);
-                    ViewBag.Message = SuccessMessage.CATEGORY_ADDED;
                 }
-                else
-                {
-                    ViewBag.ErrorMessage = ErrorMessage.REQUIRED_ASTERIC_FIELDS;
-                }
-
-                return View();
             }
             catch
             {
-                ViewBag.ErrorMessage = ErrorMessage.INTERNAL_ERROR;
-                return View();
+                jsonResultMessage = ErrorMessage.INTERNAL_ERROR;
             }
+
+            return Json(jsonResultMessage == "" ? "" : jsonResultMessage, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Catrgory/Edit/5
@@ -65,21 +62,16 @@ namespace BSMS.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                jsonResultMessage = categoryContainsError(category);
+                if (ModelState.IsValid && !ErrorExist)
                 {
-                    CategoryModel.EditCategory(category);
-                    ViewBag.Message = SuccessMessage.CATEGORY_EDITED;
+                    CategoryModel.EditCategory(category);  
                 }
-                else
-                {
-                    ViewBag.ErrorMessage = ErrorMessage.REQUIRED_ASTERIC_FIELDS;
-                }
-                return View();
+                return Json(jsonResultMessage, JsonRequestBehavior.AllowGet);
             }
             catch
             {
-                ViewBag.ErrorMessage = ErrorMessage.INTERNAL_ERROR;
-                return View();
+                return Json("Error", JsonRequestBehavior.AllowGet);
             }
         }
 

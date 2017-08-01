@@ -15,7 +15,7 @@
     <link rel="mask-icon" href="~/Content/Image/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Home - BSMS</title>
+    <title> BSMS - @ViewBag.Title </title>
 
     <!-- Bootstrap -->
     <link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -37,7 +37,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body onclick="selectCountry('none')">
     @{
         //Data DEFINATION
         SessionHandler loginSession = new SessionHandler();
@@ -47,16 +47,36 @@
 
     <style>
         .round {
-    line-height: 45px;
-    color: #ffffff;
-    width: 45px;
-    height: 45px;
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    border-radius: 100%;
-    background: #009efb;
-}
+            line-height: 45px;
+            color: #ffffff;
+            width: 45px;
+            height: 45px;
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            border-radius: 100%;
+            background: #009efb;
+        }
+        .author-img{
+            transition:all 0.5s ease-in-out;
+        }
+        .author-img:hover{
+            transform:scale(1.2);
+        }
+        input {
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            height: 30px;
+            padding: 10px;
+        }
+        input.loading {
+            background: url(http://www.xiconeditor.com/image/icons/loading.gif) no-repeat right center;
+        }
+
+        #country-list{float:left;list-style:none;margin-top:-3px;padding:0;width:285px;position: absolute; border-radius:2px}
+        #country-list li{padding: 10px; background: #f0f0f0; border-bottom: #bbb9b9 1px solid;}
+        #country-list li:hover{background:#ece3d2;cursor: pointer;}
+
     </style>
 
     <!-- Top Header -->
@@ -150,7 +170,7 @@
                 <div class="col-sm-8 col-md-6 search-box m-t-2">
                     <form method="GET" action="@Url.Action("index", "Search")">
                         <div class="input-group">
-                            <input type="text" name="query" class="form-control form-control-line" aria-label="Search here..." placeholder="Search here..." value="@( Request.QueryString["query"] == null ? "" : Request.QueryString["query"] )">
+                            <input type="text" name="query" oninput="SearchInput(this)" id="search-box" class="form-control form-control-line" aria-label="Search here..." placeholder="Search here..." value="@( Request.QueryString["query"] == null ? "" : Request.QueryString["query"] )">
                             <div class="input-group-btn">
                                 <select class="selectpicker hidden-xs" data-width="150px" name="id">
                                     <option value="-1">All Categories</option>
@@ -169,6 +189,11 @@
                                 </select>
                                 <button type="submit" class="btn btn-default btn-search" style="height:100%"><i class="fa fa-search"></i></button>
                             </div>
+                        </div>
+                        <div id="suggesstion-box">
+                            <ul id='country-list'>
+
+                            </ul>
                         </div>
                     </form>
                 </div>
@@ -426,6 +451,95 @@
         function user() {
 
             $('#myModal').modal('show')
+        }
+
+
+        // AJAX call for autocomplete
+        function SearchInput(control){
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("AutoComplete","Home")",
+                    data: { keyword:$(control).val() },
+                    beforeSend: function () {
+                        $("#search-box").css("background", "#FFF url(http://www.xiconeditor.com/image/icons/loading.gif) no-repeat 165px");
+                        $("#search-box").css("background-position", "right center");
+                    },
+                    success: function (data) {
+                        $("#suggesstion-box").show();
+                        $("#country-list").html("");
+                        $("#search-box").css("background", "#FFF");
+
+                        for (var a = 0 ; a < data.length; a++) {
+                            //alert(data[a]['NAME']);
+                            $("#country-list").html($("#country-list").html() + "<li onclick='selectCountry(this, "+ data[a]['BOOKID'] +")'>"+ data[a]['NAME']);
+                        }
+
+                    }
+                });
+
+        }
+        //To select country name
+        function selectCountry(val, id) {
+            if (val != 'none') {
+                $("#search-box").val(val.innerHTML);
+                window.location.assign('/Book/BookDetail/'+id)
+            }
+
+            $("#country-list").html("");
+        }
+
+
+        var pos = 0;
+        var tOut;
+        function loadImages(list, id) {
+            clearTimeout(tOut);
+            tOut = setInterval(function () {
+                if (pos >= list.length) {
+                    pos = 0;
+                }
+
+                $('#' + id).attr('style', 'background-image:url(' + list[pos] + '); background-size:100%; height:330px');
+                pos++;
+            }
+            , 1000);
+        }
+
+        function unloadImage() {
+            clearTimeout(tOut);
+        }
+
+        function imgChange(control, id) {
+            $('#' + id).attr('style', 'background-image:url(' + control.src + '); background-size:100%; height:330px');
+        }
+
+
+
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-103610615-1', 'auto');
+        ga('send', 'pageview');
+
+        function FillIn(numFill) {
+            FillOut();
+            if (numFill >= 1) {
+                $("#star1").attr("class", "fa fa-star");
+            }
+            if (numFill >= 2) {
+                $("#star2").attr("class", "fa fa-star");
+            }
+            if (numFill >= 3) {
+                $("#star3").attr("class", "fa fa-star");
+            }
+            if (numFill >= 4) {
+                $("#star4").attr("class", "fa fa-star");
+            }
+            if (numFill >= 5) {
+                $("#star5").attr("class", "fa fa-star");
+            }
         }
     </script>
 

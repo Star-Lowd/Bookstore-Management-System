@@ -51,17 +51,17 @@ namespace BSMS.SERVICE
 
 
         [WebMethod]
-        public bool AddUser(USER user)
+        public USER AddUser(USER user)
         {
             try
             {
                 dataAccess.USERs.InsertOnSubmit(user);
                 dataAccess.SubmitChanges();
-                return true;
+                return user;
             }
             catch
             {
-                return false;
+                return null;
             }
         }
 
@@ -255,7 +255,7 @@ namespace BSMS.SERVICE
         public void UpdateBook(BOOK book)
         {
             BOOK existingBook = dataAccess.BOOKs.Single(b => b.BOOKID == book.BOOKID);
-            
+
             existingBook.NAME = book.NAME;
             existingBook.ISBN_NUMBER = book.ISBN_NUMBER;
             existingBook.STATUS = book.STATUS;
@@ -315,7 +315,7 @@ namespace BSMS.SERVICE
             dataAccess.SubmitChanges();
         }
         [WebMethod]
-        
+
         public void UpdateBookCategory(BOOK_CATEGORY bCategory)
         {
             BOOK_CATEGORY bookCategory = dataAccess.BOOK_CATEGORies.Single(bc => bc.BOOK_CATEGORYID == bCategory.BOOK_CATEGORYID);
@@ -330,8 +330,9 @@ namespace BSMS.SERVICE
             dataAccess.SubmitChanges();
         }
         [WebMethod]
-        public List<BOOK_CATEGORY> GetBookCategories() {
-            return dataAccess.BOOK_CATEGORies.ToList(); 
+        public List<BOOK_CATEGORY> GetBookCategories()
+        {
+            return dataAccess.BOOK_CATEGORies.ToList();
         }
 
 
@@ -345,7 +346,7 @@ namespace BSMS.SERVICE
         [WebMethod]
         public void UpdateBookAuthor(BOOK_AUTHOR bAuthor)
         {
-            BOOK_AUTHOR bookAuthor = dataAccess.BOOK_AUTHORs.Single(ba => ba.AUTHORID== bAuthor.AUTHORID);
+            BOOK_AUTHOR bookAuthor = dataAccess.BOOK_AUTHORs.Single(ba => ba.AUTHORID == bAuthor.AUTHORID);
             bookAuthor = bAuthor;
             dataAccess.SubmitChanges();
         }
@@ -428,5 +429,190 @@ namespace BSMS.SERVICE
             }
             dataAccess.SubmitChanges();
         }
+
+        [WebMethod]
+        public bool AddLike(LIKE like)
+        {
+            try
+            {
+                dataAccess.LIKEs.InsertOnSubmit(like);
+                dataAccess.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        [WebMethod]
+        public bool RemoveLike(int userid, int bookid)
+        {
+            try
+            {
+                LIKE like = dataAccess.LIKEs.FirstOrDefault(lk => lk.USERID == userid && lk.BOOKID == bookid);
+          
+                if (like == null)
+                {
+                    return false;
+                }
+
+                dataAccess.LIKEs.DeleteOnSubmit(like);
+                dataAccess.SubmitChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false ;
+            }
+        }
+        [WebMethod]
+        public LIKE[] GetAllLikes()
+        {
+            return dataAccess.LIKEs.ToList().ToArray();
+        }
+
+        [WebMethod]
+        public bool AddAnonymousView(int bookid, int userid = -1)
+        {
+            try
+            {
+                VIEW view = new VIEW();
+
+                view.BOOKID = bookid;
+                if (userid != -1)
+                {
+                    view.USERID = userid;
+                }
+
+                dataAccess.VIEWs.InsertOnSubmit(view);
+                dataAccess.SubmitChanges();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        [WebMethod]
+        public VIEW[] GetViews(int bookid)
+        {
+            return dataAccess.VIEWs.ToArray();
+        }
+
+        [WebMethod]
+        public bool AddRating(int bookid, int userid , int rating) 
+        {
+            try
+            {
+                RATING Mockrating = new RATING()
+                {
+                    BOOKID = bookid,
+                    RATING1 = rating,
+                    USERID = userid
+                };
+
+                dataAccess.RATINGs.InsertOnSubmit(Mockrating);
+                dataAccess.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        [WebMethod]
+        public bool UpdateRating(int userid,int bookid, int rating)
+        {
+            try
+            {
+                RATING Mockrating = dataAccess.RATINGs.FirstOrDefault(r => r.BOOKID == bookid && r.USERID == userid);
+                Mockrating.RATING1 = rating;
+                dataAccess.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        [WebMethod]
+        public RATING GetRating(int userid, int bookid)
+        {
+            return dataAccess.RATINGs.FirstOrDefault(rating=> rating.USERID == userid && rating.BOOKID == bookid);
+        }
+
+        [WebMethod]
+        public RATING[] GetRatingByBookId(int bookid)
+        {
+            return dataAccess.RATINGs.Where(rating => rating.BOOKID == bookid).ToArray();
+        }
+
+        [WebMethod]
+        public bool AddReview(String review, int bookid, int userid)
+        {
+            try
+            {
+                if (String.IsNullOrWhiteSpace(review))
+                    return false;
+
+                REVIEW reviewData = new REVIEW()
+                {
+                    REVIEW1 = review,
+                    BOOKID = bookid,
+                    USERID = userid
+                };
+
+                dataAccess.REVIEWs.InsertOnSubmit(reviewData);
+                dataAccess.SubmitChanges();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        [WebMethod]
+        public REVIEW[] GetBookRevieww(int bookid)
+        {
+            return dataAccess.REVIEWs.Where(review => review.BOOKID == bookid).ToArray();
+        }
+        
+        [WebMethod]
+        public bool DeleteReview(int reviewid)
+        {
+            try
+            {
+                REVIEW review = dataAccess.REVIEWs.Single(rview => rview.REVIEWID == reviewid);
+                if (review == null)
+                {
+                    throw new KeyNotFoundException();
+                }
+
+                dataAccess.REVIEWs.DeleteOnSubmit(review);
+                dataAccess.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        [WebMethod]
+        public REVIEW[] GetAllReviews()
+        {
+            return dataAccess.REVIEWs.ToArray();
+        }
+
     }
 }
+

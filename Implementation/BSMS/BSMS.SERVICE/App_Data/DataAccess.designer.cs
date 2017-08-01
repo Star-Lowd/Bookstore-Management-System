@@ -69,6 +69,18 @@ namespace BSMS.SERVICE.App_Data
     partial void InsertBOOK(BOOK instance);
     partial void UpdateBOOK(BOOK instance);
     partial void DeleteBOOK(BOOK instance);
+    partial void InsertVIEW(VIEW instance);
+    partial void UpdateVIEW(VIEW instance);
+    partial void DeleteVIEW(VIEW instance);
+    partial void InsertREVIEW(REVIEW instance);
+    partial void UpdateREVIEW(REVIEW instance);
+    partial void DeleteREVIEW(REVIEW instance);
+    partial void InsertRATING(RATING instance);
+    partial void UpdateRATING(RATING instance);
+    partial void DeleteRATING(RATING instance);
+    partial void InsertLIKE(LIKE instance);
+    partial void UpdateLIKE(LIKE instance);
+    partial void DeleteLIKE(LIKE instance);
     #endregion
 		
 		public DataAccessDataContext() : 
@@ -202,6 +214,38 @@ namespace BSMS.SERVICE.App_Data
 			get
 			{
 				return this.GetTable<BOOK>();
+			}
+		}
+		
+		public System.Data.Linq.Table<VIEW> VIEWs
+		{
+			get
+			{
+				return this.GetTable<VIEW>();
+			}
+		}
+		
+		public System.Data.Linq.Table<REVIEW> REVIEWs
+		{
+			get
+			{
+				return this.GetTable<REVIEW>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RATING> RATINGs
+		{
+			get
+			{
+				return this.GetTable<RATING>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LIKE> LIKEs
+		{
+			get
+			{
+				return this.GetTable<LIKE>();
 			}
 		}
 	}
@@ -2595,6 +2639,694 @@ namespace BSMS.SERVICE.App_Data
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER_BOOK", Storage="_USER", ThisKey="STAFFID", OtherKey="USERID", IsForeignKey=true)]
+		public USER USER
+		{
+			get
+			{
+				return this._USER.Entity;
+			}
+			set
+			{
+				if ((this._USER.Entity != value))
+				{
+					this.SendPropertyChanging();
+					this._USER.Entity = value;
+					this.SendPropertyChanged("USER");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[VIEW]")]
+	public partial class VIEW : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _VIEWID;
+		
+		private System.Nullable<int> _USERID;
+		
+		private System.Nullable<int> _BOOKID;
+		
+		private EntityRef<BOOK> _BOOK;
+		
+		private EntityRef<USER> _USER;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnVIEWIDChanging(int value);
+    partial void OnVIEWIDChanged();
+    partial void OnUSERIDChanging(System.Nullable<int> value);
+    partial void OnUSERIDChanged();
+    partial void OnBOOKIDChanging(System.Nullable<int> value);
+    partial void OnBOOKIDChanged();
+    #endregion
+		
+		public VIEW()
+		{
+			this._BOOK = default(EntityRef<BOOK>);
+			this._USER = default(EntityRef<USER>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VIEWID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int VIEWID
+		{
+			get
+			{
+				return this._VIEWID;
+			}
+			set
+			{
+				if ((this._VIEWID != value))
+				{
+					this.OnVIEWIDChanging(value);
+					this.SendPropertyChanging();
+					this._VIEWID = value;
+					this.SendPropertyChanged("VIEWID");
+					this.OnVIEWIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USERID", DbType="Int")]
+		public System.Nullable<int> USERID
+		{
+			get
+			{
+				return this._USERID;
+			}
+			set
+			{
+				if ((this._USERID != value))
+				{
+					if (this._USER.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUSERIDChanging(value);
+					this.SendPropertyChanging();
+					this._USERID = value;
+					this.SendPropertyChanged("USERID");
+					this.OnUSERIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BOOKID", DbType="Int")]
+		public System.Nullable<int> BOOKID
+		{
+			get
+			{
+				return this._BOOKID;
+			}
+			set
+			{
+				if ((this._BOOKID != value))
+				{
+					if (this._BOOK.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBOOKIDChanging(value);
+					this.SendPropertyChanging();
+					this._BOOKID = value;
+					this.SendPropertyChanged("BOOKID");
+					this.OnBOOKIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BOOK_VIEW", Storage="_BOOK", ThisKey="BOOKID", OtherKey="BOOKID", IsForeignKey=true)]
+		public BOOK BOOK
+		{
+			get
+			{
+				return this._BOOK.Entity;
+			}
+			set
+			{
+				if ((this._BOOK.Entity != value))
+				{
+					this.SendPropertyChanging();
+					this._BOOK.Entity = value;
+					this.SendPropertyChanged("BOOK");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER_VIEW", Storage="_USER", ThisKey="USERID", OtherKey="USERID", IsForeignKey=true)]
+		public USER USER
+		{
+			get
+			{
+				return this._USER.Entity;
+			}
+			set
+			{
+				if ((this._USER.Entity != value))
+				{
+					this.SendPropertyChanging();
+					this._USER.Entity = value;
+					this.SendPropertyChanged("USER");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.REVIEW")]
+	public partial class REVIEW : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _REVIEWID;
+		
+		private System.Nullable<int> _USERID;
+		
+		private System.Nullable<int> _BOOKID;
+		
+		private string _REVIEW1;
+		
+		private EntityRef<BOOK> _BOOK;
+		
+		private EntityRef<USER> _USER;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnREVIEWIDChanging(int value);
+    partial void OnREVIEWIDChanged();
+    partial void OnUSERIDChanging(System.Nullable<int> value);
+    partial void OnUSERIDChanged();
+    partial void OnBOOKIDChanging(System.Nullable<int> value);
+    partial void OnBOOKIDChanged();
+    partial void OnREVIEW1Changing(string value);
+    partial void OnREVIEW1Changed();
+    #endregion
+		
+		public REVIEW()
+		{
+			this._BOOK = default(EntityRef<BOOK>);
+			this._USER = default(EntityRef<USER>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_REVIEWID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int REVIEWID
+		{
+			get
+			{
+				return this._REVIEWID;
+			}
+			set
+			{
+				if ((this._REVIEWID != value))
+				{
+					this.OnREVIEWIDChanging(value);
+					this.SendPropertyChanging();
+					this._REVIEWID = value;
+					this.SendPropertyChanged("REVIEWID");
+					this.OnREVIEWIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USERID", DbType="Int")]
+		public System.Nullable<int> USERID
+		{
+			get
+			{
+				return this._USERID;
+			}
+			set
+			{
+				if ((this._USERID != value))
+				{
+					if (this._USER.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUSERIDChanging(value);
+					this.SendPropertyChanging();
+					this._USERID = value;
+					this.SendPropertyChanged("USERID");
+					this.OnUSERIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BOOKID", DbType="Int")]
+		public System.Nullable<int> BOOKID
+		{
+			get
+			{
+				return this._BOOKID;
+			}
+			set
+			{
+				if ((this._BOOKID != value))
+				{
+					if (this._BOOK.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBOOKIDChanging(value);
+					this.SendPropertyChanging();
+					this._BOOKID = value;
+					this.SendPropertyChanged("BOOKID");
+					this.OnBOOKIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="REVIEW", Storage="_REVIEW1", DbType="VarChar(500)")]
+		public string REVIEW1
+		{
+			get
+			{
+				return this._REVIEW1;
+			}
+			set
+			{
+				if ((this._REVIEW1 != value))
+				{
+					this.OnREVIEW1Changing(value);
+					this.SendPropertyChanging();
+					this._REVIEW1 = value;
+					this.SendPropertyChanged("REVIEW1");
+					this.OnREVIEW1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BOOK_REVIEW", Storage="_BOOK", ThisKey="BOOKID", OtherKey="BOOKID", IsForeignKey=true)]
+		public BOOK BOOK
+		{
+			get
+			{
+				return this._BOOK.Entity;
+			}
+			set
+			{
+				if ((this._BOOK.Entity != value))
+				{
+					this.SendPropertyChanging();
+					this._BOOK.Entity = value;
+					this.SendPropertyChanged("BOOK");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER_REVIEW", Storage="_USER", ThisKey="USERID", OtherKey="USERID", IsForeignKey=true)]
+		public USER USER
+		{
+			get
+			{
+				return this._USER.Entity;
+			}
+			set
+			{
+				if ((this._USER.Entity != value))
+				{
+					this.SendPropertyChanging();
+					this._USER.Entity = value;
+					this.SendPropertyChanged("USER");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RATING")]
+	public partial class RATING : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RATINGID;
+		
+		private System.Nullable<int> _USERID;
+		
+		private System.Nullable<int> _BOOKID;
+		
+		private System.Nullable<int> _RATING1;
+		
+		private EntityRef<BOOK> _BOOK;
+		
+		private EntityRef<USER> _USER;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRATINGIDChanging(int value);
+    partial void OnRATINGIDChanged();
+    partial void OnUSERIDChanging(System.Nullable<int> value);
+    partial void OnUSERIDChanged();
+    partial void OnBOOKIDChanging(System.Nullable<int> value);
+    partial void OnBOOKIDChanged();
+    partial void OnRATING1Changing(System.Nullable<int> value);
+    partial void OnRATING1Changed();
+    #endregion
+		
+		public RATING()
+		{
+			this._BOOK = default(EntityRef<BOOK>);
+			this._USER = default(EntityRef<USER>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RATINGID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RATINGID
+		{
+			get
+			{
+				return this._RATINGID;
+			}
+			set
+			{
+				if ((this._RATINGID != value))
+				{
+					this.OnRATINGIDChanging(value);
+					this.SendPropertyChanging();
+					this._RATINGID = value;
+					this.SendPropertyChanged("RATINGID");
+					this.OnRATINGIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USERID", DbType="Int")]
+		public System.Nullable<int> USERID
+		{
+			get
+			{
+				return this._USERID;
+			}
+			set
+			{
+				if ((this._USERID != value))
+				{
+					if (this._USER.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUSERIDChanging(value);
+					this.SendPropertyChanging();
+					this._USERID = value;
+					this.SendPropertyChanged("USERID");
+					this.OnUSERIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BOOKID", DbType="Int")]
+		public System.Nullable<int> BOOKID
+		{
+			get
+			{
+				return this._BOOKID;
+			}
+			set
+			{
+				if ((this._BOOKID != value))
+				{
+					if (this._BOOK.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBOOKIDChanging(value);
+					this.SendPropertyChanging();
+					this._BOOKID = value;
+					this.SendPropertyChanged("BOOKID");
+					this.OnBOOKIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="RATING", Storage="_RATING1", DbType="Int")]
+		public System.Nullable<int> RATING1
+		{
+			get
+			{
+				return this._RATING1;
+			}
+			set
+			{
+				if ((this._RATING1 != value))
+				{
+					this.OnRATING1Changing(value);
+					this.SendPropertyChanging();
+					this._RATING1 = value;
+					this.SendPropertyChanged("RATING1");
+					this.OnRATING1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BOOK_RATING", Storage="_BOOK", ThisKey="BOOKID", OtherKey="BOOKID", IsForeignKey=true)]
+		public BOOK BOOK
+		{
+			get
+			{
+				return this._BOOK.Entity;
+			}
+			set
+			{
+				if ((this._BOOK.Entity != value))
+				{
+					this.SendPropertyChanging();
+					this._BOOK.Entity = value;
+					this.SendPropertyChanged("BOOK");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER_RATING", Storage="_USER", ThisKey="USERID", OtherKey="USERID", IsForeignKey=true)]
+		public USER USER
+		{
+			get
+			{
+				return this._USER.Entity;
+			}
+			set
+			{
+				if ((this._USER.Entity != value))
+				{
+					this.SendPropertyChanging();
+					this._USER.Entity = value;
+					this.SendPropertyChanged("USER");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[LIKE]")]
+	public partial class LIKE : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _LIKEID;
+		
+		private System.Nullable<int> _USERID;
+		
+		private System.Nullable<int> _BOOKID;
+		
+		private EntityRef<BOOK> _BOOK;
+		
+		private EntityRef<USER> _USER;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnLIKEIDChanging(int value);
+    partial void OnLIKEIDChanged();
+    partial void OnUSERIDChanging(System.Nullable<int> value);
+    partial void OnUSERIDChanged();
+    partial void OnBOOKIDChanging(System.Nullable<int> value);
+    partial void OnBOOKIDChanged();
+    #endregion
+		
+		public LIKE()
+		{
+			this._BOOK = default(EntityRef<BOOK>);
+			this._USER = default(EntityRef<USER>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LIKEID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int LIKEID
+		{
+			get
+			{
+				return this._LIKEID;
+			}
+			set
+			{
+				if ((this._LIKEID != value))
+				{
+					this.OnLIKEIDChanging(value);
+					this.SendPropertyChanging();
+					this._LIKEID = value;
+					this.SendPropertyChanged("LIKEID");
+					this.OnLIKEIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USERID", DbType="Int")]
+		public System.Nullable<int> USERID
+		{
+			get
+			{
+				return this._USERID;
+			}
+			set
+			{
+				if ((this._USERID != value))
+				{
+					if (this._USER.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUSERIDChanging(value);
+					this.SendPropertyChanging();
+					this._USERID = value;
+					this.SendPropertyChanged("USERID");
+					this.OnUSERIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BOOKID", DbType="Int")]
+		public System.Nullable<int> BOOKID
+		{
+			get
+			{
+				return this._BOOKID;
+			}
+			set
+			{
+				if ((this._BOOKID != value))
+				{
+					if (this._BOOK.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBOOKIDChanging(value);
+					this.SendPropertyChanging();
+					this._BOOKID = value;
+					this.SendPropertyChanged("BOOKID");
+					this.OnBOOKIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BOOK_LIKE", Storage="_BOOK", ThisKey="BOOKID", OtherKey="BOOKID", IsForeignKey=true)]
+		public BOOK BOOK
+		{
+			get
+			{
+				return this._BOOK.Entity;
+			}
+			set
+			{
+				if ((this._BOOK.Entity != value))
+				{
+					this.SendPropertyChanging();
+					this._BOOK.Entity = value;
+					this.SendPropertyChanged("BOOK");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="USER_LIKE", Storage="_USER", ThisKey="USERID", OtherKey="USERID", IsForeignKey=true)]
 		public USER USER
 		{
 			get

@@ -12,7 +12,7 @@ namespace BSMS.Models
         private static bsms_service services = new bsms_service();
 
         //Authenticate user
-        internal static USER AuthenticateUser(String username , String password)
+        public static USER AuthenticateUser(String username , String password)
         {
             USER user = null;
             foreach(USER u in services.GetUsers())
@@ -27,30 +27,30 @@ namespace BSMS.Models
             return user;
         }
 
-        internal static List<USER> GetStaffs()
+        public static List<USER> GetStaffs()
         {
             return services.GetUsers().ToList();
         }
 
-        internal static void DeleteUser(int id)
+        public static void DeleteUser(int id)
         {
             services.DeleteUser(id);
         }
 
-        internal static void UpdateUser(USER user)
+        public static void UpdateUser(USER user)
         {
             services.UpdateUser(user);
         }
 
 
         //insert new Users into the system
-        internal static bool AddUser(USER user)
+        public static USER AddUser(USER user)
         {
             user.PASSWORDHASH = MD5_Encoding.Encode(user.PASSWORDHASH);
             return services.AddUser(user);
         }
 
-        internal static bool EmailExist(string email)
+        public static bool EmailExist(string email)
         {
             foreach(USER u in services.GetUsers())
             {
@@ -62,7 +62,7 @@ namespace BSMS.Models
             return false;
         }
 
-        internal static bool VerifyUserHash(string hash)
+        public static bool VerifyUserHash(string hash)
         {
             foreach (USER u in services.GetUsers())
             {
@@ -74,7 +74,7 @@ namespace BSMS.Models
             return false;
         }
 
-        internal static USER FindUser(int userID)
+        public static USER FindUser(int userID)
         {
             foreach (USER u in services.GetUsers())
             {
@@ -86,13 +86,13 @@ namespace BSMS.Models
             return null;
         }
 
-        internal static void ChangePassword(USER user)
+        public static void ChangePassword(USER user)
         {
             user.PASSWORDHASH = MD5_Encoding.Encode(user.PASSWORDHASH);
             services.UpdateUser(user);
         }
 
-        internal static USER FindUserByEmail(string email)
+        public static USER FindUserByEmail(string email)
         {
             foreach (USER u in services.GetUsers())
             {

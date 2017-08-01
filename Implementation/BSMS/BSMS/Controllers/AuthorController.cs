@@ -133,8 +133,11 @@ namespace BSMS.Controllers
         // GET: Author/Delete/5
         public ActionResult Delete(int id)
         {
+            if (AuthorModel.Filter(id) == null)
+            {
+                return HttpNotFound();
+            }
             AuthorModel.Delete(id);
-            // return RedirectToAction("index");
             return null;
         }
 

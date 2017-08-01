@@ -132,4 +132,42 @@
       <Association Name="USER_BOOK" Member="USER" ThisKey="STAFFID" OtherKey="USERID" Type="USER" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.[VIEW]" Member="VIEWs">
+    <Type Name="VIEW">
+      <Column Name="VIEWID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="USERID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BOOKID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="BOOK_VIEW" Member="BOOK" ThisKey="BOOKID" OtherKey="BOOKID" Type="BOOK" IsForeignKey="true" />
+      <Association Name="USER_VIEW" Member="USER" ThisKey="USERID" OtherKey="USERID" Type="USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.REVIEW" Member="REVIEWs">
+    <Type Name="REVIEW">
+      <Column Name="REVIEWID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="USERID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BOOKID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="REVIEW" Member="REVIEW1" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Association Name="BOOK_REVIEW" Member="BOOK" ThisKey="BOOKID" OtherKey="BOOKID" Type="BOOK" IsForeignKey="true" />
+      <Association Name="USER_REVIEW" Member="USER" ThisKey="USERID" OtherKey="USERID" Type="USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RATING" Member="RATINGs">
+    <Type Name="RATING">
+      <Column Name="RATINGID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="USERID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BOOKID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RATING" Member="RATING1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="BOOK_RATING" Member="BOOK" ThisKey="BOOKID" OtherKey="BOOKID" Type="BOOK" IsForeignKey="true" />
+      <Association Name="USER_RATING" Member="USER" ThisKey="USERID" OtherKey="USERID" Type="USER" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[LIKE]" Member="LIKEs">
+    <Type Name="LIKE">
+      <Column Name="LIKEID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="USERID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BOOKID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="BOOK_LIKE" Member="BOOK" ThisKey="BOOKID" OtherKey="BOOKID" Type="BOOK" IsForeignKey="true" />
+      <Association Name="USER_LIKE" Member="USER" ThisKey="USERID" OtherKey="USERID" Type="USER" IsForeignKey="true" />
+    </Type>
+  </Table>
 </Database>

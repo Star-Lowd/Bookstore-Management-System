@@ -17,6 +17,8 @@ namespace BSMS.Message
         internal static readonly dynamic INTERNAL_ERROR = "Internal Error Occured, Contact Development Team for more information";
         internal static readonly dynamic USER_UPDATED="User have successfully been updated";
         internal static readonly dynamic INCORRECT_USER_PASSWORD = "Incorrect Password, you are not allowed to take this action";
-       
+        internal static readonly dynamic CATEGORY_NAME_IS_NULL_OR_INVALID = "Category Name is null or invalid, check and reinput again";
+        internal static readonly dynamic CATEGORY_DESCRIPTION_IS_NULL_OR_INVALID = "Category Description is null or invalid, check and reinput again";
+        internal static readonly dynamic REFERENCEKEY_IS_NULL_OR_INVALID = "Reference key is null or invalid, check and reinput again";
     }
 }

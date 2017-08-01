@@ -149,7 +149,5 @@ namespace BSMS.Controllers
             }
             return View();
         }
-
-
     }
 }

@@ -29,7 +29,7 @@ namespace BSMS.bsms.localhost {
     [System.Web.Services.WebServiceBindingAttribute(Name="bsms_serviceSoap", Namespace="http://tempuri.org/")]
     public partial class bsms_service : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback GetAllInJsonOperationCompleted;
+        private System.Threading.SendOrPostCallback SetAsTestContextOperationCompleted;
         
         private System.Threading.SendOrPostCallback UpdateUserOperationCompleted;
         
@@ -188,7 +188,7 @@ namespace BSMS.bsms.localhost {
         }
         
         /// <remarks/>
-        public event GetAllInJsonCompletedEventHandler GetAllInJsonCompleted;
+        public event SetAsTestContextCompletedEventHandler SetAsTestContextCompleted;
         
         /// <remarks/>
         public event UpdateUserCompletedEventHandler UpdateUserCompleted;
@@ -368,29 +368,28 @@ namespace BSMS.bsms.localhost {
         public event GetAllReviewsCompletedEventHandler GetAllReviewsCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAllInJson", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public BOOK[] GetAllInJson() {
-            object[] results = this.Invoke("GetAllInJson", new object[0]);
-            return ((BOOK[])(results[0]));
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/SetAsTestContext", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void SetAsTestContext() {
+            this.Invoke("SetAsTestContext", new object[0]);
         }
         
         /// <remarks/>
-        public void GetAllInJsonAsync() {
-            this.GetAllInJsonAsync(null);
+        public void SetAsTestContextAsync() {
+            this.SetAsTestContextAsync(null);
         }
         
         /// <remarks/>
-        public void GetAllInJsonAsync(object userState) {
-            if ((this.GetAllInJsonOperationCompleted == null)) {
-                this.GetAllInJsonOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllInJsonOperationCompleted);
+        public void SetAsTestContextAsync(object userState) {
+            if ((this.SetAsTestContextOperationCompleted == null)) {
+                this.SetAsTestContextOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSetAsTestContextOperationCompleted);
             }
-            this.InvokeAsync("GetAllInJson", new object[0], this.GetAllInJsonOperationCompleted, userState);
+            this.InvokeAsync("SetAsTestContext", new object[0], this.SetAsTestContextOperationCompleted, userState);
         }
         
-        private void OnGetAllInJsonOperationCompleted(object arg) {
-            if ((this.GetAllInJsonCompleted != null)) {
+        private void OnSetAsTestContextOperationCompleted(object arg) {
+            if ((this.SetAsTestContextCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetAllInJsonCompleted(this, new GetAllInJsonCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.SetAsTestContextCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -2090,8 +2089,253 @@ namespace BSMS.bsms.localhost {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class BOOK
-    {
+    public partial class USER {
+        
+        private int uSERIDField;
+        
+        private string uSERNAMEField;
+        
+        private string pASSWORDHASHField;
+        
+        private string fIRSTNAMEField;
+        
+        private string lASTNAMEField;
+        
+        private string mIDDLENAMEField;
+        
+        private string tHUMBNAIL_PATHField;
+        
+        private string eMAILField;
+        
+        private System.Nullable<int> rOLEIDField;
+        
+        private ROLE rOLEField;
+        
+        /// <remarks/>
+        public int USERID {
+            get {
+                return this.uSERIDField;
+            }
+            set {
+                this.uSERIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string USERNAME {
+            get {
+                return this.uSERNAMEField;
+            }
+            set {
+                this.uSERNAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PASSWORDHASH {
+            get {
+                return this.pASSWORDHASHField;
+            }
+            set {
+                this.pASSWORDHASHField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FIRSTNAME {
+            get {
+                return this.fIRSTNAMEField;
+            }
+            set {
+                this.fIRSTNAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LASTNAME {
+            get {
+                return this.lASTNAMEField;
+            }
+            set {
+                this.lASTNAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MIDDLENAME {
+            get {
+                return this.mIDDLENAMEField;
+            }
+            set {
+                this.mIDDLENAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string THUMBNAIL_PATH {
+            get {
+                return this.tHUMBNAIL_PATHField;
+            }
+            set {
+                this.tHUMBNAIL_PATHField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string EMAIL {
+            get {
+                return this.eMAILField;
+            }
+            set {
+                this.eMAILField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> ROLEID {
+            get {
+                return this.rOLEIDField;
+            }
+            set {
+                this.rOLEIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ROLE ROLE {
+            get {
+                return this.rOLEField;
+            }
+            set {
+                this.rOLEField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ROLE {
+        
+        private int rOLEIDField;
+        
+        private string rOLE1Field;
+        
+        /// <remarks/>
+        public int ROLEID {
+            get {
+                return this.rOLEIDField;
+            }
+            set {
+                this.rOLEIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ROLE1 {
+            get {
+                return this.rOLE1Field;
+            }
+            set {
+                this.rOLE1Field = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class REVIEW {
+        
+        private int rEVIEWIDField;
+        
+        private System.Nullable<int> uSERIDField;
+        
+        private System.Nullable<int> bOOKIDField;
+        
+        private string rEVIEW1Field;
+        
+        private BOOK bOOKField;
+        
+        private USER uSERField;
+        
+        /// <remarks/>
+        public int REVIEWID {
+            get {
+                return this.rEVIEWIDField;
+            }
+            set {
+                this.rEVIEWIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> USERID {
+            get {
+                return this.uSERIDField;
+            }
+            set {
+                this.uSERIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> BOOKID {
+            get {
+                return this.bOOKIDField;
+            }
+            set {
+                this.bOOKIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string REVIEW1 {
+            get {
+                return this.rEVIEW1Field;
+            }
+            set {
+                this.rEVIEW1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BOOK BOOK {
+            get {
+                return this.bOOKField;
+            }
+            set {
+                this.bOOKField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public USER USER {
+            get {
+                return this.uSERField;
+            }
+            set {
+                this.uSERField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class BOOK {
         
         private int bOOKIDField;
         
@@ -2342,7 +2586,6 @@ namespace BSMS.bsms.localhost {
                 this.uSERField = value;
             }
         }
- 
     }
     
     /// <remarks/>
@@ -2408,79 +2651,29 @@ namespace BSMS.bsms.localhost {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class REVIEW {
+    public partial class LANGUAGE {
         
-        private int rEVIEWIDField;
+        private int lANGUAGEIDField;
         
-        private System.Nullable<int> uSERIDField;
-        
-        private System.Nullable<int> bOOKIDField;
-        
-        private string rEVIEW1Field;
-        
-        private BOOK bOOKField;
-        
-        private USER uSERField;
+        private string lANGUAGE1Field;
         
         /// <remarks/>
-        public int REVIEWID {
+        public int LANGUAGEID {
             get {
-                return this.rEVIEWIDField;
+                return this.lANGUAGEIDField;
             }
             set {
-                this.rEVIEWIDField = value;
+                this.lANGUAGEIDField = value;
             }
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> USERID {
+        public string LANGUAGE1 {
             get {
-                return this.uSERIDField;
+                return this.lANGUAGE1Field;
             }
             set {
-                this.uSERIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> BOOKID {
-            get {
-                return this.bOOKIDField;
-            }
-            set {
-                this.bOOKIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string REVIEW1 {
-            get {
-                return this.rEVIEW1Field;
-            }
-            set {
-                this.rEVIEW1Field = value;
-            }
-        }
-        
-        /// <remarks/>
-        public BOOK BOOK {
-            get {
-                return this.bOOKField;
-            }
-            set {
-                this.bOOKField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public USER USER {
-            get {
-                return this.uSERField;
-            }
-            set {
-                this.uSERField = value;
+                this.lANGUAGE1Field = value;
             }
         }
     }
@@ -2491,95 +2684,55 @@ namespace BSMS.bsms.localhost {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class USER {
+    public partial class PRODUCER {
         
-        private int uSERIDField;
+        private int pRODUCERIDField;
         
-        private string uSERNAMEField;
+        private string nAMEField;
         
-        private string pASSWORDHASHField;
+        private string aDDRESSField;
         
-        private string fIRSTNAMEField;
-        
-        private string lASTNAMEField;
-        
-        private string mIDDLENAMEField;
-        
-        private string tHUMBNAIL_PATHField;
+        private string cONTACTField;
         
         private string eMAILField;
         
-        private System.Nullable<int> rOLEIDField;
-        
-        private ROLE rOLEField;
-        
         /// <remarks/>
-        public int USERID {
+        public int PRODUCERID {
             get {
-                return this.uSERIDField;
+                return this.pRODUCERIDField;
             }
             set {
-                this.uSERIDField = value;
+                this.pRODUCERIDField = value;
             }
         }
         
         /// <remarks/>
-        public string USERNAME {
+        public string NAME {
             get {
-                return this.uSERNAMEField;
+                return this.nAMEField;
             }
             set {
-                this.uSERNAMEField = value;
+                this.nAMEField = value;
             }
         }
         
         /// <remarks/>
-        public string PASSWORDHASH {
+        public string ADDRESS {
             get {
-                return this.pASSWORDHASHField;
+                return this.aDDRESSField;
             }
             set {
-                this.pASSWORDHASHField = value;
+                this.aDDRESSField = value;
             }
         }
         
         /// <remarks/>
-        public string FIRSTNAME {
+        public string CONTACT {
             get {
-                return this.fIRSTNAMEField;
+                return this.cONTACTField;
             }
             set {
-                this.fIRSTNAMEField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string LASTNAME {
-            get {
-                return this.lASTNAMEField;
-            }
-            set {
-                this.lASTNAMEField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string MIDDLENAME {
-            get {
-                return this.mIDDLENAMEField;
-            }
-            set {
-                this.mIDDLENAMEField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string THUMBNAIL_PATH {
-            get {
-                return this.tHUMBNAIL_PATHField;
-            }
-            set {
-                this.tHUMBNAIL_PATHField = value;
+                this.cONTACTField = value;
             }
         }
         
@@ -2590,60 +2743,6 @@ namespace BSMS.bsms.localhost {
             }
             set {
                 this.eMAILField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> ROLEID {
-            get {
-                return this.rOLEIDField;
-            }
-            set {
-                this.rOLEIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public ROLE ROLE {
-            get {
-                return this.rOLEField;
-            }
-            set {
-                this.rOLEField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class ROLE {
-        
-        private int rOLEIDField;
-        
-        private string rOLE1Field;
-        
-        /// <remarks/>
-        public int ROLEID {
-            get {
-                return this.rOLEIDField;
-            }
-            set {
-                this.rOLEIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ROLE1 {
-            get {
-                return this.rOLE1Field;
-            }
-            set {
-                this.rOLE1Field = value;
             }
         }
     }
@@ -3391,132 +3490,8 @@ namespace BSMS.bsms.localhost {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class PRODUCER {
-        
-        private int pRODUCERIDField;
-        
-        private string nAMEField;
-        
-        private string aDDRESSField;
-        
-        private string cONTACTField;
-        
-        private string eMAILField;
-        
-        /// <remarks/>
-        public int PRODUCERID {
-            get {
-                return this.pRODUCERIDField;
-            }
-            set {
-                this.pRODUCERIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string NAME {
-            get {
-                return this.nAMEField;
-            }
-            set {
-                this.nAMEField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ADDRESS {
-            get {
-                return this.aDDRESSField;
-            }
-            set {
-                this.aDDRESSField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string CONTACT {
-            get {
-                return this.cONTACTField;
-            }
-            set {
-                this.cONTACTField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string EMAIL {
-            get {
-                return this.eMAILField;
-            }
-            set {
-                this.eMAILField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2053.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class LANGUAGE {
-        
-        private int lANGUAGEIDField;
-        
-        private string lANGUAGE1Field;
-        
-        /// <remarks/>
-        public int LANGUAGEID {
-            get {
-                return this.lANGUAGEIDField;
-            }
-            set {
-                this.lANGUAGEIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string LANGUAGE1 {
-            get {
-                return this.lANGUAGE1Field;
-            }
-            set {
-                this.lANGUAGE1Field = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
-    public delegate void GetAllInJsonCompletedEventHandler(object sender, GetAllInJsonCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetAllInJsonCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetAllInJsonCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public BOOK[] Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((BOOK[])(this.results[0]));
-            }
-        }
-    }
+    public delegate void SetAsTestContextCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2053.0")]

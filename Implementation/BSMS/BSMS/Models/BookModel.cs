@@ -11,6 +11,13 @@ namespace BSMS.Models
     {
         private static bsms_service Service = new bsms_service();
 
+        public BookModel(bool testInstance = false)
+        {
+            if (testInstance)
+            {
+                Service.SetAsTestContext();
+            }
+        }
 
         public static List<BOOK> getApprovedBooks()
         {

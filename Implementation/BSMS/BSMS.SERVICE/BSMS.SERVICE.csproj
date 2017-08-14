@@ -76,6 +76,8 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="IBSMS.cs" />
+    <Compile Include="Mock\FakeDataAccessDataContext.cs" />
+    <Compile Include="Mock\FakeDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

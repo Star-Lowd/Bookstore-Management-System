@@ -13,4 +13,5 @@ namespace BSMS.SERVICE
 
         bool AddUser(USER user);
     }
+    
 }

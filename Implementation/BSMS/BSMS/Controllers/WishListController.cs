@@ -23,7 +23,7 @@ namespace BSMS.Controllers
             BOOK book = BookModel.FilterBook(id);
             if (book == null)
             {
-                return Json("not added", JsonRequestBehavior.AllowGet);
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
             if (!WishListModel.Exist(id, loginSession.AuthenticatedUser().USERID))
             {

@@ -20,10 +20,48 @@ namespace BSMS.SERVICE.App_Data
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-	
-	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="BSMS")]
-	public partial class DataAccessDataContext : System.Data.Linq.DataContext
+
+
+    public interface IDataAccessDataContext : IDisposable
+    {
+        void SaveChanges();
+        System.Data.Linq.ITable<AUTHOR> AUTHORs { get; set; }
+
+        System.Data.Linq.ITable<BOOK_AUTHOR> BOOK_AUTHORs { get; set; }
+
+       System.Data.Linq.ITable<BOOK_CATEGORY> BOOK_CATEGORies { get; set; }
+
+        System.Data.Linq.ITable<BOOK_SOFTCOPY> BOOK_SOFTCOPies { get; set; }
+
+        System.Data.Linq.ITable<CATEGORY> CATEGORies { get; set; }
+
+        System.Data.Linq.ITable<GENRE> GENREs { get; set; }
+
+        System.Data.Linq.ITable<LANGUAGE> LANGUAGEs { get; set; }
+
+        System.Data.Linq.ITable<PRODUCER> PRODUCERs { get; set; }
+
+        System.Data.Linq.ITable<ROLE> ROLEs { get; set; }
+        System.Data.Linq.ITable<USER> USERs { get; set; }
+
+        System.Data.Linq.ITable<WATCHLIST> WATCHLISTs { get; set; }
+        System.Data.Linq.ITable<BOOK_IMAGE> BOOK_IMAGEs { get; set; }
+
+        System.Data.Linq.ITable<BOOK> BOOKs { get; set; }
+
+        System.Data.Linq.ITable<VIEW> VIEWs { get; set; }
+
+        System.Data.Linq.ITable<REVIEW> REVIEWs { get; set; }
+
+        System.Data.Linq.ITable<RATING> RATINGs { get; set; }
+
+        System.Data.Linq.ITable<LIKE> LIKEs { get; set; }
+       
+    }
+
+    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="BSMS")]
+
+    public partial class DataAccessDataContext : System.Data.Linq.DataContext, IDataAccessDataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -113,142 +151,164 @@ namespace BSMS.SERVICE.App_Data
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<AUTHOR> AUTHORs
+		public System.Data.Linq.ITable<AUTHOR> AUTHORs
 		{
 			get
 			{
 				return this.GetTable<AUTHOR>();
 			}
+            set { }
 		}
 		
-		public System.Data.Linq.Table<BOOK_AUTHOR> BOOK_AUTHORs
+		public System.Data.Linq.ITable<BOOK_AUTHOR> BOOK_AUTHORs
 		{
 			get
 			{
 				return this.GetTable<BOOK_AUTHOR>();
 			}
+            set { }
 		}
 		
-		public System.Data.Linq.Table<BOOK_CATEGORY> BOOK_CATEGORies
+		public System.Data.Linq.ITable<BOOK_CATEGORY> BOOK_CATEGORies
 		{
 			get
 			{
 				return this.GetTable<BOOK_CATEGORY>();
 			}
-		}
+            set { }
+        }
 		
-		public System.Data.Linq.Table<BOOK_SOFTCOPY> BOOK_SOFTCOPies
+		public System.Data.Linq.ITable<BOOK_SOFTCOPY> BOOK_SOFTCOPies
 		{
 			get
 			{
 				return this.GetTable<BOOK_SOFTCOPY>();
 			}
-		}
+            set { }
+        }
 		
-		public System.Data.Linq.Table<CATEGORY> CATEGORies
+		public System.Data.Linq.ITable<CATEGORY> CATEGORies
 		{
 			get
 			{
 				return this.GetTable<CATEGORY>();
 			}
-		}
+            set { }
+        }
 		
-		public System.Data.Linq.Table<GENRE> GENREs
+		public System.Data.Linq.ITable<GENRE> GENREs
 		{
 			get
 			{
 				return this.GetTable<GENRE>();
 			}
-		}
+            set { }
+        }
 		
-		public System.Data.Linq.Table<LANGUAGE> LANGUAGEs
+		public System.Data.Linq.ITable<LANGUAGE> LANGUAGEs
 		{
 			get
 			{
 				return this.GetTable<LANGUAGE>();
 			}
-		}
+            set { }
+        }
 		
-		public System.Data.Linq.Table<PRODUCER> PRODUCERs
+		public System.Data.Linq.ITable<PRODUCER> PRODUCERs
 		{
 			get
 			{
 				return this.GetTable<PRODUCER>();
 			}
-		}
+            set { }
+        }
 		
-		public System.Data.Linq.Table<ROLE> ROLEs
+		public System.Data.Linq.ITable<ROLE> ROLEs
 		{
 			get
 			{
 				return this.GetTable<ROLE>();
 			}
-		}
+            set { }
+        }
 		
-		public System.Data.Linq.Table<USER> USERs
+		public System.Data.Linq.ITable<USER> USERs
 		{
 			get
-			{
-				return this.GetTable<USER>();
-			}
-		}
+            {
+                return this.GetTable<USER>();
+            }
+            set { }
+        }
 		
-		public System.Data.Linq.Table<WATCHLIST> WATCHLISTs
+		public System.Data.Linq.ITable<WATCHLIST> WATCHLISTs
 		{
 			get
 			{
 				return this.GetTable<WATCHLIST>();
 			}
-		}
+            set { }
+        }
 		
-		public System.Data.Linq.Table<BOOK_IMAGE> BOOK_IMAGEs
+		public System.Data.Linq.ITable<BOOK_IMAGE> BOOK_IMAGEs
 		{
 			get
 			{
 				return this.GetTable<BOOK_IMAGE>();
 			}
-		}
+            set { }
+        }
 		
-		public System.Data.Linq.Table<BOOK> BOOKs
+		public System.Data.Linq.ITable<BOOK> BOOKs
 		{
 			get
 			{
 				return this.GetTable<BOOK>();
 			}
-		}
+            set { }
+        }
 		
-		public System.Data.Linq.Table<VIEW> VIEWs
+		public System.Data.Linq.ITable<VIEW> VIEWs
 		{
 			get
 			{
 				return this.GetTable<VIEW>();
-			}
-		}
+            }
+            set { }
+        }
 		
-		public System.Data.Linq.Table<REVIEW> REVIEWs
+		public System.Data.Linq.ITable<REVIEW> REVIEWs
 		{
 			get
 			{
 				return this.GetTable<REVIEW>();
-			}
-		}
+            }
+            set { }
+        }
 		
-		public System.Data.Linq.Table<RATING> RATINGs
+		public System.Data.Linq.ITable<RATING> RATINGs
 		{
 			get
 			{
 				return this.GetTable<RATING>();
 			}
-		}
+            set { }
+        }
 		
-		public System.Data.Linq.Table<LIKE> LIKEs
+		public System.Data.Linq.ITable<LIKE> LIKEs
 		{
 			get
 			{
 				return this.GetTable<LIKE>();
-			}
-		}
-	}
+            }
+            set { }
+        }
+
+        public void SaveChanges()
+        {
+            base.SubmitChanges();
+        }
+    }
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AUTHOR")]
 	public partial class AUTHOR : INotifyPropertyChanging, INotifyPropertyChanged

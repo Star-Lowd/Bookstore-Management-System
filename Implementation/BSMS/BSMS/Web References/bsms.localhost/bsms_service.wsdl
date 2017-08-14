@@ -2,68 +2,19 @@
 <wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
-      <s:element name="GetAllInJson">
+      <s:element name="SetAsTestContext">
         <s:complexType />
       </s:element>
-      <s:element name="GetAllInJsonResponse">
+      <s:element name="SetAsTestContextResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateUser">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetAllInJsonResult" type="tns:ArrayOfBOOK" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:USER" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfBOOK">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="BOOK" nillable="true" type="tns:BOOK" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="BOOK">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="BOOKID" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="ISBN_NUMBER" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="NAME" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="STATUS" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="SYNOPOSIS" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="ISPUBLISHED" nillable="true" type="s:boolean" />
-          <s:element minOccurs="0" maxOccurs="1" name="REFERENCE" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="DATE_PUBLISHED" nillable="true" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="CREATED_DATE" nillable="true" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="PRICE" nillable="true" type="s:double" />
-          <s:element minOccurs="1" maxOccurs="1" name="PERCENTAGE_OFF" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="GENREID" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="STAFFID" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="PRODUCERID" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="TRANSLATEDFROM" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="LANGUAGEID" nillable="true" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="GENRE" type="tns:GENRE" />
-          <s:element minOccurs="0" maxOccurs="1" name="LANGUAGE" type="tns:LANGUAGE" />
-          <s:element minOccurs="0" maxOccurs="1" name="PRODUCER" type="tns:PRODUCER" />
-          <s:element minOccurs="0" maxOccurs="1" name="USER" type="tns:USER" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="GENRE">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="GENREID" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="NAME" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="DESCRIPTION" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="REFERENCE_KEY" type="s:string" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="LANGUAGE">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="LANGUAGEID" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="LANGUAGE1" type="s:string" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="PRODUCER">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="PRODUCERID" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="NAME" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="ADDRESS" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="CONTACT" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="EMAIL" type="s:string" />
-        </s:sequence>
-      </s:complexType>
       <s:complexType name="USER">
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="USERID" type="s:int" />
@@ -84,13 +35,6 @@
           <s:element minOccurs="0" maxOccurs="1" name="ROLE1" type="s:string" />
         </s:sequence>
       </s:complexType>
-      <s:element name="UpdateUser">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:USER" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="UpdateUserResponse">
         <s:complexType />
       </s:element>
@@ -207,6 +151,14 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="GENRE" nillable="true" type="tns:GENRE" />
         </s:sequence>
       </s:complexType>
+      <s:complexType name="GENRE">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="GENREID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DESCRIPTION" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="REFERENCE_KEY" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="UpdateGenre">
         <s:complexType>
           <s:sequence>
@@ -318,6 +270,15 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="PRODUCER" nillable="true" type="tns:PRODUCER" />
         </s:sequence>
       </s:complexType>
+      <s:complexType name="PRODUCER">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PRODUCERID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ADDRESS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CONTACT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EMAIL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="DeleteProducer">
         <s:complexType>
           <s:sequence>
@@ -355,6 +316,36 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="BOOK">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BOOKID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ISBN_NUMBER" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="NAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="STATUS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SYNOPOSIS" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ISPUBLISHED" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="REFERENCE" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DATE_PUBLISHED" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CREATED_DATE" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PRICE" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="PERCENTAGE_OFF" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="GENREID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="STAFFID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PRODUCERID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TRANSLATEDFROM" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LANGUAGEID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="GENRE" type="tns:GENRE" />
+          <s:element minOccurs="0" maxOccurs="1" name="LANGUAGE" type="tns:LANGUAGE" />
+          <s:element minOccurs="0" maxOccurs="1" name="PRODUCER" type="tns:PRODUCER" />
+          <s:element minOccurs="0" maxOccurs="1" name="USER" type="tns:USER" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LANGUAGE">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LANGUAGEID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LANGUAGE1" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="InsertBookResponse">
         <s:complexType>
           <s:sequence>
@@ -392,6 +383,11 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="ArrayOfBOOK">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BOOK" nillable="true" type="tns:BOOK" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="InsertBookImage">
         <s:complexType>
           <s:sequence>
@@ -925,11 +921,11 @@
       </s:element>
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="GetAllInJsonSoapIn">
-    <wsdl:part name="parameters" element="tns:GetAllInJson" />
+  <wsdl:message name="SetAsTestContextSoapIn">
+    <wsdl:part name="parameters" element="tns:SetAsTestContext" />
   </wsdl:message>
-  <wsdl:message name="GetAllInJsonSoapOut">
-    <wsdl:part name="parameters" element="tns:GetAllInJsonResponse" />
+  <wsdl:message name="SetAsTestContextSoapOut">
+    <wsdl:part name="parameters" element="tns:SetAsTestContextResponse" />
   </wsdl:message>
   <wsdl:message name="UpdateUserSoapIn">
     <wsdl:part name="parameters" element="tns:UpdateUser" />
@@ -1286,9 +1282,9 @@
     <wsdl:part name="parameters" element="tns:GetAllReviewsResponse" />
   </wsdl:message>
   <wsdl:portType name="bsms_serviceSoap">
-    <wsdl:operation name="GetAllInJson">
-      <wsdl:input message="tns:GetAllInJsonSoapIn" />
-      <wsdl:output message="tns:GetAllInJsonSoapOut" />
+    <wsdl:operation name="SetAsTestContext">
+      <wsdl:input message="tns:SetAsTestContextSoapIn" />
+      <wsdl:output message="tns:SetAsTestContextSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="UpdateUser">
       <wsdl:input message="tns:UpdateUserSoapIn" />
@@ -1529,8 +1525,8 @@
   </wsdl:portType>
   <wsdl:binding name="bsms_serviceSoap" type="tns:bsms_serviceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetAllInJson">
-      <soap:operation soapAction="http://tempuri.org/GetAllInJson" style="document" />
+    <wsdl:operation name="SetAsTestContext">
+      <soap:operation soapAction="http://tempuri.org/SetAsTestContext" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2072,8 +2068,8 @@
   </wsdl:binding>
   <wsdl:binding name="bsms_serviceSoap12" type="tns:bsms_serviceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetAllInJson">
-      <soap12:operation soapAction="http://tempuri.org/GetAllInJson" style="document" />
+    <wsdl:operation name="SetAsTestContext">
+      <soap12:operation soapAction="http://tempuri.org/SetAsTestContext" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -46,11 +46,13 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -102,8 +104,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BSMS.SERVICE\BSMS.SERVICE.csproj">
+      <Project>{cff680b5-f5d1-4025-b91d-c0c44d361c72}</Project>
+      <Name>BSMS.SERVICE</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BSMS\BSMS.csproj">
-      <Project>{7E6E3646-8260-4602-8BD3-217E6C9846F9}</Project>
+      <Project>{7e6e3646-8260-4602-8bd3-217e6c9846f9}</Project>
       <Name>BSMS</Name>
     </ProjectReference>
   </ItemGroup>

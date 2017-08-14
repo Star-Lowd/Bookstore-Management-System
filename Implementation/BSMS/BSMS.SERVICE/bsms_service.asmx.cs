@@ -6,30 +6,19 @@ using System.Web.Services;
 using BSMS.SERVICE.App_Data;
 using System.Web.Script.Services;
 using System.Web.Script.Serialization;
+using BSMS.Tests.Mock;
 
 namespace BSMS.SERVICE
 {
-    /// <summary>
-    /// Summary description for bsms_service
-    /// </summary>
+    
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
-    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    // [System.Web.Script.Services.ScriptService]
+
     public class bsms_service : System.Web.Services.WebService
     {
-        private DataAccessDataContext dataAccess = new DataAccessDataContext();
 
-        [WebMethod]
-        public List<BOOK> GetAllInJson()
-        {
-            Context.Response.ContentType = "JSON";
-            //JavaScriptSerializer json = new JavaScriptSerializer();
-            // Context.Response.Write(json.Serialize(dataAccess.BOOKs.ToList()));
-            return dataAccess.BOOKs.ToList();
-        }
-
+        private IDataAccessDataContext dataAccess = new DataAccessDataContext();
 
         [WebMethod]
         public void UpdateUser(USER user)
@@ -46,7 +35,7 @@ namespace BSMS.SERVICE
                     u.PASSWORDHASH = user.PASSWORDHASH == null ? u.PASSWORDHASH : user.PASSWORDHASH;
                 }
             }
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
 
 
@@ -56,7 +45,7 @@ namespace BSMS.SERVICE
             try
             {
                 dataAccess.USERs.InsertOnSubmit(user);
-                dataAccess.SubmitChanges();
+                dataAccess.SaveChanges();
                 return user;
             }
             catch
@@ -98,7 +87,7 @@ namespace BSMS.SERVICE
                 }
             }
 
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
 
         [WebMethod]
@@ -106,7 +95,7 @@ namespace BSMS.SERVICE
         public void InserCategory(CATEGORY cat)
         {
             dataAccess.CATEGORies.InsertOnSubmit(cat);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
 
         [WebMethod]
@@ -114,7 +103,7 @@ namespace BSMS.SERVICE
         {
             CATEGORY cat = dataAccess.CATEGORies.ToList().Single(c => c.CATEGORYID == catID);
             dataAccess.CATEGORies.DeleteOnSubmit(cat);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
 
 
@@ -139,7 +128,7 @@ namespace BSMS.SERVICE
                 }
             }
 
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
 
         [WebMethod]
@@ -147,7 +136,7 @@ namespace BSMS.SERVICE
         public void InserGenre(GENRE genre)
         {
             dataAccess.GENREs.InsertOnSubmit(genre);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
 
         [WebMethod]
@@ -155,7 +144,7 @@ namespace BSMS.SERVICE
         {
             GENRE gen = dataAccess.GENREs.ToList().Single(genre => genre.GENREID == genID);
             dataAccess.GENREs.DeleteOnSubmit(gen);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
 
 
@@ -164,7 +153,7 @@ namespace BSMS.SERVICE
         {
             USER gen = dataAccess.USERs.ToList().Single(user => user.USERID == uID);
             dataAccess.USERs.DeleteOnSubmit(gen);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
 
 
@@ -180,14 +169,14 @@ namespace BSMS.SERVICE
         {
             AUTHOR author = dataAccess.AUTHORs.Single(aut => aut.AUTHORID == id);
             dataAccess.AUTHORs.DeleteOnSubmit(author);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
 
         [WebMethod]
         public void AddAuthor(AUTHOR author)
         {
             dataAccess.AUTHORs.InsertOnSubmit(author);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
 
         [WebMethod]
@@ -201,7 +190,7 @@ namespace BSMS.SERVICE
             prv.MIDDLENAME = author.MIDDLENAME;
             prv.THUMBNAIL_PATH = author.THUMBNAIL_PATH;
 
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
 
         [WebMethod]
@@ -216,7 +205,7 @@ namespace BSMS.SERVICE
         {
             PRODUCER producer = dataAccess.PRODUCERs.Single(p => p.PRODUCERID == id);
             dataAccess.PRODUCERs.DeleteOnSubmit(producer);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
 
 
@@ -224,7 +213,7 @@ namespace BSMS.SERVICE
         public void InsertProducer(PRODUCER producer)
         {
             dataAccess.PRODUCERs.InsertOnSubmit(producer);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
 
         [WebMethod]
@@ -235,13 +224,13 @@ namespace BSMS.SERVICE
             p.EMAIL = producer.EMAIL;
             p.ADDRESS = producer.ADDRESS;
             p.CONTACT = producer.CONTACT;
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
         public BOOK InsertBook(BOOK book)
         {
             dataAccess.BOOKs.InsertOnSubmit(book);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
             return book;
         }
         [WebMethod]
@@ -249,7 +238,7 @@ namespace BSMS.SERVICE
         {
             BOOK book = dataAccess.BOOKs.Single(b => b.BOOKID == bookid);
             dataAccess.BOOKs.DeleteOnSubmit(book);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
         public void UpdateBook(BOOK book)
@@ -271,7 +260,7 @@ namespace BSMS.SERVICE
             existingBook.TRANSLATEDFROM = book.TRANSLATEDFROM;
             existingBook.LANGUAGEID = book.LANGUAGEID;
             //existingBook = book;
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
         public List<BOOK> GetBooks()
@@ -284,21 +273,21 @@ namespace BSMS.SERVICE
         public void InsertBookImage(BOOK_IMAGE image)
         {
             dataAccess.BOOK_IMAGEs.InsertOnSubmit(image);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
         public void UpdateBookImage(BOOK_IMAGE image)
         {
             BOOK_IMAGE bookImage = dataAccess.BOOK_IMAGEs.Single(bi => bi.BOOKID == image.BOOKID);
             bookImage = image;
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
         public void DeleteBookImage(int id)
         {
             BOOK_IMAGE bookImage = dataAccess.BOOK_IMAGEs.Single(bi => bi.BOOK_IMAGEID == id);
             dataAccess.BOOK_IMAGEs.DeleteOnSubmit(bookImage);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
         public List<BOOK_IMAGE> GetBookImages()
@@ -312,7 +301,7 @@ namespace BSMS.SERVICE
         public void InsertBookCategory(BOOK_CATEGORY bCategory)
         {
             dataAccess.BOOK_CATEGORies.InsertOnSubmit(bCategory);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
 
@@ -320,14 +309,14 @@ namespace BSMS.SERVICE
         {
             BOOK_CATEGORY bookCategory = dataAccess.BOOK_CATEGORies.Single(bc => bc.BOOK_CATEGORYID == bCategory.BOOK_CATEGORYID);
             bookCategory = bCategory;
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
         public void DeleteBookCategory(int? bCategoryID)
         {
             BOOK_CATEGORY bookCategory = dataAccess.BOOK_CATEGORies.Single(bc => bc.BOOK_CATEGORYID == bCategoryID);
             dataAccess.BOOK_CATEGORies.DeleteOnSubmit(bookCategory);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
         public List<BOOK_CATEGORY> GetBookCategories()
@@ -341,21 +330,21 @@ namespace BSMS.SERVICE
         public void InsertBookAuthor(BOOK_AUTHOR author)
         {
             dataAccess.BOOK_AUTHORs.InsertOnSubmit(author);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
         public void UpdateBookAuthor(BOOK_AUTHOR bAuthor)
         {
             BOOK_AUTHOR bookAuthor = dataAccess.BOOK_AUTHORs.Single(ba => ba.AUTHORID == bAuthor.AUTHORID);
             bookAuthor = bAuthor;
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
         public void DeleteBookAuthor(int bAuthorID)
         {
             BOOK_AUTHOR bookAuthor = dataAccess.BOOK_AUTHORs.First(bAuthor => bAuthor.BOOK_AUTHORID == bAuthorID);
             dataAccess.BOOK_AUTHORs.DeleteOnSubmit(bookAuthor);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
         public List<BOOK_AUTHOR> GetBookAuthors()
@@ -368,21 +357,21 @@ namespace BSMS.SERVICE
         public void InsertBookSoftCopy(BOOK_SOFTCOPY copy)
         {
             dataAccess.BOOK_SOFTCOPies.InsertOnSubmit(copy);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
         public void UpdateBookSoftCopy(BOOK_SOFTCOPY bSoftCopy)
         {
             BOOK_SOFTCOPY bookSoftCopy = dataAccess.BOOK_SOFTCOPies.Single(bSC => bSC.BSCID == bSoftCopy.BSCID);
             bookSoftCopy = bSoftCopy;
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
         public void DeleteBookSoftCopy(int? bSCID)
         {
             BOOK_SOFTCOPY bookSoftCopy = dataAccess.BOOK_SOFTCOPies.Single(bSoftCopy => bSoftCopy.BSCID == bSCID);
             dataAccess.BOOK_SOFTCOPies.DeleteOnSubmit(bookSoftCopy);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
         public List<BOOK_SOFTCOPY> GetBookSoftCopy()
@@ -404,7 +393,7 @@ namespace BSMS.SERVICE
             watchlist.BOOKID = bookid;
             watchlist.USERID = userid;
             dataAccess.WATCHLISTs.InsertOnSubmit(watchlist);
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
         [WebMethod]
         public List<WATCHLIST> GetWishList(int userid)
@@ -427,7 +416,7 @@ namespace BSMS.SERVICE
             {
                 dataAccess.WATCHLISTs.DeleteOnSubmit(watchList);
             }
-            dataAccess.SubmitChanges();
+            dataAccess.SaveChanges();
         }
 
         [WebMethod]
@@ -436,7 +425,7 @@ namespace BSMS.SERVICE
             try
             {
                 dataAccess.LIKEs.InsertOnSubmit(like);
-                dataAccess.SubmitChanges();
+                dataAccess.SaveChanges();
                 return true;
             }
             catch
@@ -457,7 +446,7 @@ namespace BSMS.SERVICE
                 }
 
                 dataAccess.LIKEs.DeleteOnSubmit(like);
-                dataAccess.SubmitChanges();
+                dataAccess.SaveChanges();
                 return true;
             }
             catch(Exception ex)
@@ -485,7 +474,7 @@ namespace BSMS.SERVICE
                 }
 
                 dataAccess.VIEWs.InsertOnSubmit(view);
-                dataAccess.SubmitChanges();
+                dataAccess.SaveChanges();
 
                 return true;
             }
@@ -514,7 +503,7 @@ namespace BSMS.SERVICE
                 };
 
                 dataAccess.RATINGs.InsertOnSubmit(Mockrating);
-                dataAccess.SubmitChanges();
+                dataAccess.SaveChanges();
                 return true;
             }
             catch
@@ -531,7 +520,7 @@ namespace BSMS.SERVICE
             {
                 RATING Mockrating = dataAccess.RATINGs.FirstOrDefault(r => r.BOOKID == bookid && r.USERID == userid);
                 Mockrating.RATING1 = rating;
-                dataAccess.SubmitChanges();
+                dataAccess.SaveChanges();
                 return true;
             }
             catch
@@ -568,7 +557,7 @@ namespace BSMS.SERVICE
                 };
 
                 dataAccess.REVIEWs.InsertOnSubmit(reviewData);
-                dataAccess.SubmitChanges();
+                dataAccess.SaveChanges();
 
                 return true;
             }
@@ -597,7 +586,7 @@ namespace BSMS.SERVICE
                 }
 
                 dataAccess.REVIEWs.DeleteOnSubmit(review);
-                dataAccess.SubmitChanges();
+                dataAccess.SaveChanges();
                 return true;
             }
             catch

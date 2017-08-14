@@ -211,6 +211,7 @@
     <Content Include="Content\css\bootstrap-select.css" />
     <Content Include="Content\css\colors\blue.css" />
     <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\iziToast.min.css" />
     <Content Include="Content\css\jquery.bootstrap-touchspin.css" />
     <Content Include="Content\css\jquery.sweet-modal.css" />
     <Content Include="Content\css\jquery.sweet-modal.min.css" />
@@ -284,6 +285,7 @@
     <Content Include="Content\js\custom.min.js" />
     <Content Include="Content\js\flot-data.js" />
     <Content Include="Content\js\FormHandler.js" />
+    <Content Include="Content\js\iziToast.min.js" />
     <Content Include="Content\js\jquery.bootstrap-touchspin.js" />
     <Content Include="Content\js\jquery.ez-plus.js" />
     <Content Include="Content\js\jquery.js" />
@@ -659,6 +661,11 @@
     <Content Include="Content\fonts\robotodraft\Thin\RobotoDraft-Thine209.ttf" />
     <Content Include="Content\fonts\robotodraft\Thin\RobotoDraft-Thine209.woff" />
     <Content Include="Content\fonts\robotodraft\Thin\RobotoDraft-Thine209.woff2" />
+    <Content Include="Content\css\animations.styl" />
+    <Content Include="Content\css\layouts.styl" />
+    <Content Include="Content\css\style.styl" />
+    <Content Include="Content\css\themes.styl" />
+    <Content Include="Content\css\toast.styl" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -692,9 +699,6 @@
     <Content Include="Views\Staff\Index.cshtml" />
     <Content Include="Views\Staff\ViewProfile.cshtml" />
     <Content Include="Views\Staff\UpdateStaff.cshtml" />
-    <Content Include="Web References\bsms.localhost\AUTHOR.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
     <Content Include="Views\Author\Index.cshtml" />
     <Content Include="Views\Author\Details.cshtml" />
     <Content Include="Views\Author\Create.cshtml" />
@@ -704,21 +708,6 @@
     <Content Include="Views\Producer\Create.cshtml" />
     <Content Include="Views\Producer\Edit.cshtml" />
     <Content Include="Views\Shared\LDashBoard.cshtml" />
-    <Content Include="Web References\bsms.localhost\BOOK.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\bsms.localhost\BOOK_AUTHOR.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\bsms.localhost\BOOK_CATEGORY.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\bsms.localhost\BOOK_IMAGE.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\bsms.localhost\BOOK_SOFTCOPY.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
     <Content Include="Views\Book\AddBook.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Book\BookDetail.cshtml" />
@@ -735,6 +724,26 @@
     <Content Include="Views\Profile\ChangePassword.cshtml" />
     <Content Include="Views\Profile\EditProfile.cshtml" />
     <Content Include="Views\Search\AdvanceSearch.cshtml" />
+    <Content Include="Web References\bsms.localhost\AUTHOR.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\bsms.localhost\BOOK.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\bsms.localhost\BOOK_AUTHOR.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\bsms.localhost\BOOK_CATEGORY.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\bsms.localhost\BOOK_IMAGE.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\bsms.localhost\BOOK_SOFTCOPY.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Views\Book\MostViewedBook.cshtml" />
+    <Content Include="Views\Book\MostLikedBook.cshtml" />
     <None Include="Web References\bsms.localhost\bsms_service.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -758,13 +767,13 @@
     <Content Include="Web References\bsms.localhost\GENRE.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\bsms.localhost\PRODUCER.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
     <Content Include="Web References\bsms.localhost\LANGUAGE.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <Content Include="Web References\bsms.localhost\LIKE.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\bsms.localhost\PRODUCER.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <Content Include="Web References\bsms.localhost\RATING.datasource">
@@ -774,19 +783,19 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Web References\bsms.localhost\REVIEW.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
     <Content Include="Web References\bsms.localhost\ROLE.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <Content Include="Web References\bsms.localhost\USER.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\bsms.localhost\WATCHLIST.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
     <Content Include="Web References\bsms.localhost\VIEW.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\bsms.localhost\REVIEW.datasource">
+    <Content Include="Web References\bsms.localhost\WATCHLIST.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
   </ItemGroup>
@@ -809,10 +818,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:6382/bsms_service.asmx%3fop=GetRoles">
+    <WebReferenceUrl Include="http://localhost:6382/bsms_service.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\bsms.localhost\</RelPath>
-      <UpdateFromURL>http://localhost:6382/bsms_service.asmx%3fop=GetRoles</UpdateFromURL>
+      <UpdateFromURL>http://localhost:6382/bsms_service.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -820,6 +829,12 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>BSMS_bsms_localhost_bsms_service</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BSMS.SERVICE\BSMS.SERVICE.csproj">
+      <Project>{cff680b5-f5d1-4025-b91d-c0c44d361c72}</Project>
+      <Name>BSMS.SERVICE</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
